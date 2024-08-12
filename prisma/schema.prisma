@@ -28,6 +28,9 @@ model OrderOptions {
   lineOptions  String
   areaOptions  String
   workerNumber String
+  pallets      Boolean
+  scotchTape   Boolean
+  whiteBraid   Boolean
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

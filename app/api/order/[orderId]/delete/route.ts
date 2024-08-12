@@ -4,17 +4,17 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { optionId: string } }
+  { params }: { params: { orderId: string } }
 ) {
   try {
-    if (!params.optionId) {
+    if (!params.orderId) {
       return new NextResponse("Not found", { status: 404 });
     }
 
     // delete order from the db
     const deletedTodo = await db.orderOptions.delete({
       where: {
-        id: params.optionId,
+        id: params.orderId,
       },
     });
 

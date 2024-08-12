@@ -75,38 +75,6 @@ export default function Worker() {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormType> = (data) => {
-    //TODO: Move this code to the Order Page
-
-    // const orderOptions = {
-    //   areaOptions: data.area?.value,
-    //   lineOptions: data.line?.value,
-    //   workerNumber: data.workerNumber,
-    // };
-
-    // try {
-    //   const apiUrl = "/api/order/create-order-options";
-
-    //   const requestData = {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ orderOptions }),
-    //   };
-
-    //   const response = await fetch(apiUrl, requestData);
-
-    //   if (!response.ok) {
-    //     throw new Error(
-    //       `Failed to post worker order option: ${response.status} - ${response.statusText}`
-    //     );
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    console.log(data);
-
     const query = {
       line: data.line?.value,
       area: data.area?.value,
