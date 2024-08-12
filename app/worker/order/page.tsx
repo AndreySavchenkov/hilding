@@ -10,6 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -23,6 +24,8 @@ const FormSchema = z.object({
 
 export default function Order() {
   const searchParams = useSearchParams();
+
+  const { toast } = useToast();
 
   const line = searchParams.get("line");
   const area = searchParams.get("area");
@@ -65,6 +68,14 @@ export default function Order() {
           `Failed to post worker order option: ${response.status} - ${response.statusText}`
         );
       }
+
+      toast({
+        title: "Заказ сделан успешно!",
+        description: `${data?.pallets && "Палеты"} ${
+          data?.scotchTape && "Белый стрейч"
+        } ${data?.scotchTape && "Скотч"}`,
+      });
+
     } catch (error) {
       console.log(error);
     }

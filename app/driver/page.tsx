@@ -1,10 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import { useEffect, useState } from "react";
 
 export default function Driver() {
   const [options, setOptions] = useState(null);
+
+  const { toast } = useToast();
 
   const deleteOrder = async (orderId: string) => {
     try {
@@ -22,6 +25,11 @@ export default function Driver() {
       if (!response.ok) {
         throw new Error(`Failed to delete`);
       }
+
+      toast({
+        title: "Заказ успешно удален!",
+        variant: "destructive",
+      });
 
       // refresh page on successful request
       window.location.reload();
