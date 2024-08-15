@@ -14,7 +14,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -69,16 +68,16 @@ const areaOptions = [
 
 export default function Worker() {
   const form = useForm<FormType>({
-    resolver: zodResolver(formSchema), // Apply the zodResolver
+    resolver: zodResolver(formSchema),
   });
 
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormType> = (data) => {
     const query = {
-      line: data.line?.value,
-      area: data.area?.value,
-      workerNumber: data.workerNumber,
+      line: data.line?.value || "",
+      area: data.area?.value || "",
+      workerNumber: data.workerNumber || "",
     };
 
     const queryString = new URLSearchParams(query).toString();

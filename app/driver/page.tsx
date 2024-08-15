@@ -31,7 +31,6 @@ export default function Driver() {
         variant: "destructive",
       });
 
-      // refresh page on successful request
       window.location.reload();
     } catch (error) {
       console.log(error);
