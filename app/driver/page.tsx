@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { OrderType } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function Driver() {
-  const [options, setOptions] = useState(null);
+  const [options, setOptions] = useState<OrderType[] | null>(null);
 
   const { toast } = useToast();
 
@@ -62,10 +63,18 @@ export default function Driver() {
     <div className="flex gap-8 flex-col">
       {options ? (
         options?.map((item) => (
-          <div key={item.index} className="flex gap-2 flex-col">
+          <div key={item.id} className="flex gap-2 flex-col">
             <span>Worker Number: {item.workerNumber}</span>
             <span>Line Number: {item.lineOptions}</span>
             <span>Area: {item.areaOptions}</span>
+            <div className="flex gap-8 flex-col">
+              <h2>Заказ:</h2>
+              <ul className="flex gap-4 flex-col">
+                {item.pallets ? <li>Палеты</li> : null}
+                {item.scotchTape ? <li>Скотч</li> : null}
+                {item.whiteBraid ? <li>Белый стрейч</li> : null}
+              </ul>
+            </div>
             <Button onClick={() => deleteOrder(item.id)}>Delete</Button>
           </div>
         ))
