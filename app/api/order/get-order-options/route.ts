@@ -1,6 +1,9 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
+// Отключение кэширования на уровне Vercel
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const options = await db.orderOptions.findMany({
@@ -13,12 +16,10 @@ export async function GET() {
 
     const response = NextResponse.json(options, { status: 200 });
 
-    response.headers.append(
+    response.headers.set(
       "Cache-Control",
-      "no-store, no-cache, must-revalidate, proxy-revalidate"
+      "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
     );
-    response.headers.append("Pragma", "no-cache");
-    response.headers.append("Expires", "0");
 
     return response;
   } catch (error) {
