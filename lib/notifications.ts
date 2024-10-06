@@ -39,13 +39,10 @@ async function sendNotificationToDriver(
     message: `Появился новый заказ: ${order.lineOptions}`,
   });
 
-  console.log(`payload in sendNotificationToDriver -> ${payload}`);
-
   try {
     // Отправляем уведомление с помощью web-push
     await webpush.sendNotification(subscription, payload, {});
 
-    console.log("Уведомление отправлено успешно");
   } catch (error) {
     console.error("Ошибка отправки уведомления:", error);
   }
