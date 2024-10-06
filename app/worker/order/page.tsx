@@ -13,7 +13,6 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -28,9 +27,9 @@ export default function Order() {
 
   const { toast } = useToast();
 
-  const line = searchParams.get("line");
-  const area = searchParams.get("area");
-  const workerNumber = searchParams.get("workerNumber");
+  const line = searchParams?.get("line");
+  const area = searchParams?.get("area");
+  const workerNumber = searchParams?.get("workerNumber");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -84,65 +83,63 @@ export default function Order() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              control={form.control}
-              name="pallets"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Паллеты:</FormLabel>
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="pallets"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Паллеты:</FormLabel>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="scotchTape"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Скотч:</FormLabel>
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="scotchTape"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Скотч:</FormLabel>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="whiteBraid"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Белый стрейч:</FormLabel>
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="whiteBraid"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Белый стрейч:</FormLabel>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <Button type="submit">Send</Button>
-          </form>
-        </Form>
-      </div>
-    </Suspense>
+          <Button type="submit">Send</Button>
+        </form>
+      </Form>
+    </div>
   );
 }
