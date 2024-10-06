@@ -42,7 +42,7 @@ export default function Driver() {
     const fetchOrderOptions = async () => {
       try {
         const response = await fetch(`/api/order/get-order-options`, {
-          next: { revalidate: 3600 },
+          cache: "no-store",
         });
 
         if (!response.ok) {
