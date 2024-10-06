@@ -9,6 +9,8 @@ export async function GET() {
       },
     });
 
+    console.log("Options from DB:", options);
+
     const response = NextResponse.json(options, { status: 200 });
 
     response.headers.append(
