@@ -1,7 +1,20 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { usePushNotifications } from "@/hooks/usePushNotifications";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
+
+  Notification.requestPermission().then(permission => {
+    console.log('Notification permission status:', permission);
+  });
+
+  useEffect(() => {
+    usePushNotifications();
+  }, []);
+
   return (
     <main className="flex flex-col justify-center gap-5 p-10">
       <Button asChild>

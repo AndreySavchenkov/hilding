@@ -6,6 +6,14 @@ export type OrderType = {
   pallets: boolean;
   scotchTape: boolean;
   whiteBraid: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
+
+export interface PushSubscription {
+  endpoint: string;
+  keys: {
+    p256dh: string;
+    auth: string;
+  };
+}

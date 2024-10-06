@@ -34,3 +34,11 @@ model OrderOptions {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model DriverSubscription {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  endpoint  String
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+}
