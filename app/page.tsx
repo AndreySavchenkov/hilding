@@ -5,9 +5,11 @@ import { usePushNotifications } from "@/hooks/usePushNotifications";
 import Link from "next/link";
 
 export default function Home() {
-  Notification.requestPermission().then((permission) => {
-    console.log("Notification permission status:", permission);
-  });
+  if (typeof window !== "undefined" && "Notification" in window) {
+    Notification.requestPermission().then((permission) => {
+      console.log("Notification permission status:", permission);
+    });
+  }
 
   usePushNotifications();
 
