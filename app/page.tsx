@@ -8,7 +8,7 @@ import { subscribeUser, unsubscribeUser, sendNotification } from "./actions";
 function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
-    .replace(/\\-/g, "+")
+    .replace(/-/g, "+") // Исправлено регулярное выражение
     .replace(/_/g, "/");
 
   const rawData = window.atob(base64);
@@ -122,12 +122,12 @@ function InstallPrompt() {
           To install this app on your iOS device, tap the share button
           <span role="img" aria-label="share icon">
             {" "}
-            ⎋{" "}
+            icon{" "}
           </span>
-          and then "Add to Home Screen"
+          and then Add to Home Screen
           <span role="img" aria-label="plus icon">
             {" "}
-            ➕{" "}
+            +{" "}
           </span>
           .
         </p>
