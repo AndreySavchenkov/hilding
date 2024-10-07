@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { subscribeUser } from "./actions";
 import { v4 as uuidv4 } from "uuid";
+import Image from "next/image";
+import driverIcon from "../public/driver.svg";
+import workerIcon from "../public/worker.svg";
 
 function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -113,14 +116,20 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col justify-center gap-5 p-10">
-      <Button asChild>
-        <Link href="/worker">Продолжить как работник</Link>
+    <main className="flex flex-col justify-center items-center  gap-5 p-10">
+      <Button asChild className="flex w-100% max-w-[250px] h-[250px]">
+        <Link href="/worker" className="flex flex-col gap-5">
+          <Image src={workerIcon} width={150} height={150} alt="worker icon" />
+          Продолжить как работник
+        </Link>
       </Button>
-      <Button asChild>
-        <Link href="/driver">Продолжить как вузковый </Link>
+      <Button asChild className="flex w-100% max-w-[250px] h-[250px]">
+        <Link href="/driver" className="flex flex-col gap-5">
+          <Image src={driverIcon} width={150} height={150} alt="worker icon" />
+          Продолжить как вузковый
+        </Link>
       </Button>
-      <Button asChild>
+      <Button asChild className="flex w-100% max-w-[250px]">
         <Link href="/admin">Продолжить как админ</Link>
       </Button>
       <div className="flex flex-col gap-10 mt-40">
