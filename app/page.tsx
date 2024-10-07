@@ -137,6 +137,22 @@ function InstallPrompt() {
 }
 
 export default function Home() {
+  async function subscribeToPush() {
+    const registration = await navigator.serviceWorker.ready;
+    const sub = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(
+        process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
+      ),
+    });
+
+    await subscribeUser(sub);
+  }
+
+  useEffect(() => {
+    subscribeToPush();
+  }, []) 
+
   return (
     <main className="flex flex-col justify-center gap-5 p-10">
       <Button asChild>
@@ -149,7 +165,7 @@ export default function Home() {
         <Link href="/admin">Продолжить как админ</Link>
       </Button>
       <div className="flex flex-col gap-10 mt-40">
-        <PushNotificationManager />
+        {/* <PushNotificationManager /> */}
         <InstallPrompt />
       </div>
     </main>

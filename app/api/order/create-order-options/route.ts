@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { sendNotification } from "@/app/actions";
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,6 +13,8 @@ export async function POST(req: NextRequest) {
     const order = await db.orderOptions.create({
       data: { ...orderOptions },
     });
+
+    await sendNotification(`Новый заказ на ${orderOptions.lineOptions}`);
 
     return NextResponse.json(order, { status: 200 });
   } catch (error) {

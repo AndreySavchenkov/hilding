@@ -1,5 +1,7 @@
 "use server";
 
+import { db } from "@/lib/db";
+import { PushSubscription } from "@/types";
 import webpush from "web-push";
 
 webpush.setVapidDetails(
@@ -10,11 +12,15 @@ webpush.setVapidDetails(
 
 let subscription: PushSubscription | null = null;
 
-export async function subscribeUser(sub: PushSubscription) {
-  subscription = sub;
-  // In a production environment, you would want to store the subscription in a database
-  // For example: await db.subscriptions.create({ data: sub })
-  // await db.driverSubscription.create({data: sub})
+export async function subscribeUser(sub: any) {
+  const { endpoint, keys } = sub; // Извлекаем данные из подписки
+  await db.driverSubscription.create({
+    data: {
+      endpoint: endpoint,
+      p256dh: keys.p256dh,
+      auth: keys.auth,
+    },
+  });
   return { success: true };
 }
 
@@ -26,23 +32,30 @@ export async function unsubscribeUser() {
 }
 
 export async function sendNotification(message: string) {
-  if (!subscription) {
-    throw new Error("No subscription available");
+  const subscriptions = await db.driverSubscription.findMany(); // Получаем все подписки
+
+  for (const subscription of subscriptions) {
+    const pushSubscription = {
+      endpoint: subscription.endpoint,
+      keys: {
+        p256dh: subscription.p256dh,
+        auth: subscription.auth,
+      },
+    };
+
+    try {
+      await webpush.sendNotification(
+        pushSubscription,
+        JSON.stringify({
+          title: "Новое уведомление",
+          body: message, // Сообщение, которое вы хотите отправить
+          icon: "/notification.png", // Иконка уведомления
+        })
+      );
+    } catch (error) {
+      console.error("Ошибка при отправке пуш-уведомления:", error);
+    }
   }
 
-  try {
-    await webpush.sendNotification(
-    //@ts-ignore
-      subscription,
-      JSON.stringify({
-        title: "Test Notification",
-        body: message,
-        icon: "/notification.png",
-      })
-    );
-    return { success: true };
-  } catch (error) {
-    console.error("Error sending push notification:", error);
-    return { success: false, error: "Failed to send notification" };
-  }
+  return { success: true };
 }
