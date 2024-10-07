@@ -36,9 +36,10 @@ model OrderOptions {
 }
 
 model DriverSubscription {
-  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   endpoint  String
   p256dh    String
   auth      String
+  deviceId  String
   createdAt DateTime @default(now())
 }

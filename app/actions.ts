@@ -12,13 +12,14 @@ webpush.setVapidDetails(
 
 let subscription: PushSubscription | null = null;
 
-export async function subscribeUser(sub: any) {
+export async function subscribeUser(sub: any, deviceId: string) {
   const { endpoint, keys } = sub; // Извлекаем данные из подписки
   await db.driverSubscription.create({
     data: {
       endpoint: endpoint,
       p256dh: keys.p256dh,
       auth: keys.auth,
+      deviceId,
     },
   });
   return { success: true };
