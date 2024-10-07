@@ -107,12 +107,16 @@ export default function Home() {
         <Link href="/admin">Продолжить как админ</Link>
       </Button>
       <div className="flex flex-col gap-10 mt-40">
-        <div>
+        <div className="flex flex-col gap-5">
           DeviceID: {deviceId}
           <button
             onClick={() => {
               if (typeof window !== "undefined") {
-                localStorage?.removeItem("deviceId");
+                // Очищаем deviceId в localStorage
+                localStorage.removeItem("deviceId");
+                console.log("Device ID cleared");
+                // Сбрасываем состояние deviceId
+                setDeviceId(null);
               }
             }}
           >
