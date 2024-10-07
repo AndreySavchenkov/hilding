@@ -148,7 +148,7 @@ export default function Home() {
       <Button asChild>
         <Link href="/admin">Продолжить как админ</Link>
       </Button>
-      <div className="mt-40">
+      <div className="flex flex-col gap-10 mt-40">
         <PushNotificationManager />
         <InstallPrompt />
       </div>
