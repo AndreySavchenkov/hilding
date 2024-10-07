@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { subscribeUser, unsubscribeUser, sendNotification } from "./actions";
+import { subscribeUser } from "./actions";
 import { v4 as uuidv4 } from "uuid";
 
 function urlBase64ToUint8Array(base64String: string) {
@@ -61,31 +61,38 @@ function InstallPrompt() {
 }
 
 export default function Home() {
-  async function subscribeToPush() {
-    const existingDeviceId = localStorage.getItem("deviceId");
-
-    if (existingDeviceId) {
-      console.log("Подписка уже существует:", existingDeviceId);
-      return; // Возвращаем существующую подписку
-    }
-
-    const deviceId = uuidv4();
-
-    localStorage.setItem("deviceId", deviceId);
-
-    const registration = await navigator.serviceWorker.ready;
-    const sub = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(
-        process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
-      ),
-    });
-
-    await subscribeUser(sub, deviceId);
-  }
+  const [deviceId, setDeviceId] = useState<string | null>(null);
 
   useEffect(() => {
-    subscribeToPush();
+    // Функция для подписки на пуш-уведомления
+    const subscribeToPush = async () => {
+      const existingDeviceId = localStorage.getItem("deviceId");
+
+      if (existingDeviceId) {
+        console.log("Подписка уже существует:", existingDeviceId);
+        setDeviceId(existingDeviceId);
+      } else {
+        const newDeviceId = uuidv4();
+        localStorage.setItem("deviceId", newDeviceId);
+        setDeviceId(newDeviceId);
+
+        const registration = await navigator.serviceWorker.ready;
+        const sub = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
+          ),
+        });
+
+        console.log("sub", sub);
+        await subscribeUser(sub, newDeviceId);
+      }
+    };
+
+    // Вызов функции подписки
+    if (typeof window !== "undefined") {
+      subscribeToPush();
+    }
   }, []);
 
   return (
@@ -100,7 +107,18 @@ export default function Home() {
         <Link href="/admin">Продолжить как админ</Link>
       </Button>
       <div className="flex flex-col gap-10 mt-40">
-        {/* <PushNotificationManager /> */}
+        <div>
+          DeviceID: {deviceId}
+          <button
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                localStorage?.removeItem("deviceId");
+              }
+            }}
+          >
+            Clear
+          </button>
+        </div>
         <InstallPrompt />
       </div>
     </main>

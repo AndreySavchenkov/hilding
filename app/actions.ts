@@ -1,7 +1,6 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { PushSubscription } from "@/types";
 import webpush from "web-push";
 
 webpush.setVapidDetails(
@@ -10,10 +9,11 @@ webpush.setVapidDetails(
   process.env.VAPID_PRIVATE_KEY!
 );
 
-let subscription: PushSubscription | null = null;
-
 export async function subscribeUser(sub: any, deviceId: string) {
   const { endpoint, keys } = sub; // Извлекаем данные из подписки
+
+  console.log(`deviceId ${deviceId}`);
+
   await db.driverSubscription.create({
     data: {
       endpoint: endpoint,
@@ -22,11 +22,11 @@ export async function subscribeUser(sub: any, deviceId: string) {
       deviceId,
     },
   });
+
   return { success: true };
 }
 
 export async function unsubscribeUser() {
-  subscription = null;
   // In a production environment, you would want to remove the subscription from the database
   // For example: await db.subscriptions.delete({ where: { ... } })
   return { success: true };
