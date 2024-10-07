@@ -76,16 +76,24 @@ export default function Home() {
         localStorage.setItem("deviceId", newDeviceId);
         setDeviceId(newDeviceId);
 
-        const registration = await navigator.serviceWorker.ready;
-        const sub = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(
-            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
-          ),
-        });
+        try {
+          const registration = await navigator.serviceWorker.ready;
+          console.log("Service Worker готов:", registration);
 
-        console.log("sub", sub);
-        await subscribeUser(sub, newDeviceId);
+          const sub = await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(
+              process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
+            ),
+          });
+
+          console.log("sub", sub);
+
+          const response = await subscribeUser(sub, newDeviceId);
+          console.log("Response from subscribeUser:", response);
+        } catch (error) {
+          console.error("Ошибка подписки на пуш:", error);
+        }
       }
     };
 
