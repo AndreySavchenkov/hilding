@@ -63,7 +63,16 @@ function InstallPrompt() {
 export default function Home() {
   const [deviceId, setDeviceId] = useState<string | null>(null);
 
+  async function registerServiceWorker() {
+    await navigator.serviceWorker.register("/sw.js", {
+      scope: "/",
+      updateViaCache: "none",
+    });
+  }
+
   useEffect(() => {
+    registerServiceWorker();
+
     // Функция для подписки на пуш-уведомления
     const subscribeToPush = async () => {
       const existingDeviceId = localStorage.getItem("deviceId");
