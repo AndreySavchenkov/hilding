@@ -58,33 +58,33 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center  gap-5 p-10">
+    <main className="flex flex-col justify-center items-center  gap-10 p-10 h-full">
       <>
         {deviceId ? (
           <>
             <Button asChild className="flex w-100% max-w-[250px] h-[250px]">
-              <Link href="/worker" className="flex flex-col gap-5">
-                <div>
+              <Link href="/worker">
+                <div className="flex flex-col gap-6">
                   <Image
                     src={workerIcon}
                     width={150}
                     height={150}
                     alt="worker icon"
                   />
-                  Продолжить как работник
+                  Pracownik
                 </div>
               </Link>
             </Button>
             <Button asChild className="flex w-100% max-w-[250px] h-[250px]">
-              <Link href="/driver" className="flex flex-col gap-5">
-                <div>
+              <Link href="/driver">
+                <div className="flex flex-col gap-6">
                   <Image
                     src={driverIcon}
                     width={150}
                     height={150}
                     alt="worker icon"
                   />
-                  Продолжить как вузковый
+                  Wózkowy
                 </div>
               </Link>
             </Button>
@@ -93,16 +93,16 @@ export default function Home() {
           <Button
             onClick={start}
             asChild
-            className="flex w-100% max-w-[250px] h-[250px]"
+            className="flex w-full max-w-[250px] h-[250px]"
           >
-            <div>
+            <div className="flex flex-col gap-6">
               <Image
                 src={startIcon}
                 width={150}
                 height={150}
                 alt="start work icon"
               />
-              Начать смену
+              Rozpoczęcie pracy
             </div>
           </Button>
         )}
