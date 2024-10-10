@@ -62,22 +62,28 @@ export default function Home() {
       <>
         {deviceId ? (
           <>
-            <Button asChild className="flex w-100% max-w-[250px] h-[250px]">
+            <Button
+              asChild
+              className="flex w-full max-w-[250px] h-[250px]"
+            >
               <Link href="/worker">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 items-center">
                   <Image
                     src={workerIcon}
                     width={150}
                     height={150}
                     alt="worker icon"
                   />
-                  Pracownik
+                  Pracownik produkcji
                 </div>
               </Link>
             </Button>
-            <Button asChild className="flex w-100% max-w-[250px] h-[250px]">
+            <Button
+              asChild
+              className="flex w-full max-w-[250px] h-[250px]"
+            >
               <Link href="/driver">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 items-center">
                   <Image
                     src={driverIcon}
                     width={150}

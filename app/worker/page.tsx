@@ -86,7 +86,7 @@ export default function Worker() {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto mt-10">
+    <div className="max-w-screen-lg mx-auto mt-10 text-gray-200">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -97,7 +97,7 @@ export default function Worker() {
             name="line"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Выберите линию:</FormLabel>
+                <FormLabel>Linia produkcyjna:</FormLabel>
                 <FormControl>
                   <Select {...field} options={lineOptions} />
                 </FormControl>
@@ -110,7 +110,7 @@ export default function Worker() {
             name="area"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Выберите рабочий участок:</FormLabel>
+                <FormLabel>Stanawisko:</FormLabel>
                 <FormControl>
                   <Select {...field} options={areaOptions} />
                 </FormControl>
@@ -123,7 +123,7 @@ export default function Worker() {
             name="workerNumber"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Введите свой ID номер:</FormLabel>
+                <FormLabel>Numer pracownika:</FormLabel>
                 <FormControl>
                   <InputOTP maxLength={6} {...field}>
                     <InputOTPGroup>
@@ -138,7 +138,9 @@ export default function Worker() {
               </FormItem>
             )}
           />
-          <Button className="max-w-md mt-6 py-10" type="submit">Send</Button>
+          <Button className="max-w-md mt-6 py-10" type="submit">
+            Send
+          </Button>
         </form>
       </Form>
     </div>
