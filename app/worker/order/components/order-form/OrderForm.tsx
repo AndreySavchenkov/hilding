@@ -12,14 +12,45 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import palletsIcon from "../../../../../public/pallets.png";
+import scotchTapeIcon from "../../../../../public/scotchTape.png";
+import whiteTapeIcon from "../../../../../public/whiteTape.png";
+import blackBeltIcon from "../../../../../public/blackBelt.png";
+import whiteBeltIcon from "../../../../../public/whiteBelt.png";
+import paperLining90 from "../../../../../public/paperLining90.png";
+import paperLining101 from "../../../../../public/paperLining101.png";
+import cartonBox from "../../../../../public/cartonBox.png";
+import downPaper from "../../../../../public/downPaper.png";
+import upPaper from "../../../../../public/upPaper.png";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const FormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
   scotchTape: z.boolean().default(false).optional(),
   whiteBraid: z.boolean().default(false).optional(),
+  blackBelt: z.boolean().default(false).optional(),
+  whiteBelt: z.boolean().default(false).optional(),
+  paperLining90: z.boolean().default(false).optional(),
+  paperLining101: z.boolean().default(false).optional(),
+  cartonBox80: z.boolean().default(false).optional(),
+  cartonBox90: z.boolean().default(false).optional(),
+  cartonBox120: z.boolean().default(false).optional(),
+  cartonBox140: z.boolean().default(false).optional(),
+  cartonBox160: z.boolean().default(false).optional(),
+  cartonBox180: z.boolean().default(false).optional(),
+  downPaperXFirm: z.boolean().default(false).optional(),
+  downPaperVagstranda: z.boolean().default(false).optional(),
+  upPaperCommon: z.boolean().default(false).optional(),
+  upPaperVagstranda: z.boolean().default(false).optional(),
 });
 
 export default function Order() {
@@ -37,6 +68,20 @@ export default function Order() {
       pallets: false,
       scotchTape: false,
       whiteBraid: false,
+      blackBelt: false,
+      whiteBelt: false,
+      paperLining90: false,
+      paperLining101: false,
+      cartonBox80: false,
+      cartonBox90: false,
+      cartonBox120: false,
+      cartonBox140: false,
+      cartonBox160: false,
+      cartonBox180: false,
+      downPaperXFirm: false,
+      downPaperVagstranda: false,
+      upPaperCommon: false,
+      upPaperVagstranda: false,
     },
   });
 
@@ -48,6 +93,20 @@ export default function Order() {
       pallets: data.pallets,
       scotchTape: data.scotchTape,
       whiteBraid: data.whiteBraid,
+      blackBelt: data.blackBelt,
+      whiteBelt: data.whiteBelt,
+      paperLining90: data.paperLining90,
+      paperLining101: data.paperLining101,
+      cartonBox80: data.cartonBox80,
+      cartonBox90: data.cartonBox90,
+      cartonBox120: data.cartonBox120,
+      cartonBox140: data.cartonBox140,
+      cartonBox160: data.cartonBox160,
+      cartonBox180: data.cartonBox180,
+      downPaperXFirm: data.downPaperXFirm,
+      downPaperVagstranda: data.downPaperVagstranda,
+      upPaperCommon: data.upPaperCommon,
+      upPaperVagstranda: data.upPaperVagstranda,
     };
 
     try {
@@ -83,17 +142,29 @@ export default function Order() {
   };
 
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto mt-10">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-5 w-full px-4"
+        >
           <FormField
             control={form.control}
             name="pallets"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Паллеты:</FormLabel>
+              <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                <FormLabel className="flex gap-4 items-center">
+                  <Image
+                    src={palletsIcon}
+                    alt="wood pallets"
+                    width={36}
+                    height={36}
+                  />
+                  Паллеты:
+                </FormLabel>
                 <FormControl>
                   <Checkbox
+                    className="w-9 h-9"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
@@ -107,10 +178,19 @@ export default function Order() {
             control={form.control}
             name="scotchTape"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Скотч:</FormLabel>
+              <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                <FormLabel className="flex gap-4 items-center">
+                  <Image
+                    src={scotchTapeIcon}
+                    alt="scotch tape"
+                    width={36}
+                    height={36}
+                  />
+                  Скотч:
+                </FormLabel>
                 <FormControl>
                   <Checkbox
+                    className="w-9 h-9"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
@@ -124,10 +204,19 @@ export default function Order() {
             control={form.control}
             name="whiteBraid"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Белый стрейч:</FormLabel>
+              <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                <FormLabel className="flex gap-4 items-center">
+                  <Image
+                    src={whiteTapeIcon}
+                    alt="white tape"
+                    width={36}
+                    height={36}
+                  />
+                  Белый стрейч:
+                </FormLabel>
                 <FormControl>
                   <Checkbox
+                    className="w-9 h-9"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
@@ -137,7 +226,387 @@ export default function Order() {
             )}
           />
 
-          <Button type="submit">Send</Button>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Пасы</AccordionTrigger>
+              <AccordionContent>
+                <FormField
+                  control={form.control}
+                  name="blackBelt"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={blackBeltIcon}
+                          alt="black belt"
+                          width={36}
+                          height={36}
+                        />
+                        Черные пасы:
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="whiteBelt"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={whiteBeltIcon}
+                          alt="white belt"
+                          width={36}
+                          height={36}
+                        />
+                        Белые пасы:
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Подклады</AccordionTrigger>
+              <AccordionContent>
+                <FormField
+                  control={form.control}
+                  name="paperLining90"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={paperLining90}
+                          alt="paper lining 90"
+                          width={36}
+                          height={36}
+                        />
+                        Подклады Общие:
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="paperLining101"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={paperLining101}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        Подклады Vagstranda:
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Картонная вкладка</AccordionTrigger>
+              <AccordionContent>
+                <FormField
+                  control={form.control}
+                  name="downPaperXFirm"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={downPaper}
+                          alt="down paper"
+                          width={36}
+                          height={36}
+                        />
+                        X-Firm
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="downPaperVagstranda"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={downPaper}
+                          alt="down paper"
+                          width={36}
+                          height={36}
+                        />
+                        Vagstranda
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>Чапка на гуру</AccordionTrigger>
+              <AccordionContent>
+              <FormField
+                  control={form.control}
+                  name="upPaperCommon"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={upPaper}
+                          alt="up paper"
+                          width={36}
+                          height={36}
+                        />
+                        Common
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="upPaperVagstranda"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={upPaper}
+                          alt="up paper"
+                          width={36}
+                          height={36}
+                        />
+                        Vagstranda
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-5">
+              <AccordionTrigger>Картоны для Вакстранды</AccordionTrigger>
+              <AccordionContent>
+                <FormField
+                  control={form.control}
+                  name="cartonBox80"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={cartonBox}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        80
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cartonBox90"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={cartonBox}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        90
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cartonBox120"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={cartonBox}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        120
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cartonBox140"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={cartonBox}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        140
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cartonBox160"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={cartonBox}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        160
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="cartonBox180"
+                  render={({ field }) => (
+                    <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
+                      <FormLabel className="flex gap-4 items-center">
+                        <Image
+                          src={cartonBox}
+                          alt="paper lining 101"
+                          width={36}
+                          height={36}
+                        />
+                        180
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          className="w-9 h-9"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <Button type="submit" className="max-w-md mt-6 py-10">
+            Send
+          </Button>
         </form>
       </Form>
     </div>

@@ -7,7 +7,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useRouter } from "next/navigation";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Select from "react-select";
 import { z, ZodType } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -86,14 +86,17 @@ export default function Worker() {
   };
 
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto mt-10">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-5 w-full px-4"
+        >
           <FormField
             control={form.control}
             name="line"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>Выберите линию:</FormLabel>
                 <FormControl>
                   <Select {...field} options={lineOptions} />
@@ -106,7 +109,7 @@ export default function Worker() {
             control={form.control}
             name="area"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>Выберите рабочий участок:</FormLabel>
                 <FormControl>
                   <Select {...field} options={areaOptions} />
@@ -119,7 +122,7 @@ export default function Worker() {
             control={form.control}
             name="workerNumber"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>Введите свой ID номер:</FormLabel>
                 <FormControl>
                   <InputOTP maxLength={6} {...field}>
@@ -135,7 +138,7 @@ export default function Worker() {
               </FormItem>
             )}
           />
-          <Button type="submit">Send</Button>
+          <Button className="max-w-md mt-6 py-10" type="submit">Send</Button>
         </form>
       </Form>
     </div>
