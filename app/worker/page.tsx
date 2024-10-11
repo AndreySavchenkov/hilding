@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { areaOptions, lineOptions } from "@/types";
 
 type FormType = {
   line?: { value: string; label: string } | null;
@@ -54,18 +55,6 @@ const formSchema: ZodType<FormType> = z.object({
   ),
 });
 
-const lineOptions = [
-  { value: "L1", label: "L1" },
-  { value: "L2", label: "L2" },
-  { value: "L10", label: "L10" },
-];
-
-const areaOptions = [
-  { value: "Start", label: "Start" },
-  { value: "Middle", label: "Middle" },
-  { value: "Finish", label: "Finish" },
-];
-
 export default function Worker() {
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
@@ -86,7 +75,7 @@ export default function Worker() {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto mt-10 text-gray-200">
+    <div className="max-w-screen-lg mx-auto mt-10">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -97,7 +86,9 @@ export default function Worker() {
             name="line"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Linia produkcyjna:</FormLabel>
+                <FormLabel className="text-slate-100 text-2xl">
+                  Linia produkcyjna:
+                </FormLabel>
                 <FormControl>
                   <Select {...field} options={lineOptions} />
                 </FormControl>
@@ -110,7 +101,9 @@ export default function Worker() {
             name="area"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Stanawisko:</FormLabel>
+                <FormLabel className="text-slate-100 text-2xl">
+                  Stanawisko:
+                </FormLabel>
                 <FormControl>
                   <Select {...field} options={areaOptions} />
                 </FormControl>
@@ -123,14 +116,28 @@ export default function Worker() {
             name="workerNumber"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Numer pracownika:</FormLabel>
+                <FormLabel className="text-slate-100 text-2xl">
+                  Numer pracownika:
+                </FormLabel>
                 <FormControl>
                   <InputOTP maxLength={6} {...field}>
                     <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
+                      <InputOTPSlot
+                        index={0}
+                        className="text-slate-100 text-4xl"
+                      />
+                      <InputOTPSlot
+                        index={1}
+                        className="text-slate-100 text-4xl"
+                      />
+                      <InputOTPSlot
+                        index={2}
+                        className="text-slate-100 text-4xl"
+                      />
+                      <InputOTPSlot
+                        index={3}
+                        className="text-slate-100 text-4xl"
+                      />
                     </InputOTPGroup>
                   </InputOTP>
                 </FormControl>
@@ -138,8 +145,11 @@ export default function Worker() {
               </FormItem>
             )}
           />
-          <Button className="max-w-md mt-6 py-10" type="submit">
-            Send
+          <Button
+            className="max-w-md mt-6 py-10 text-2xl text-slate-100"
+            type="submit"
+          >
+            Dalej
           </Button>
         </form>
       </Form>
