@@ -187,6 +187,7 @@ export default function Order() {
                     height={36}
                   />
                   Taśma Klejąca
+                  <span className="text-gray-400 text-sm">GM16004</span>
                 </FormLabel>
                 <FormControl>
                   <Checkbox
@@ -212,7 +213,8 @@ export default function Order() {
                     width={36}
                     height={36}
                   />
-                  Stretch biały
+                  Stretcz biały
+                  <span className="text-gray-400 text-sm">GM15015</span>
                 </FormLabel>
                 <FormControl>
                   <Checkbox
@@ -228,21 +230,24 @@ export default function Order() {
 
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>Пасы</AccordionTrigger>
+              <AccordionTrigger className="text-slate-100 text-md">
+                Uchwyt
+              </AccordionTrigger>
               <AccordionContent>
                 <FormField
                   control={form.control}
                   name="blackBelt"
                   render={({ field }) => (
                     <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                      <FormLabel className="flex gap-4 items-center">
+                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                         <Image
                           src={blackBeltIcon}
                           alt="black belt"
                           width={36}
                           height={36}
                         />
-                        Черные пасы:
+                        Uchwyt parciany
+                        <span className="text-gray-400 text-sm">G100400</span>
                       </FormLabel>
                       <FormControl>
                         <Checkbox
@@ -260,14 +265,15 @@ export default function Order() {
                   name="whiteBelt"
                   render={({ field }) => (
                     <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                      <FormLabel className="flex gap-4 items-center">
+                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                         <Image
                           src={whiteBeltIcon}
                           alt="white belt"
                           width={36}
                           height={36}
                         />
-                        Белые пасы:
+                        Uchwyt klejony
+                        <span className="text-gray-400 text-sm">G100430</span>
                       </FormLabel>
                       <FormControl>
                         <Checkbox
@@ -283,21 +289,24 @@ export default function Order() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Подклады</AccordionTrigger>
+              <AccordionTrigger className="text-slate-100 text-md">
+                Paleta Papierowa
+              </AccordionTrigger>
               <AccordionContent>
                 <FormField
                   control={form.control}
                   name="paperLining90"
                   render={({ field }) => (
                     <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                      <FormLabel className="flex gap-4 items-center">
+                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                         <Image
                           src={paperLining90}
                           alt="paper lining 90"
                           width={36}
                           height={36}
                         />
-                        Подклады Общие:
+                        Valevag \ Vesteroy
+                        <span className="text-gray-400 text-sm">GB710090</span>
                       </FormLabel>
                       <FormControl>
                         <Checkbox
@@ -315,14 +324,15 @@ export default function Order() {
                   name="paperLining101"
                   render={({ field }) => (
                     <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                      <FormLabel className="flex gap-4 items-center">
+                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                         <Image
                           src={paperLining101}
                           alt="paper lining 101"
                           width={36}
                           height={36}
                         />
-                        Подклады Vagstranda:
+                        Vagstranda
+                        <span className="text-gray-400 text-sm">GB71101</span>
                       </FormLabel>
                       <FormControl>
                         <Checkbox
@@ -395,7 +405,7 @@ export default function Order() {
             <AccordionItem value="item-4">
               <AccordionTrigger>Чапка на гуру</AccordionTrigger>
               <AccordionContent>
-              <FormField
+                <FormField
                   control={form.control}
                   name="upPaperCommon"
                   render={({ field }) => (
