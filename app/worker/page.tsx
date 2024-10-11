@@ -75,78 +75,81 @@ export default function Worker() {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto mt-10">
+    <div className="max-w-screen-lg mx-auto py-10 h-full">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-5 w-full px-4"
+          className="flex flex-col justify-between h-full px-4"
         >
-          <FormField
-            control={form.control}
-            name="line"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="text-slate-100 text-2xl">
-                  Linia produkcyjna:
-                </FormLabel>
-                <FormControl>
-                  <Select {...field} options={lineOptions} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="area"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="text-slate-100 text-2xl">
-                  Stanawisko:
-                </FormLabel>
-                <FormControl>
-                  <Select {...field} options={areaOptions} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="workerNumber"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="text-slate-100 text-2xl">
-                  Numer pracownika:
-                </FormLabel>
-                <FormControl>
-                  <InputOTP maxLength={6} {...field}>
-                    <InputOTPGroup>
-                      <InputOTPSlot
-                        index={0}
-                        className="text-slate-100 text-4xl"
-                      />
-                      <InputOTPSlot
-                        index={1}
-                        className="text-slate-100 text-4xl"
-                      />
-                      <InputOTPSlot
-                        index={2}
-                        className="text-slate-100 text-4xl"
-                      />
-                      <InputOTPSlot
-                        index={3}
-                        className="text-slate-100 text-4xl"
-                      />
-                    </InputOTPGroup>
-                  </InputOTP>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex flex-col gap-5 w-full">
+            <FormField
+              control={form.control}
+              name="line"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel className="text-slate-100 text-2xl">
+                    Linia produkcyjna:
+                  </FormLabel>
+                  <FormControl>
+                    <Select {...field} options={lineOptions} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="area"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel className="text-slate-100 text-2xl">
+                    Stanawisko:
+                  </FormLabel>
+                  <FormControl>
+                    <Select {...field} options={areaOptions} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="workerNumber"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel className="text-slate-100 text-2xl">
+                    Numer pracownika:
+                  </FormLabel>
+                  <FormControl>
+                    <InputOTP maxLength={6} {...field}>
+                      <InputOTPGroup>
+                        <InputOTPSlot
+                          index={0}
+                          className="text-slate-100 text-4xl"
+                        />
+                        <InputOTPSlot
+                          index={1}
+                          className="text-slate-100 text-4xl"
+                        />
+                        <InputOTPSlot
+                          index={2}
+                          className="text-slate-100 text-4xl"
+                        />
+                        <InputOTPSlot
+                          index={3}
+                          className="text-slate-100 text-4xl"
+                        />
+                      </InputOTPGroup>
+                    </InputOTP>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
           <Button
-            className="max-w-md mt-6 py-10 text-2xl text-slate-100"
+            className="max-w-md mt-12 py-10 text-2xl text-slate-100"
             type="submit"
           >
             Dalej
