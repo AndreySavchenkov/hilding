@@ -152,15 +152,15 @@ export default function Order() {
             control={form.control}
             name="pallets"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                <FormLabel className="flex gap-4 items-center">
+              <FormItem className="flex gap-4 items-center justify-between border-b pb-4 ">
+                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                   <Image
                     src={palletsIcon}
                     alt="wood pallets"
                     width={36}
                     height={36}
                   />
-                  Паллеты:
+                  Palety EURO
                 </FormLabel>
                 <FormControl>
                   <Checkbox
@@ -179,14 +179,14 @@ export default function Order() {
             name="scotchTape"
             render={({ field }) => (
               <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                <FormLabel className="flex gap-4 items-center">
+                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                   <Image
                     src={scotchTapeIcon}
                     alt="scotch tape"
                     width={36}
                     height={36}
                   />
-                  Скотч:
+                  Taśma Klejąca
                 </FormLabel>
                 <FormControl>
                   <Checkbox
@@ -205,14 +205,14 @@ export default function Order() {
             name="whiteBraid"
             render={({ field }) => (
               <FormItem className="flex gap-4 items-center justify-between border-b pb-4">
-                <FormLabel className="flex gap-4 items-center">
+                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
                   <Image
                     src={whiteTapeIcon}
                     alt="white tape"
                     width={36}
                     height={36}
                   />
-                  Белый стрейч:
+                  Stretch biały
                 </FormLabel>
                 <FormControl>
                   <Checkbox
