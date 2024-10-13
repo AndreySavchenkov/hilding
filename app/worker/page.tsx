@@ -55,10 +55,51 @@ const formSchema: ZodType<FormType> = z.object({
   ),
 });
 
+const customStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    backgroundColor: "#1f2937",
+    borderColor: "#4b5563",
+    color: "#fff",
+    padding: "8px",
+    fontSize: "20px",
+  }),
+  menu: (provided: any) => ({
+    ...provided,
+    backgroundColor: "#1f2937",
+    fontSize: "20px",
+  }),
+  singleValue: (provided: any) => ({
+    ...provided,
+    color: "#fff",
+    fontSize: "20px",
+  }),
+  option: (provided: any, state: any) => ({
+    ...provided,
+    backgroundColor: state.isFocused ? "#374151" : "#1f2937",
+    color: state.isFocused ? "#fff" : "#d1d5db",
+    padding: "10px 15px",
+    fontSize: "20px",
+    cursor: "pointer",
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: "#9ca3af",
+  }),
+};
+
 export default function Worker() {
   const form = useForm<FormType>({
+    defaultValues: {
+      line: { value: "L10", label: "L10" },
+      area: { value: "Finish", label: "Pakowanie" },
+    },
     resolver: zodResolver(formSchema),
   });
+
+  const handleTouchStart = (e: any) => {
+    e.preventDefault(); // предотвращаем вызов клавиатуры
+  };
 
   const router = useRouter();
 
@@ -79,7 +120,7 @@ export default function Worker() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-between h-full px-4"
+          className="flex flex-col h-full px-4"
         >
           <div className="flex flex-col gap-5 w-full">
             <FormField
@@ -90,8 +131,12 @@ export default function Worker() {
                   <FormLabel className="text-slate-100 text-2xl">
                     Linia produkcyjna:
                   </FormLabel>
-                  <FormControl>
-                    <Select {...field} options={lineOptions} />
+                  <FormControl onTouchStart={handleTouchStart}>
+                    <Select
+                      {...field}
+                      styles={customStyles}
+                      options={lineOptions}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -105,8 +150,12 @@ export default function Worker() {
                   <FormLabel className="text-slate-100 text-2xl">
                     Stanawisko:
                   </FormLabel>
-                  <FormControl>
-                    <Select {...field} options={areaOptions} />
+                  <FormControl onTouchStart={handleTouchStart}>
+                    <Select
+                      {...field}
+                      styles={customStyles}
+                      options={areaOptions}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -125,19 +174,19 @@ export default function Worker() {
                       <InputOTPGroup>
                         <InputOTPSlot
                           index={0}
-                          className="text-slate-100 text-4xl"
+                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
                         />
                         <InputOTPSlot
                           index={1}
-                          className="text-slate-100 text-4xl"
+                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
                         />
                         <InputOTPSlot
                           index={2}
-                          className="text-slate-100 text-4xl"
+                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
                         />
                         <InputOTPSlot
                           index={3}
-                          className="text-slate-100 text-4xl"
+                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
                         />
                       </InputOTPGroup>
                     </InputOTP>
