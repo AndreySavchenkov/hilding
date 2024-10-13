@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       data: { ...orderOptions },
     });
 
-    await sendNotification(`Новый заказ на ${orderOptions.lineOptions}`);
+    await sendNotification(`Nowe zamówienie surowców dla ${orderOptions.lineOptions}`);
 
     return NextResponse.json(order, { status: 200 });
   } catch (error) {
