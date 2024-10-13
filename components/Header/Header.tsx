@@ -17,7 +17,7 @@ export const Header = () => {
   const { deviceId, clearDeviceId } = deviceIdContext;
 
   return (
-    <header className="bg-slate-700 text-white px-10 py-4">
+    <header className="bg-slate-700 text-white px-10 py-4 fixed top-0 left-0 w-full z-50">
       <div className="flex max-w-screen-lg m-auto items-center justify-between">
         <Link href="/">
           <Image src={homeIcon} width={50} height={50} alt="admin icon" />

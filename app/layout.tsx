@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-slate-600`}>
         <DeviceIdProvider>
           <Header />
-          <div className="w-full h-[calc(100vh-82px)]">{children}</div>
+          <div className="w-full h-[calc(100vh-82px)] mt-[82px]">{children}</div>
           <Toaster />
         </DeviceIdProvider>
       </body>
