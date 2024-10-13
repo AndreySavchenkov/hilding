@@ -53,8 +53,6 @@ export default function Driver() {
       const data = await responseItems.json();
 
       setOptions(data);
-
-      // window.location.reload(); // можно заменить на обновление состояния, если это требуется
     } catch (error) {
       console.log(error);
 
@@ -83,11 +81,9 @@ export default function Driver() {
         console.error(`Error fetching items: ${error.message}`);
       }
     };
-    // call fetch fetchTodos
+
     fetchOrderOptions();
   }, []);
-
-  console.log(options);
 
   if (!options) {
     return (
