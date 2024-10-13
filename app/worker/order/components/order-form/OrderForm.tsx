@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/accordion";
 import { orderItems } from "@/types";
 import okIcon from "../../../../../public/OK.png";
+import { useState } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const FormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
@@ -51,6 +53,8 @@ const FormSchema = z.object({
 });
 
 export default function Order() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const searchParams = useSearchParams();
 
   const router = useRouter();
@@ -90,6 +94,8 @@ export default function Order() {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    setIsLoading(true);
+
     const orderOptions = {
       areaOptions: area,
       lineOptions: line,
@@ -156,6 +162,8 @@ export default function Order() {
       router.push(`/`);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
 
     console.log(data);
@@ -889,9 +897,15 @@ export default function Order() {
             </AccordionItem>
           </Accordion>
 
-          <Button type="submit" className="max-w-md mt-6 mb-6 py-10 text-xl">
-            Wysłać
-          </Button>
+          {isLoading ? (
+            <Button disabled className="max-w-md mt-6 mb-6 py-10 text-xl">
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+            </Button>
+          ) : (
+            <Button type="submit" className="max-w-md mt-6 mb-6 py-10 text-xl">
+              Wysłać
+            </Button>
+          )}
         </form>
       </Form>
     </div>

@@ -20,6 +20,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { areaOptions, lineOptions } from "@/types";
+import { useState } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 type FormType = {
   line?: { value: string; label: string } | null;
@@ -89,6 +91,8 @@ const customStyles = {
 };
 
 export default function Worker() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<FormType>({
     defaultValues: {
       line: { value: "L10", label: "L10" },
@@ -104,6 +108,8 @@ export default function Worker() {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormType> = (data) => {
+    setIsLoading(true);
+
     const query = {
       line: data.line?.value || "",
       area: data.area?.value || "",
@@ -197,12 +203,21 @@ export default function Worker() {
             />
           </div>
 
-          <Button
-            className="max-w-md mt-12 py-10 text-2xl text-slate-100"
-            type="submit"
-          >
-            Dalej
-          </Button>
+          {isLoading ? (
+            <Button
+              disabled
+              className="max-w-md mt-12 py-10 text-2xl text-slate-100"
+            >
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+            </Button>
+          ) : (
+            <Button
+              className="max-w-md mt-12 py-10 text-2xl text-slate-100"
+              type="submit"
+            >
+              Dalej
+            </Button>
+          )}
         </form>
       </Form>
     </div>

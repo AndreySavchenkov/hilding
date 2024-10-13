@@ -7,13 +7,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import okIcon from "../../public/OK.png";
 import emptyStateIcon from "../../public/emptyState.png";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export default function Driver() {
   const [options, setOptions] = useState<OrderType[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { toast } = useToast();
 
   const deleteOrder = async (orderId: string) => {
+    setIsLoading(true);
+
     try {
       const apiUrl = `/api/order/${orderId}/delete`;
 
@@ -53,9 +57,10 @@ export default function Driver() {
       const data = await responseItems.json();
 
       setOptions(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
-
+      setIsLoading(false);
       toast({
         duration: 5000,
         title: "Some Error! :(",
@@ -484,12 +489,18 @@ export default function Driver() {
               ) : null}
             </div>
           </div>
-          <Button
-            className="mt-8 text-xl p-8"
-            onClick={() => deleteOrder(item.id)}
-          >
-            Dostarczyć
-          </Button>
+          {isLoading ? (
+            <Button disabled className="mt-8 text-xl p-8">
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+            </Button>
+          ) : (
+            <Button
+              className="mt-8 text-xl p-8"
+              onClick={() => deleteOrder(item.id)}
+            >
+              Dostarczyć
+            </Button>
+          )}
         </div>
       ))}
     </div>
