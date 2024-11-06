@@ -24,34 +24,49 @@ model User {
 }
 
 model OrderOptions {
-  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  lineOptions         String
-  areaOptions         String
-  workerNumber        String
-  pallets             Boolean
-  scotchTape          Boolean
-  whiteBraid          Boolean
-  blackBelt           Boolean
-  whiteBelt           Boolean
-  paperLining90       Boolean
-  paperLining101      Boolean
-  cartonBox80         Boolean
-  cartonBox90         Boolean
-  cartonBox120        Boolean
-  cartonBox140        Boolean
-  cartonBox160        Boolean
-  cartonBox180        Boolean
-  downPaperXFirm      Boolean
-  downPaperVagstranda Boolean
-  upPaperCommon       Boolean
-  upPaperVagstranda   Boolean
-  stretch             Boolean
-  nylon8090           Boolean
-  nylon120140         Boolean
-  nylon160            Boolean
-  nylon180            Boolean
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  id                         String   @id @default(auto()) @map("_id") @db.ObjectId
+  lineOptions                String
+  areaOptions                String
+  workerNumber               String
+  pallets                    Boolean? @default(false)
+  scotchTape                 Boolean? @default(false)
+  whiteBraid                 Boolean? @default(false)
+  blackBelt                  Boolean? @default(false)
+  whiteBelt                  Boolean? @default(false)
+  paperLining90              Boolean? @default(false)
+  paperLining101             Boolean? @default(false)
+  cartonBox80                Boolean? @default(false)
+  cartonBox90                Boolean? @default(false)
+  cartonBox120               Boolean? @default(false)
+  cartonBox140               Boolean? @default(false)
+  cartonBox160               Boolean? @default(false)
+  cartonBox180               Boolean? @default(false)
+  downPaperXFirm             Boolean? @default(false)
+  downPaperVagstranda        Boolean? @default(false)
+  upPaperCommon              Boolean? @default(false)
+  upPaperVagstranda          Boolean? @default(false)
+  stretch                    Boolean? @default(false)
+  nylon8090                  Boolean? @default(false)
+  nylon120140                Boolean? @default(false)
+  nylon160                   Boolean? @default(false)
+  nylon180                   Boolean? @default(false)
+  separateSkarer             Boolean? @default(false)
+  triangularCartonSkarer     Boolean? @default(false)
+  paperLiningSkarer8090      Boolean? @default(false)
+  paperLiningSkarer105       Boolean? @default(false)
+  paperLiningSkarer120140    Boolean? @default(false)
+  paperLiningSkarer160       Boolean? @default(false)
+  separateSnarum             Boolean? @default(false)
+  triangularCartonSnarum     Boolean? @default(false)
+  paperLiningSnarum8090      Boolean? @default(false)
+  paperLiningSnarum120140    Boolean? @default(false)
+  paperLiningSnarum160       Boolean? @default(false)
+  separateSkotterud          Boolean? @default(false)
+  triangularCartonSkotterud  Boolean? @default(false)
+  paperLiningSkotterud8090   Boolean? @default(false)
+  paperLiningSkotterud120140 Boolean? @default(false)
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime @updatedAt
 }
 
 model DriverSubscription {

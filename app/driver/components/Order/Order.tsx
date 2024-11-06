@@ -435,6 +435,266 @@ export const Order = ({ item, setOptions }: Props) => {
               </div>
             </div>
           ) : null}
+          {item.separateSkarer ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">{orderItems.separateSkarer.PL}</span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.separateSkarer.index}
+                </span>
+                <Image
+                  src={orderItems.separateSkarer.icon}
+                  alt={orderItems.separateSkarer.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.triangularCartonSkarer ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.triangularCartonSkarer.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.triangularCartonSkarer.index}
+                </span>
+                <Image
+                  src={orderItems.triangularCartonSkarer.icon}
+                  alt={orderItems.triangularCartonSkarer.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSkarer8090 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.paperLiningSkarer8090.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSkarer8090.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSkarer8090.icon}
+                  alt={orderItems.paperLiningSkarer8090.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSkarer105 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">{orderItems.paperLiningSkarer105.PL}</span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSkarer105.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSkarer105.icon}
+                  alt={orderItems.paperLiningSkarer105.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSkarer120140 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.paperLiningSkarer120140.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSkarer120140.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSkarer120140.icon}
+                  alt={orderItems.paperLiningSkarer120140.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSkarer160 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">{orderItems.paperLiningSkarer160.PL}</span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSkarer160.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSkarer160.icon}
+                  alt={orderItems.paperLiningSkarer160.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+
+          {item.separateSnarum ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">{orderItems.separateSnarum.PL}</span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.separateSnarum.index}
+                </span>
+                <Image
+                  src={orderItems.separateSnarum.icon}
+                  alt={orderItems.separateSnarum.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.triangularCartonSnarum ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.triangularCartonSnarum.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.triangularCartonSnarum.index}
+                </span>
+                <Image
+                  src={orderItems.triangularCartonSnarum.icon}
+                  alt={orderItems.triangularCartonSnarum.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSnarum8090 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.paperLiningSnarum8090.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSnarum8090.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSnarum8090.icon}
+                  alt={orderItems.paperLiningSnarum8090.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSnarum120140 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.paperLiningSnarum120140.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSnarum120140.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSnarum120140.icon}
+                  alt={orderItems.paperLiningSnarum120140.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSnarum160 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">{orderItems.paperLiningSnarum160.PL}</span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSnarum160.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSnarum160.icon}
+                  alt={orderItems.paperLiningSnarum160.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+
+          {item.separateSkotterud ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">{orderItems.separateSkotterud.PL}</span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.separateSkotterud.index}
+                </span>
+                <Image
+                  src={orderItems.separateSkotterud.icon}
+                  alt={orderItems.separateSkotterud.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.triangularCartonSkotterud ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.triangularCartonSkotterud.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.triangularCartonSkotterud.index}
+                </span>
+                <Image
+                  src={orderItems.triangularCartonSkotterud.icon}
+                  alt={orderItems.triangularCartonSkotterud.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSkotterud8090 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.paperLiningSkotterud8090.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSkotterud8090.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSkotterud8090.icon}
+                  alt={orderItems.paperLiningSkotterud8090.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
+          {item.paperLiningSkotterud120140 ? (
+            <div className="flex gap-4 items-center w-full text-md justify-between">
+              <span className="w-36">
+                {orderItems.paperLiningSkotterud120140.PL}
+              </span>
+              <div className="flex gap-4 items-center">
+                <span className="text-gray-400">
+                  {orderItems.paperLiningSkotterud120140.index}
+                </span>
+                <Image
+                  src={orderItems.paperLiningSkotterud120140.icon}
+                  alt={orderItems.paperLiningSkotterud120140.PL}
+                  width={36}
+                  height={36}
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
       {isLoading ? (

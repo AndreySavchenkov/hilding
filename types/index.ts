@@ -10,6 +10,8 @@ import upPaperIcon from "../public/upPaper.png";
 import cartonBoxIcon from "../public/cartonBox.png";
 import stretchIcon from "../public/stretch.png";
 import nylonIcon from "../public/nylon.png";
+import separatorIcon from "../public/separator.png";
+import triangularIcon from "../public/triangular.png";
 
 export type OrderType = {
   id: string;
@@ -38,6 +40,22 @@ export type OrderType = {
   nylon120140: boolean;
   nylon160: boolean;
   nylon180: boolean;
+  separateSkarer: boolean;
+  triangularCartonSkarer: boolean;
+  paperLiningSkarer8090: boolean;
+  paperLiningSkarer105: boolean;
+  paperLiningSkarer120140: boolean;
+  paperLiningSkarer160: boolean;
+  separateSnarum: boolean;
+  triangularCartonSnarum: boolean;
+  paperLiningSnarum8090: boolean;
+  paperLiningSnarum105: boolean;
+  paperLiningSnarum120140: boolean;
+  paperLiningSnarum160: boolean;
+  separateSkotterud: boolean;
+  triangularCartonSkotterud: boolean;
+  paperLiningSkotterud8090: boolean;
+  paperLiningSkotterud120140: boolean;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -67,6 +85,13 @@ export enum AreaOptionsEnum {
   Start = "Klejenie",
   Middle = "Ubieranie",
   Finish = "Pakowanie",
+}
+
+export enum LinesEnum {
+  L10 = "L10",
+  L5 = "L5",
+  L2 = "L2",
+  L1 = "L1",
 }
 
 export const orderItems = {
@@ -179,5 +204,80 @@ export const orderItems = {
     PL: "Nylon 180",
     index: "GM14041",
     icon: nylonIcon,
+  },
+  separateSkarer: {
+    PL: "Separator",
+    index: "GMC32798",
+    icon: separatorIcon,
+  },
+  triangularCartonSkarer: {
+    PL: "Karton trójkątny",
+    index: "GMC32786",
+    icon: triangularIcon,
+  },
+  paperLiningSkarer8090: {
+    PL: "Paleta papierowa 80/90",
+    index: "GB71100",
+    icon: paperLining90Icon,
+  },
+  paperLiningSkarer105: {
+    PL: "Paleta papierowa 105",
+    index: "GB71098",
+    icon: paperLining90Icon,
+  },
+  paperLiningSkarer120140: {
+    PL: "Paleta papierowa 120/140",
+    index: "GB71092",
+    icon: paperLining90Icon,
+  },
+  paperLiningSkarer160: {
+    PL: "Paleta papierowa 160",
+    index: "GB71094",
+    icon: paperLining90Icon,
+  },
+  separateSnarum: {
+    PL: "Separator",
+    index: "GMC32794",
+    icon: separatorIcon,
+  },
+  triangularCartonSnarum: {
+    PL: "Karton trójkątny",
+    index: "GMC32783",
+    icon: triangularIcon,
+  },
+  paperLiningSnarum8090: {
+    PL: "Paleta papierowa 80/90",
+    index: "GB71091",
+    icon: paperLining90Icon,
+  },
+  paperLiningSnarum120140: {
+    PL: "Paleta papierowa 120/140",
+    index: "GB71093",
+    icon: paperLining90Icon,
+  },
+  paperLiningSnarum160: {
+    PL: "Paleta papierowa 160",
+    index: "GB71095",
+    icon: paperLining90Icon,
+  },
+  separateSkotterud: {
+    PL: "Separator",
+    index: "GMC32793",
+    icon: separatorIcon,
+  },
+  triangularCartonSkotterud: {
+    PL: "Karton trójkątny",
+    index: "GMC32785",
+    icon: triangularIcon,
+  },
+  paperLiningSkotterud8090: {
+    PL: "Paleta papierowa 80/90",
+    index: "GB71091",
+    icon: paperLining90Icon,
+  },
+  paperLiningSkotterud120140: {
+    PL: "Paleta papierowa 120/140",
+    index: "GB71093",
+    icon: paperLining90Icon,
   },
 };
