@@ -84,7 +84,7 @@ export const L5Form = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    console.log(data);
+    setIsLoading(true);
 
     const orderOptions = {
       areaOptions: area,

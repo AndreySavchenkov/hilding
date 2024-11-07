@@ -114,8 +114,6 @@ export default function L1L2Form() {
     } finally {
       setIsLoading(false);
     }
-
-    console.log(data);
   };
 
   return (
