@@ -52,7 +52,7 @@ const FormSchema = z.object({
   nylon180: z.boolean().default(false).optional(),
 });
 
-export default function Order() {
+export default function L10Form() {
   const [isLoading, setIsLoading] = useState(false);
 
   const searchParams = useSearchParams();
