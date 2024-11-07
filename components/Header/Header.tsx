@@ -7,9 +7,11 @@ import adminIcon from "../../public/admin.png";
 import homeIcon from "../../public/home.png";
 import exitIcon from "../../public/power.png";
 import { DeviceIdContext } from "../DeviceIdProvider/DeviceIdProvider";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
   const deviceIdContext = useContext(DeviceIdContext);
+  const router = useRouter();
 
   if (!deviceIdContext) {
     throw new Error("useContext must be used within DeviceIdProvider");
@@ -31,6 +33,7 @@ export const Header = () => {
                   localStorage.removeItem("deviceId");
                   console.log("Device ID cleared");
                   clearDeviceId();
+                  router.push("/");
                 }
               }}
               src={exitIcon}
