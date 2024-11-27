@@ -401,15 +401,9 @@ export const NumbersIKEA = [
   { name: "SKOTTERUD M-FIRM 1200", number: "403.098.70" },
   { name: "SKOTTERUD M-FIRM 1400", number: "003.098.72" },
 
-  { name: "SNARUM FIRM 800", number: "" },
-  { name: "SNARUM FIRM 900", number: "" },
-  { name: "SNARUM FIRM 1200", number: "" },
-  { name: "SNARUM FIRM 1400", number: "" },
-  { name: "SNARUM FIRM 1600", number: "" },
-
-  { name: "SNARUM M-FIRM 800", number: "" },
-  { name: "SNARUM M-FIRM 900", number: "" },
-  { name: "SNARUM M-FIRM 1200", number: "" },
-  { name: "SNARUM M-FIRM 1400", number: "" },
-  { name: "SNARUM M-FIRM 1600", number: "" },
+  { name: "SNARUM M-FIRM 800", number: "603.098.93" },
+  { name: "SNARUM M-FIRM 900", number: "403.098.94" },
+  { name: "SNARUM M-FIRM 1200", number: "403.098.89" },
+  { name: "SNARUM M-FIRM 1400", number: "003.098.91" },
+  { name: "SNARUM M-FIRM 1600", number: "803.098.92" },
 ];
