@@ -118,57 +118,65 @@ export default function Numbers() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col h-full px-4"
+            className="flex flex-col items-center h-full px-2"
           >
             <div className="flex flex-col gap-5 w-full">
               <FormField
                 control={form.control}
                 name="workerNumber"
                 render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel className="text-slate-100 text-2xl">
+                  <FormItem className="w-full flex flex-col items-center">
+                    <FormLabel className="text-slate-100 text-2xl mb-10">
                       Numer IKEA:
                     </FormLabel>
                     <FormControl>
-                      <InputOTP maxLength={8} {...field}>
-                        <InputOTPGroup>
+                      <InputOTP
+                        maxLength={8}
+                        containerClassName="gap-0"
+                        {...field}
+                      >
+                        <InputOTPGroup className="m-0 p-0 gap-0">
                           <InputOTPSlot
                             index={0}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
                           <InputOTPSlot
                             index={1}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
                           <InputOTPSlot
                             index={2}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
+                        </InputOTPGroup>
 
-                          <span className="text-slate-200 text-5xl">.</span>
+                        <span className="text-slate-200 text-5xl">.</span>
 
+                        <InputOTPGroup>
                           <InputOTPSlot
                             index={3}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
                           <InputOTPSlot
                             index={4}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
                           <InputOTPSlot
                             index={5}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
+                        </InputOTPGroup>
 
-                          <span className="text-slate-200 text-5xl">.</span>
+                        <span className="text-slate-200 text-5xl">.</span>
 
+                        <InputOTPGroup>
                           <InputOTPSlot
                             index={6}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
                           <InputOTPSlot
                             index={7}
-                            className="text-slate-200 text-4xl  bg-[#1f2937]"
+                            className="text-zinc-800 text-4xl h-14  bg-[#dadbdb] border-zinc-500"
                           />
                         </InputOTPGroup>
                       </InputOTP>
@@ -179,7 +187,7 @@ export default function Numbers() {
               />
             </div>
             <Button
-              className="max-w-md mt-12 py-10 text-2xl text-slate-100"
+              className="max-w-md mt-12 py-10 px-20 text-2xl text-slate-100"
               type="submit"
             >
               Szukać
