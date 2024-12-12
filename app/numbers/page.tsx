@@ -138,7 +138,7 @@ export default function Numbers() {
                   name="workerNumber"
                   render={({ field }) => (
                     <FormItem className="w-full flex flex-col items-center">
-                      <FormLabel className="text-3xl font-black bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent mb-10 tracking-wide animate-pulse">
+                      <FormLabel className="text-3xl font-black bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent mb-10 tracking-wide">
                         Numer IKEA:
                       </FormLabel>
                       <FormControl>
