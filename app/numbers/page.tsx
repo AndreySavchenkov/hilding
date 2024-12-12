@@ -73,11 +73,11 @@ export default function Numbers() {
   };
 
   return (
-    <div className="h-full bg-gradient-to-br from-blue-900 via-slate-800 to-gray-900 flex items-center justify-center">
-      <div className="w-full max-w-screen-lg px-4 flex items-center justify-center">
-        {isOpenResult ? (
-          result ? (
-            <div className="flex flex-col gap-4 items-center justify-center animate-fadeIn">
+    <div className="h-full bg-gradient-to-br from-blue-900 via-slate-800 to-gray-900">
+      {isOpenResult ? (
+        <div className="w-full max-w-screen-lg px-4 mx-auto h-full flex items-center justify-center">
+          {result ? (
+            <div className="flex flex-col gap-4 items-center animate-fadeIn">
               <div className="relative">
                 <div className="absolute -inset-1 bg-green-500 rounded-full blur opacity-75 animate-pulse"></div>
                 <Image
@@ -102,7 +102,7 @@ export default function Numbers() {
               </Button>
             </div>
           ) : (
-            <div className="flex flex-col gap-4 items-center justify-center animate-fadeIn">
+            <div className="flex flex-col gap-4 items-center animate-fadeIn">
               <div className="relative">
                 <div className="absolute -inset-1 bg-red-500 rounded-full blur opacity-75 animate-pulse"></div>
                 <Image
@@ -123,12 +123,14 @@ export default function Numbers() {
                 OK
               </Button>
             </div>
-          )
-        ) : (
+          )}
+        </div>
+      ) : (
+        <div className="w-full max-w-screen-lg px-4 mx-auto">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col items-center w-full"
+              className="flex flex-col items-center w-full pt-10"
             >
               <div className="flex flex-col gap-5 w-full">
                 <FormField
@@ -136,7 +138,7 @@ export default function Numbers() {
                   name="workerNumber"
                   render={({ field }) => (
                     <FormItem className="w-full flex flex-col items-center">
-                      <FormLabel className="text-slate-100 text-2xl mb-10 font-bold tracking-wide">
+                      <FormLabel className="text-3xl font-black bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent mb-10 tracking-wide animate-pulse">
                         Numer IKEA:
                       </FormLabel>
                       <FormControl>
@@ -150,52 +152,63 @@ export default function Numbers() {
                               <InputOTPSlot
                                 key={index}
                                 index={index}
-                                className="text-zinc-800 text-4xl h-14 bg-opacity-80 backdrop-blur-sm bg-white/20 border-zinc-500 transition-all duration-300 hover:bg-white/30 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="text-white text-4xl h-14 bg-white/10 border-white/20 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:bg-white/20 focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder:text-white/50"
                               />
                             ))}
                           </InputOTPGroup>
 
-                          <span className="text-slate-200 text-5xl animate-pulse">.</span>
+                          <span className="text-blue-300 text-5xl font-bold animate-pulse">
+                            .
+                          </span>
 
                           <InputOTPGroup>
                             {[3, 4, 5].map((index) => (
                               <InputOTPSlot
                                 key={index}
                                 index={index}
-                                className="text-zinc-800 text-4xl h-14 bg-opacity-80 backdrop-blur-sm bg-white/20 border-zinc-500 transition-all duration-300 hover:bg-white/30 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="text-white text-4xl h-14 bg-white/10 border-white/20 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:bg-white/20 focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder:text-white/50"
                               />
                             ))}
                           </InputOTPGroup>
 
-                          <span className="text-slate-200 text-5xl animate-pulse">.</span>
+                          <span className="text-blue-300 text-5xl font-bold animate-pulse">
+                            .
+                          </span>
 
                           <InputOTPGroup>
                             {[6, 7].map((index) => (
                               <InputOTPSlot
                                 key={index}
                                 index={index}
-                                className="text-zinc-800 text-4xl h-14 bg-opacity-80 backdrop-blur-sm bg-white/20 border-zinc-500 transition-all duration-300 hover:bg-white/30 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="text-white text-4xl h-14 bg-white/10 border-white/20 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:bg-white/20 focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder:text-white/50"
                               />
                             ))}
                           </InputOTPGroup>
                         </InputOTP>
                       </FormControl>
-                      <FormMessage className="text-red-400 mt-4 animate-shake" />
+                      <FormMessage className="text-red-400 mt-4 animate-shake font-semibold" />
                     </FormItem>
                   )}
                 />
               </div>
               <Button
                 disabled={isLoading}
-                className="max-w-md mt-12 py-10 px-20 text-2xl bg-gradient-to-r from-blue-500 to-indigo-700 hover:from-blue-600 hover:to-indigo-800 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="max-w-md w-full mt-12 py-10 px-20 text-2xl bg-gradient-to-r from-blue-400 to-indigo-600 hover:from-blue-500 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide"
                 type="submit"
               >
-                {isLoading ? "Szukam..." : "Szukać"}
+                {isLoading ? (
+                  <span className="flex items-center gap-2">
+                    <span className="animate-pulse">Szukam</span>
+                    <span className="animate-bounce">...</span>
+                  </span>
+                ) : (
+                  "Szukać"
+                )}
               </Button>
             </form>
           </Form>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
