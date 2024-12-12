@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { urlBase64ToUint8Array } from "@/helpers/urlBase64ToUnit8Array";
 import { subscribeUser } from "./actions";
 import { DeviceIdContext } from "@/components/DeviceIdProvider/DeviceIdProvider";
+import { PageWrapper } from "@/components/PageWrapper/PageWrapper";
 
 export default function Home() {
   const deviceIdContext = useContext(DeviceIdContext);
@@ -58,61 +59,62 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center  gap-10 p-10 h-full">
-      <>
-        {deviceId ? (
-          <>
+    <PageWrapper>
+      <div className="h-full w-full flex items-center justify-center">
+        <div className="flex flex-col gap-8 items-center">
+          {deviceId ? (
+            <>
+              <Button
+                asChild
+                className="flex w-full max-w-[250px] h-[250px] bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
+              >
+                <Link href="/worker">
+                  <div className="flex flex-col gap-6 items-center">
+                    <Image
+                      src={workerIcon}
+                      width={150}
+                      height={150}
+                      alt="worker icon"
+                    />
+                    <span className="text-xl font-bold">Pracownik produkcji</span>
+                  </div>
+                </Link>
+              </Button>
+              <Button
+                asChild
+                className="flex w-full max-w-[250px] h-[250px] bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
+              >
+                <Link href="/driver">
+                  <div className="flex flex-col gap-6 items-center">
+                    <Image
+                      src={driverIcon}
+                      width={150}
+                      height={150}
+                      alt="worker icon"
+                    />
+                    <span className="text-xl font-bold">Wózkowy</span>
+                  </div>
+                </Link>
+              </Button>
+            </>
+          ) : (
             <Button
-              asChild
-              className="flex w-full max-w-[250px] h-[250px]"
+              onClick={start}
+              className="flex w-full max-w-[250px] h-[250px] bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
             >
-              <Link href="/worker">
-                <div className="flex flex-col gap-6 items-center">
-                  <Image
-                    src={workerIcon}
-                    width={150}
-                    height={150}
-                    alt="worker icon"
-                  />
-                  Pracownik produkcji
-                </div>
-              </Link>
+              <div className="flex flex-col gap-6 items-center">
+                <Image
+                  src={startIcon}
+                  width={150}
+                  height={150}
+                  alt="start work icon"
+                />
+                <span className="text-xl font-bold">Rozpoczęcie pracy</span>
+              </div>
             </Button>
-            <Button
-              asChild
-              className="flex w-full max-w-[250px] h-[250px]"
-            >
-              <Link href="/driver">
-                <div className="flex flex-col gap-6 items-center">
-                  <Image
-                    src={driverIcon}
-                    width={150}
-                    height={150}
-                    alt="worker icon"
-                  />
-                  Wózkowy
-                </div>
-              </Link>
-            </Button>
-          </>
-        ) : (
-          <Button
-            onClick={start}
-            asChild
-            className="flex w-full max-w-[250px] h-[250px]"
-          >
-            <div className="flex flex-col gap-6">
-              <Image
-                src={startIcon}
-                width={150}
-                height={150}
-                alt="start work icon"
-              />
-              Rozpoczęcie pracy
-            </div>
-          </Button>
-        )}
-      </>
-    </main>
+          )}
+        </div>
+      </div>
+    </PageWrapper>
   );
 }
