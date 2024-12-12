@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-600`}>
+      <body className={`${inter.className} bg-slate-600 overflow-hidden`}>
         <DeviceIdProvider>
           <Header />
           <div className="w-full h-[calc(100vh-82px)] mt-[82px]">{children}</div>
