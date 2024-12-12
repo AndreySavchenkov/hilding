@@ -19,10 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-br from-blue-900 via-slate-800 to-gray-900 overflow-hidden`}>
+      <body className={`${inter.className} bg-gradient-to-br from-blue-900 via-slate-800 to-gray-900`}>
         <DeviceIdProvider>
           <Header />
-          <div className="w-full h-[calc(100vh-82px)] mt-[82px]">{children}</div>
+          <div className="w-full h-[calc(100vh-82px)] mt-[82px] overflow-auto">
+            {children}
+          </div>
           <Toaster />
         </DeviceIdProvider>
       </body>
