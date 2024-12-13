@@ -71,7 +71,7 @@ const customStyles = {
     "&:hover": {
       backgroundColor: "rgba(255, 255, 255, 0.15)",
       borderColor: "rgba(255, 255, 255, 0.3)",
-    }
+    },
   }),
   menu: (provided: any) => ({
     ...provided,
@@ -89,14 +89,16 @@ const customStyles = {
   }),
   option: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: state.isFocused ? "rgba(59, 130, 246, 0.5)" : "transparent",
+    backgroundColor: state.isFocused
+      ? "rgba(59, 130, 246, 0.5)"
+      : "transparent",
     color: "#fff",
     padding: "0.75rem 1rem",
     cursor: "pointer",
     transition: "all 0.2s ease",
     "&:hover": {
       backgroundColor: "rgba(59, 130, 246, 0.3)",
-    }
+    },
   }),
   placeholder: (provided: any) => ({
     ...provided,
@@ -136,104 +138,102 @@ export default function Worker() {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto py-10 h-full">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col h-full px-4"
-        >
-          <div className="flex flex-col gap-5 w-full">
-            <FormField
-              control={form.control}
-              name="line"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel className="text-slate-100 text-2xl">
-                    Linia produkcyjna:
-                  </FormLabel>
-                  <FormControl onTouchStart={handleTouchStart}>
-                    <Select
-                      {...field}
-                      styles={customStyles}
-                      options={lineOptions}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="area"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel className="text-slate-100 text-2xl">
-                    Stanawisko:
-                  </FormLabel>
-                  <FormControl onTouchStart={handleTouchStart}>
-                    <Select
-                      {...field}
-                      styles={customStyles}
-                      options={areaOptions}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="workerNumber"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel className="text-slate-100 text-2xl">
-                    Numer pracownika:
-                  </FormLabel>
-                  <FormControl>
-                    <InputOTP maxLength={6} {...field}>
-                      <InputOTPGroup>
-                        <InputOTPSlot
-                          index={0}
-                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
-                        />
-                        <InputOTPSlot
-                          index={1}
-                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
-                        />
-                        <InputOTPSlot
-                          index={2}
-                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
-                        />
-                        <InputOTPSlot
-                          index={3}
-                          className="text-slate-200 text-4xl p-8 bg-[#1f2937]"
-                        />
-                      </InputOTPGroup>
-                    </InputOTP>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+    <div className="h-[calc(100vh-83px)]  p-4 overflow-y-auto">
+      <div className="max-w-screen-lg mx-auto py-4 md:py-6">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col space-y-8"
+          >
+            <div className="flex flex-col space-y-6">
+              <FormField
+                control={form.control}
+                name="line"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent">
+                      Linia produkcyjna:
+                    </FormLabel>
+                    <FormControl onTouchStart={handleTouchStart}>
+                      <Select
+                        {...field}
+                        styles={customStyles}
+                        options={lineOptions}
+                        className="mt-2"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-400" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="area"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent">
+                      Stanawisko:
+                    </FormLabel>
+                    <FormControl onTouchStart={handleTouchStart}>
+                      <Select
+                        {...field}
+                        styles={customStyles}
+                        options={areaOptions}
+                        className="mt-2"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-400" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="workerNumber"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent">
+                      Numer pracownika:
+                    </FormLabel>
+                    <FormControl>
+                      <InputOTP
+                        maxLength={6}
+                        {...field}
+                        className="flex justify-center mt-2"
+                      >
+                        <InputOTPGroup className="gap-2 md:gap-4">
+                          {[0, 1, 2, 3].map((index) => (
+                            <InputOTPSlot
+                              key={index}
+                              index={index}
+                              className="w-14 h-14 md:w-16 md:h-16 text-2xl md:text-4xl text-white bg-white/10 border-white/20 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:bg-white/20 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                            />
+                          ))}
+                        </InputOTPGroup>
+                      </InputOTP>
+                    </FormControl>
+                    <FormMessage className="text-red-400 mt-2" />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          {isLoading ? (
             <Button
-              disabled
-              className="max-w-md mt-12 py-10 text-2xl text-slate-100"
-            >
-              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-            </Button>
-          ) : (
-            <Button
-              className="max-w-md mt-12 py-10 text-2xl text-slate-100"
+              disabled={isLoading}
+              className="w-full md:max-w-md mx-auto mt-8 py-6 md:py-8 text-xl md:text-2xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold tracking-wide transition-all duration-300 rounded-xl shadow-lg hover:shadow-blue-500/50 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               type="submit"
             >
-              Dalej
+              {isLoading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <ReloadIcon className="h-6 w-6 animate-spin" />
+                  <span>Ładowanie...</span>
+                </div>
+              ) : (
+                "Dalej"
+              )}
             </Button>
-          )}
-        </form>
-      </Form>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }
