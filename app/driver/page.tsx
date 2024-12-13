@@ -32,9 +32,11 @@ export default function Driver() {
 
   if (!options) {
     return (
-      <div className="flex gap-8 flex-col p-3">
-        <div className="flex justify-center items-center text-2xl text-gray-400 h-[calc(100vh-107px)]">
-          Loading...
+      <div className="min-h-screen p-6">
+        <div className="flex items-center justify-center h-full">
+          <div className="text-xl font-semibold text-gray-600 animate-pulse">
+            Loading...
+          </div>
         </div>
       </div>
     );
@@ -42,16 +44,19 @@ export default function Driver() {
 
   if (options.length === 0) {
     return (
-      <div className="flex gap-8 flex-col p-3">
-        <div className="flex justify-center items-center text-2xl text-gray-400 h-[calc(100vh-107px)]">
-          <div className="flex flex-col gap-8 justify-center items-center">
+      <div className="min-h-screen p-6">
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center">
             <Image
               src={emptyStateIcon}
               alt="empty state icon"
-              width={64}
-              height={64}
+              width={80}
+              height={80}
+              className="mx-auto mb-6 opacity-70"
             />
-            <span>Nie ma nowych zamówień</span>
+            <span className="text-xl font-medium text-gray-500">
+              Nie ma nowych zamówień
+            </span>
           </div>
         </div>
       </div>
@@ -59,10 +64,12 @@ export default function Driver() {
   }
 
   return (
-    <div className="flex gap-8 flex-col p-3">
-      {options?.map((item) => (
-        <Order key={item.id} item={item} setOptions={setOptions} />
-      ))}
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid gap-6 md:gap-8">
+        {options?.map((item) => (
+          <Order key={item.id} item={item} setOptions={setOptions} />
+        ))}
+      </div>
     </div>
   );
 }
