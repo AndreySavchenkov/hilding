@@ -23,9 +23,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { orderItems } from "@/types";
-import okIcon from "../../../../../public/OK.png";
 import { useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { CheckIcon } from "@radix-ui/react-icons";
 
 const FormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
@@ -145,19 +145,16 @@ export default function L10Form() {
 
       toast({
         duration: 3000,
-        title: "Zamówienie wysłane!",
         description: (
-          <Image
-            src={okIcon}
-            alt="ok"
-            width={36}
-            height={36}
-            className="fixed top-8 right-6"
-          />
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+              <CheckIcon className="h-5 w-5 text-white" />
+            </div>
+            <span className="font-medium text-white">Zamówienie wysłane!</span>
+          </div>
         ),
-        variant: "default",
-        className: "bg-gray-500 text-gray-300 border-none",
-      });
+        className: "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
+      }),
 
       router.push(`/`);
     } catch (error) {
@@ -170,29 +167,34 @@ export default function L10Form() {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto mt-24">
+    <div className="max-w-screen-lg mx-auto mt-8 pb-8 px-2 md:mt-24">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col w-full px-4"
+          className="flex flex-col w-full px-2 md:px-4 bg-gradient-to-b from-gray-900/50 to-gray-800/30 rounded-xl shadow-xl"
         >
           <FormField
             control={form.control}
             name="pallets"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500 py-5 ">
-                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                   <Image
                     src={orderItems.pallets.icon}
                     alt={orderItems.pallets.PL}
-                    width={36}
-                    height={36}
+                    width={32}
+                    height={32}
+                    className="rounded-lg shadow-md"
                   />
                   {orderItems.pallets.PL}
                 </FormLabel>
                 <FormControl className="m-0">
                   <Checkbox
-                    className="w-9 h-9 !m-0"
+                    className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
@@ -206,13 +208,14 @@ export default function L10Form() {
             control={form.control}
             name="scotchTape"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500 py-5">
-                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                   <Image
                     src={orderItems.scotchTape.icon}
                     alt={orderItems.scotchTape.PL}
-                    width={36}
-                    height={36}
+                    width={32}
+                    height={32}
+                    className="rounded-lg shadow-md"
                   />
                   {orderItems.scotchTape.PL}
                 </FormLabel>
@@ -222,7 +225,11 @@ export default function L10Form() {
                       {orderItems.scotchTape.index}
                     </span>
                     <Checkbox
-                      className="w-9 h-9"
+                      className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
@@ -237,13 +244,14 @@ export default function L10Form() {
             control={form.control}
             name="whiteBraid"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500 py-5">
-                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                   <Image
                     src={orderItems.whiteBraid.icon}
                     alt={orderItems.whiteBraid.PL}
-                    width={36}
-                    height={36}
+                    width={32}
+                    height={32}
+                    className="rounded-lg shadow-md"
                   />
                   {orderItems.whiteBraid.PL}
                 </FormLabel>
@@ -253,7 +261,11 @@ export default function L10Form() {
                       {orderItems.whiteBraid.index}
                     </span>
                     <Checkbox
-                      className="w-9 h-9"
+                      className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
@@ -264,23 +276,27 @@ export default function L10Form() {
             )}
           />
 
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+          <Accordion type="single" collapsible className="space-y-2">
+            <AccordionItem
+              value="item-1"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Uchwyt
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="blackBelt"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.blackBelt.icon}
                           alt={orderItems.blackBelt.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.blackBelt.PL}
                       </FormLabel>
@@ -290,7 +306,11 @@ export default function L10Form() {
                             {orderItems.blackBelt.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -305,13 +325,14 @@ export default function L10Form() {
                   control={form.control}
                   name="whiteBelt"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.whiteBelt.icon}
                           alt={orderItems.whiteBelt.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.whiteBelt.PL}
                       </FormLabel>
@@ -321,7 +342,11 @@ export default function L10Form() {
                             {orderItems.whiteBelt.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -334,22 +359,26 @@ export default function L10Form() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-2" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+            <AccordionItem
+              value="item-2"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Paleta Papierowa
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="paperLining90"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLining90.icon}
                           alt={orderItems.paperLining90.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLining90.PL}
                       </FormLabel>
@@ -359,7 +388,11 @@ export default function L10Form() {
                             {orderItems.paperLining90.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -374,13 +407,14 @@ export default function L10Form() {
                   control={form.control}
                   name="paperLining101"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLining101.icon}
                           alt={orderItems.paperLining101.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLining101.PL}
                       </FormLabel>
@@ -390,7 +424,11 @@ export default function L10Form() {
                             {orderItems.paperLining101.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -403,22 +441,26 @@ export default function L10Form() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-3" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+            <AccordionItem
+              value="item-3"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Przekładka papierowa (do palety)
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="downPaperXFirm"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.downPaperXFirm.icon}
                           alt={orderItems.downPaperXFirm.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.downPaperXFirm.PL}
                       </FormLabel>
@@ -428,7 +470,11 @@ export default function L10Form() {
                             {orderItems.downPaperXFirm.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -443,13 +489,14 @@ export default function L10Form() {
                   control={form.control}
                   name="downPaperVagstranda"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.downPaperVagstranda.icon}
                           alt={orderItems.downPaperVagstranda.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.downPaperVagstranda.PL}
                       </FormLabel>
@@ -459,7 +506,11 @@ export default function L10Form() {
                             {orderItems.downPaperVagstranda.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -472,22 +523,26 @@ export default function L10Form() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-4" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+            <AccordionItem
+              value="item-4"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Pokrywa papierowa (góra){" "}
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="upPaperCommon"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.upPaperCommon.icon}
                           alt={orderItems.upPaperCommon.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.upPaperCommon.PL}
                       </FormLabel>
@@ -497,7 +552,11 @@ export default function L10Form() {
                             {orderItems.upPaperCommon.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -512,13 +571,14 @@ export default function L10Form() {
                   control={form.control}
                   name="upPaperVagstranda"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.upPaperVagstranda.icon}
                           alt={orderItems.upPaperVagstranda.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.upPaperVagstranda.PL}
                       </FormLabel>
@@ -528,7 +588,11 @@ export default function L10Form() {
                             {orderItems.upPaperVagstranda.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -541,22 +605,26 @@ export default function L10Form() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-5" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+            <AccordionItem
+              value="item-5"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Carton Box (Vagstranda)
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="cartonBox80"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.cartonBox80.icon}
                           alt={orderItems.cartonBox80.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.cartonBox80.PL}
                       </FormLabel>
@@ -566,7 +634,11 @@ export default function L10Form() {
                             {orderItems.cartonBox80.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -581,13 +653,14 @@ export default function L10Form() {
                   control={form.control}
                   name="cartonBox90"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.cartonBox90.icon}
                           alt={orderItems.cartonBox90.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.cartonBox90.PL}
                       </FormLabel>
@@ -597,7 +670,11 @@ export default function L10Form() {
                             {orderItems.cartonBox90.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -612,13 +689,14 @@ export default function L10Form() {
                   control={form.control}
                   name="cartonBox120"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.cartonBox120.icon}
                           alt={orderItems.cartonBox120.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.cartonBox120.PL}
                       </FormLabel>
@@ -628,7 +706,11 @@ export default function L10Form() {
                             {orderItems.cartonBox120.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -643,13 +725,14 @@ export default function L10Form() {
                   control={form.control}
                   name="cartonBox140"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.cartonBox140.icon}
                           alt={orderItems.cartonBox140.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.cartonBox140.PL}
                       </FormLabel>
@@ -659,7 +742,11 @@ export default function L10Form() {
                             {orderItems.cartonBox140.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -674,13 +761,14 @@ export default function L10Form() {
                   control={form.control}
                   name="cartonBox160"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.cartonBox160.icon}
                           alt={orderItems.cartonBox160.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.cartonBox160.PL}
                       </FormLabel>
@@ -690,7 +778,11 @@ export default function L10Form() {
                             {orderItems.cartonBox160.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -705,13 +797,14 @@ export default function L10Form() {
                   control={form.control}
                   name="cartonBox180"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.cartonBox180.icon}
                           alt={orderItems.cartonBox180.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.cartonBox180.PL}
                       </FormLabel>
@@ -721,7 +814,11 @@ export default function L10Form() {
                             {orderItems.cartonBox180.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -734,22 +831,26 @@ export default function L10Form() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-6" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+            <AccordionItem
+              value="item-6"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Strecz / Nylon do Rolpaka
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="stretch"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.stretch.icon}
                           alt={orderItems.stretch.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.stretch.PL}
                       </FormLabel>
@@ -759,7 +860,11 @@ export default function L10Form() {
                             {orderItems.stretch.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -774,13 +879,14 @@ export default function L10Form() {
                   control={form.control}
                   name="nylon8090"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.nylon8090.icon}
                           alt={orderItems.nylon8090.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.nylon8090.PL}
                       </FormLabel>
@@ -790,7 +896,11 @@ export default function L10Form() {
                             {orderItems.nylon8090.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -805,13 +915,14 @@ export default function L10Form() {
                   control={form.control}
                   name="nylon120140"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.nylon120140.icon}
                           alt={orderItems.nylon120140.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.nylon120140.PL}
                       </FormLabel>
@@ -821,7 +932,11 @@ export default function L10Form() {
                             {orderItems.nylon120140.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -836,13 +951,14 @@ export default function L10Form() {
                   control={form.control}
                   name="nylon160"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.nylon160.icon}
                           alt={orderItems.nylon160.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.nylon160.PL}
                       </FormLabel>
@@ -852,7 +968,11 @@ export default function L10Form() {
                             {orderItems.nylon160.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -867,13 +987,14 @@ export default function L10Form() {
                   control={form.control}
                   name="nylon180"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.nylon180.icon}
                           alt={orderItems.nylon180.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.nylon180.PL}
                       </FormLabel>
@@ -883,7 +1004,11 @@ export default function L10Form() {
                             {orderItems.nylon180.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -898,11 +1023,17 @@ export default function L10Form() {
           </Accordion>
 
           {isLoading ? (
-            <Button disabled className="max-w-md mt-6 mb-6 py-10 text-xl">
-              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+            <Button
+              disabled
+              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gray-700 hover:bg-gray-600 transition-colors rounded-xl shadow-lg"
+            >
+              <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />
             </Button>
           ) : (
-            <Button type="submit" className="max-w-md mt-6 mb-6 py-10 text-xl">
+            <Button
+              type="submit"
+              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-[1.02] rounded-xl shadow-lg"
+            >
               Wysłać
             </Button>
           )}

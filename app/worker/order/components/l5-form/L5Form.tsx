@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import okIcon from "../../../../../public/OK.png";
 import Image from "next/image";
 import {
   Form,
@@ -24,6 +23,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CheckIcon } from "@radix-ui/react-icons";
 
 const FormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
@@ -131,19 +131,16 @@ export const L5Form = () => {
 
       toast({
         duration: 3000,
-        title: "Zamówienie wysłane!",
         description: (
-          <Image
-            src={okIcon}
-            alt="ok"
-            width={36}
-            height={36}
-            className="fixed top-8 right-6"
-          />
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+              <CheckIcon className="h-5 w-5 text-white" />
+            </div>
+            <span className="font-medium text-white">Zamówienie wysłane!</span>
+          </div>
         ),
-        variant: "default",
-        className: "bg-gray-500 text-gray-300 border-none",
-      });
+        className: "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
+      }),
 
       router.push(`/`);
     } catch (error) {
@@ -154,29 +151,34 @@ export const L5Form = () => {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto mt-24">
+    <div className="max-w-screen-lg mx-auto mt-8 pb-8 px-2 md:mt-24">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col w-full px-4"
+          className="flex flex-col w-full px-2 md:px-4 bg-gradient-to-b from-gray-900/50 to-gray-800/30 rounded-xl shadow-xl"
         >
           <FormField
             control={form.control}
             name="pallets"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500 py-5 ">
-                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                   <Image
                     src={orderItems.pallets.icon}
                     alt={orderItems.pallets.PL}
-                    width={36}
-                    height={36}
+                    width={32}
+                    height={32}
+                    className="rounded-lg shadow-md"
                   />
                   {orderItems.pallets.PL}
                 </FormLabel>
                 <FormControl className="m-0">
                   <Checkbox
-                    className="w-9 h-9 !m-0"
+                    className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
@@ -189,13 +191,14 @@ export const L5Form = () => {
             control={form.control}
             name="scotchTape"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500 py-5">
-                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                   <Image
                     src={orderItems.scotchTape.icon}
                     alt={orderItems.scotchTape.PL}
-                    width={36}
-                    height={36}
+                    width={32}
+                    height={32}
+                    className="rounded-lg shadow-md"
                   />
                   {orderItems.scotchTape.PL}
                 </FormLabel>
@@ -205,7 +208,11 @@ export const L5Form = () => {
                       {orderItems.scotchTape.index}
                     </span>
                     <Checkbox
-                      className="w-9 h-9"
+                      className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
@@ -219,13 +226,14 @@ export const L5Form = () => {
             control={form.control}
             name="whiteBraid"
             render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500 py-5">
-                <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                   <Image
                     src={orderItems.whiteBraid.icon}
                     alt={orderItems.whiteBraid.PL}
-                    width={36}
-                    height={36}
+                    width={32}
+                    height={32}
+                    className="rounded-lg shadow-md"
                   />
                   {orderItems.whiteBraid.PL}
                 </FormLabel>
@@ -235,7 +243,11 @@ export const L5Form = () => {
                       {orderItems.whiteBraid.index}
                     </span>
                     <Checkbox
-                      className="w-9 h-9"
+                      className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
@@ -246,23 +258,27 @@ export const L5Form = () => {
             )}
           />
 
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+          <Accordion type="single" collapsible className="space-y-2">
+            <AccordionItem
+              value="item-1"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Skarer
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="separateSkarer"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.separateSkarer.icon}
                           alt={orderItems.separateSkarer.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.separateSkarer.PL}
                       </FormLabel>
@@ -272,7 +288,11 @@ export const L5Form = () => {
                             {orderItems.separateSkarer.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -287,13 +307,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="triangularCartonSkarer"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.triangularCartonSkarer.icon}
                           alt={orderItems.triangularCartonSkarer.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.triangularCartonSkarer.PL}
                       </FormLabel>
@@ -303,7 +324,11 @@ export const L5Form = () => {
                             {orderItems.triangularCartonSkarer.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -318,13 +343,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSkarer8090"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSkarer8090.icon}
                           alt={orderItems.paperLiningSkarer8090.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSkarer8090.PL}
                       </FormLabel>
@@ -334,7 +360,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSkarer8090.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -349,13 +379,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSkarer105"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSkarer105.icon}
                           alt={orderItems.paperLiningSkarer105.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSkarer105.PL}
                       </FormLabel>
@@ -365,7 +396,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSkarer105.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -380,13 +415,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSkarer120140"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSkarer120140.icon}
                           alt={orderItems.paperLiningSkarer120140.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSkarer120140.PL}
                       </FormLabel>
@@ -396,7 +432,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSkarer120140.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -411,13 +451,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSkarer160"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSkarer160.icon}
                           alt={orderItems.paperLiningSkarer160.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSkarer160.PL}
                       </FormLabel>
@@ -427,7 +468,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSkarer160.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -441,23 +486,27 @@ export const L5Form = () => {
             </AccordionItem>
           </Accordion>
 
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+          <Accordion type="single" collapsible className="space-y-2">
+            <AccordionItem
+              value="item-1"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Snarum
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="separateSnarum"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.separateSnarum.icon}
                           alt={orderItems.separateSnarum.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.separateSnarum.PL}
                       </FormLabel>
@@ -467,7 +516,11 @@ export const L5Form = () => {
                             {orderItems.separateSnarum.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -482,13 +535,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="triangularCartonSnarum"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.triangularCartonSnarum.icon}
                           alt={orderItems.triangularCartonSnarum.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.triangularCartonSnarum.PL}
                       </FormLabel>
@@ -498,7 +552,11 @@ export const L5Form = () => {
                             {orderItems.triangularCartonSnarum.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -513,13 +571,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSnarum8090"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSnarum8090.icon}
                           alt={orderItems.paperLiningSnarum8090.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSnarum8090.PL}
                       </FormLabel>
@@ -529,7 +588,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSnarum8090.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -544,13 +607,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSnarum120140"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSnarum120140.icon}
                           alt={orderItems.paperLiningSnarum120140.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSnarum120140.PL}
                       </FormLabel>
@@ -560,7 +624,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSnarum120140.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -575,13 +643,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSnarum160"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSnarum160.icon}
                           alt={orderItems.paperLiningSnarum160.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSnarum160.PL}
                       </FormLabel>
@@ -591,7 +660,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSnarum160.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -605,23 +678,27 @@ export const L5Form = () => {
             </AccordionItem>
           </Accordion>
 
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1" className="border-0">
-              <AccordionTrigger className="text-slate-100 text-md hover:no-underline">
+          <Accordion type="single" collapsible className="space-y-2">
+            <AccordionItem
+              value="item-1"
+              className="border-0 rounded-lg overflow-hidden"
+            >
+              <AccordionTrigger className="text-slate-100 text-md hover:no-underline py-4 px-4 bg-gray-800/30 hover:bg-gray-700/30 transition-colors rounded-lg">
                 Skotterud
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-2 pt-2">
                 <FormField
                   control={form.control}
                   name="separateSkotterud"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.separateSkotterud.icon}
                           alt={orderItems.separateSkotterud.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.separateSkotterud.PL}
                       </FormLabel>
@@ -631,7 +708,11 @@ export const L5Form = () => {
                             {orderItems.separateSkotterud.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -646,13 +727,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="triangularCartonSkotterud"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.triangularCartonSkotterud.icon}
                           alt={orderItems.triangularCartonSkotterud.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.triangularCartonSkotterud.PL}
                       </FormLabel>
@@ -662,7 +744,11 @@ export const L5Form = () => {
                             {orderItems.triangularCartonSkotterud.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -677,13 +763,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSkotterud8090"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSkotterud8090.icon}
                           alt={orderItems.paperLiningSkotterud8090.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSkotterud8090.PL}
                       </FormLabel>
@@ -693,7 +780,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSkotterud8090.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -708,13 +799,14 @@ export const L5Form = () => {
                   control={form.control}
                   name="paperLiningSkotterud120140"
                   render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b py-5 border-gray-500">
-                      <FormLabel className="flex gap-4 items-center text-slate-100 text-md">
+                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
+                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
                         <Image
                           src={orderItems.paperLiningSkotterud120140.icon}
                           alt={orderItems.paperLiningSkotterud120140.PL}
-                          width={36}
-                          height={36}
+                          width={32}
+                          height={32}
+                          className="rounded-lg shadow-md"
                         />
                         {orderItems.paperLiningSkotterud120140.PL}
                       </FormLabel>
@@ -724,7 +816,11 @@ export const L5Form = () => {
                             {orderItems.paperLiningSkotterud120140.index}
                           </span>
                           <Checkbox
-                            className="w-9 h-9"
+                            className="w-7 h-7 md:w-9 md:h-9 
+  border-2 border-blue-400/50 
+  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
+  transition-all hover:scale-105 hover:border-blue-400
+  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                             checked={field.value}
                             onCheckedChange={field.onChange}
                           />
@@ -739,11 +835,17 @@ export const L5Form = () => {
           </Accordion>
 
           {isLoading ? (
-            <Button disabled className="max-w-md mt-6 mb-6 py-10 text-xl">
-              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+            <Button
+              disabled
+              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gray-700 hover:bg-gray-600 transition-colors rounded-xl shadow-lg"
+            >
+              <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />
             </Button>
           ) : (
-            <Button type="submit" className="max-w-md mt-6 mb-6 py-10 text-xl">
+            <Button
+              type="submit"
+              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-[1.02] rounded-xl shadow-lg"
+            >
               Wysłać
             </Button>
           )}
