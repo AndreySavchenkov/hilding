@@ -406,4 +406,27 @@ export const NumbersIKEA = [
   { name: "SNARUM M-FIRM 1200", number: "403.098.89" },
   { name: "SNARUM M-FIRM 1400", number: "003.098.91" },
   { name: "SNARUM M-FIRM 1600", number: "803.098.92" },
+
+  { name: "VATNESTROM MEDIUM 800", number: "904.764.18" },
+  { name: "VATNESTROM MEDIUM 900", number: "104.764.22" },
+  { name: "VATNESTROM MEDIUM 1400", number: "504.764.01" },
+  { name: "VATNESTROM MEDIUM 1600", number: "204.764.07" },
+  { name: "VATNESTROM MEDIUM 1800", number: "804.764.14" },
+
+  { name: "VATNESTROM FIRM 800", number: "304.764.16" },
+  { name: "VATNESTROM FIRM 900", number: "704.764.19" },
+  { name: "VATNESTROM FIRM 1400", number: "104.763.99" },
+  { name: "VATNESTROM FIRM 1600", number: "904.764.04" },
+  { name: "VATNESTROM FIRM 1800", number: "604.764.10" },
+
+  { name: "VATNESTROM EXTRA 900", number: "204.784.87" },
+  { name: "VATNESTROM EXTRA 1400", number: "504.784.76" },
+  { name: "VATNESTROM EXTRA 1600", number: "904.784.79" },
+  { name: "VATNESTROM EXTRA 1800", number: "304.784.82" },
+
+  { name: "VATNESTROM FIRM EG 1600", number: "" },
+  { name: "VATNESTROM FIRM EG 1800", number: "" },
+
+  { name: "VATNESTROM EXTRA EG 1600", number: "" },
+  { name: "VATNESTROM EXTRA EG 1800", number: "" },
 ];
