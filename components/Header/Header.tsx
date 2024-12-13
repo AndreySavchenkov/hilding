@@ -20,30 +20,33 @@ export const Header = () => {
   const { deviceId, clearDeviceId } = deviceIdContext;
 
   return (
-    <header className="bg-gradient-to-r from-blue-900 via-slate-800 to-gray-900 backdrop-blur-sm bg-opacity-80 text-white px-10 py-4 fixed top-0 left-0 w-full z-50 border-b border-white/10 shadow-lg">
-      <div className="flex max-w-screen-lg m-auto items-center justify-between">
-        <Link href="/">
+    <header className="bg-gradient-to-r from-blue-800 via-indigo-900 to-purple-900 backdrop-blur-md 
+      text-white px-6 sm:px-10 py-3 fixed top-0 left-0 w-full z-50 
+      border-b border-white/20 shadow-xl">
+      <div className="flex max-w-screen-xl mx-auto items-center justify-between">
+        <Link href="/" className="hover:opacity-80 transition-opacity">
           <Image 
             src={homeIcon} 
-            width={50} 
-            height={50} 
-            alt="admin icon" 
-            className="transition-transform hover:scale-110 duration-300"
+            width={45} 
+            height={45} 
+            alt="Домашняя страница" 
+            className="transform hover:scale-105 transition-all duration-200 hover:brightness-110"
           />
         </Link>
-        <Link href="/numbers">
+        <Link href="/numbers" className="hover:opacity-80 transition-opacity">
           <Image 
             src={numbersIcon} 
-            width={50} 
-            height={50} 
-            alt="numbers icon" 
-            className="transition-transform hover:scale-110 duration-300"
+            width={45} 
+            height={45} 
+            alt="Страница чисел" 
+            className="transform hover:scale-105 transition-all duration-200 hover:brightness-110"
           />
         </Link>
         <div className="flex items-center gap-4">
           {deviceId && (
             <Image
-              className="cursor-pointer transition-transform hover:scale-110 duration-300"
+              className="cursor-pointer transform hover:scale-105 transition-all duration-200 
+                hover:brightness-110 active:scale-95"
               onClick={() => {
                 if (typeof window !== "undefined") {
                   localStorage.removeItem("deviceId");
@@ -53,9 +56,9 @@ export const Header = () => {
                 }
               }}
               src={exitIcon}
-              width={50}
-              height={50}
-              alt="exit work icon"
+              width={45}
+              height={45}
+              alt="Выйти"
             />
           )}
           {/* <Link href="/admin">
