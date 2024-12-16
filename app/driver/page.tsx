@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import emptyStateIcon from "../../public/emptyState.png";
 import { Order } from "./components/Order/Order";
+import { AnimatePresence } from "framer-motion";
 
 export default function Driver() {
   const [options, setOptions] = useState<OrderType[] | null>(null);
@@ -62,9 +63,11 @@ export default function Driver() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid gap-6 md:gap-8">
+      <AnimatePresence>
         {options?.map((item) => (
           <Order key={item.id} item={item} setOptions={setOptions} />
         ))}
+        </AnimatePresence>
       </div>
     </div>
   );
