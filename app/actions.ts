@@ -26,10 +26,18 @@ export async function subscribeUser(sub: any, deviceId: string) {
   return { success: true };
 }
 
-export async function unsubscribeUser() {
-  // In a production environment, you would want to remove the subscription from the database
-  // For example: await db.subscriptions.delete({ where: { ... } })
-  return { success: true };
+export async function unsubscribeUser(deviceId: string) {
+  try {
+    await db.driverSubscription.deleteMany({
+      where: {
+        deviceId: deviceId,
+      },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Ошибка при удалении подписки:", error);
+    return { success: false, error };
+  }
 }
 
 export async function sendNotification(message: string) {
