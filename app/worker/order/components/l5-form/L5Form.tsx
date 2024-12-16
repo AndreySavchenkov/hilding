@@ -139,10 +139,10 @@ export const L5Form = () => {
             <span className="font-medium text-white">Zamówienie wysłane!</span>
           </div>
         ),
-        className: "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
+        className:
+          "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
       }),
-
-      router.push(`/`);
+        router.push(`/`);
     } catch (error) {
       console.log(error);
     } finally {
@@ -151,11 +151,11 @@ export const L5Form = () => {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto mt-8 pb-8 px-2 md:mt-24">
+    <div className="w-full max-w-screen-lg mx-auto">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col w-full px-2 md:px-4 bg-gradient-to-b from-gray-900/50 to-gray-800/30 rounded-xl shadow-xl"
+          className="mx-4 my-8 bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-4 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm"
         >
           <FormField
             control={form.control}
@@ -844,7 +844,7 @@ export const L5Form = () => {
           ) : (
             <Button
               type="submit"
-              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-[1.02] rounded-xl shadow-lg"
+              className="max-w-md w-full mt-6 mb-6 py-8 text-3xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide rounded-xl"
             >
               Wysłać
             </Button>

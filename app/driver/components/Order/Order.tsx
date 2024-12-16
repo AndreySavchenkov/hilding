@@ -4,7 +4,6 @@ import { AreaOptionsEnum, OrderType, orderItems } from "@/types";
 import Image from "next/image";
 import { CheckIcon, ReloadIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import okIcon from "../../../../public/OK.png";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -75,7 +74,7 @@ export const Order = ({ item, setOptions }: Props) => {
   return (
     <div
       key={item.id}
-      className="flex gap-3 flex-col text-gray-300 bg-gradient-to-br from-gray-700 to-gray-800 p-4 rounded-xl shadow-lg border border-gray-600/20"
+      className="flex gap-3 flex-col text-gray-300 bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-4 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm"
     >
       <span className="text-xl md:text-2xl font-medium text-center py-3 border-b border-gray-500/30 text-gray-200">
         Linia: {item.lineOptions} ({AreaOptionsEnum[item.areaOptions]})
@@ -798,7 +797,7 @@ export const Order = ({ item, setOptions }: Props) => {
         </Button>
       ) : (
         <Button
-          className="mt-6 text-lg p-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/20"
+          className="mt-6 text-lg p-6 bg-gradient-to-r from-blue-600/90 to-purple-600/90 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20"
           onClick={() => deleteOrder(item.id)}
         >
           Dostarczyć

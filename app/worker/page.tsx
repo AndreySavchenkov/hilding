@@ -219,7 +219,7 @@ export default function Worker() {
 
             <Button
               disabled={isLoading}
-              className="w-full md:max-w-md mx-auto mt-8 py-6 md:py-8 text-xl md:text-2xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold tracking-wide transition-all duration-300 rounded-xl shadow-lg hover:shadow-blue-500/50 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="max-w-md w-full mt-12 py-10 text-3xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide rounded-xl"
               type="submit"
             >
               {isLoading ? (

@@ -193,7 +193,7 @@ export default function Numbers() {
               </div>
               <Button
                 disabled={isLoading}
-                className="max-w-md w-full mt-12 py-10 px-20 text-2xl bg-gradient-to-r from-blue-400 to-indigo-600 hover:from-blue-500 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide"
+                className="max-w-md w-full mt-12 py-12 text-3xl bg-gradient-to-r from-blue-600/90 to-purple-600/90 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide rounded-xl"
                 type="submit"
               >
                 {isLoading ? (
