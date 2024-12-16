@@ -32,11 +32,9 @@ export default function Driver() {
 
   if (!options) {
     return (
-      <div className="min-h-screen p-6">
-        <div className="flex items-center justify-center h-full">
-          <div className="text-xl font-semibold text-gray-600 animate-pulse">
-            Loading...
-          </div>
+      <div className="h-[calc(100vh-84px)] p-6 flex items-center justify-center">
+        <div className="text-xl font-semibold text-gray-600 animate-pulse">
+          Ładowanie...
         </div>
       </div>
     );
@@ -44,20 +42,18 @@ export default function Driver() {
 
   if (options.length === 0) {
     return (
-      <div className="min-h-screen p-6">
-        <div className="flex items-center justify-center h-full">
-          <div className="text-center">
-            <Image
-              src={emptyStateIcon}
-              alt="empty state icon"
-              width={80}
-              height={80}
-              className="mx-auto mb-6 opacity-70"
-            />
-            <span className="text-xl font-medium text-gray-500">
-              Nie ma nowych zamówień
-            </span>
-          </div>
+      <div className="h-[calc(100vh-84px)] p-6 flex items-center justify-center">
+        <div className="text-center">
+          <Image
+            src={emptyStateIcon}
+            alt="empty state icon"
+            width={80}
+            height={80}
+            className="mx-auto mb-6 opacity-70"
+          />
+          <span className="text-xl font-medium text-gray-500">
+            Nie ma nowych zamówień
+          </span>
         </div>
       </div>
     );
