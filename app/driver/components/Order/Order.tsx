@@ -37,21 +37,21 @@ export const Order = ({ item, setOptions }: Props) => {
         throw new Error(`Failed to delete`);
       }
 
-      toast({
-        duration: 3000,
-        description: (
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-              <CheckIcon className="h-5 w-5 text-white" />
-            </div>
-            <span className="font-medium text-white">
-              Zamówienie zostało przyjęte!
-            </span>
-          </div>
-        ),
-        className:
-          "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
-      });
+      // toast({
+      //   duration: 3000,
+      //   description: (
+      //     <div className="flex items-center gap-3">
+      //       <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+      //         <CheckIcon className="h-5 w-5 text-white" />
+      //       </div>
+      //       <span className="font-medium text-white">
+      //         Zamówienie zostało przyjęte!
+      //       </span>
+      //     </div>
+      //   ),
+      //   className:
+      //     "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
+      // });
 
       const responseItems = await fetch(`/api/order/get-order-options`, {
         cache: "no-store",
