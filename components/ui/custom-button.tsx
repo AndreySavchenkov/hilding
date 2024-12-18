@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils";
 interface CustomButtonProps {
   isLoading: boolean;
   text?: string;
-  loadingText?: string;
+  onClick?: () => void;
 }
 
 export const CustomButton = ({
   isLoading,
   text = "Dalej",
-  loadingText = "Ładowanie...",
+  onClick,
 }: CustomButtonProps) => {
   return (
     <Button
@@ -29,11 +29,11 @@ export const CustomButton = ({
         isLoading && "from-blue-600/60 to-purple-600/60"
       )}
       type="submit"
+      onClick={onClick}
     >
       {isLoading ? (
         <div className="flex items-center justify-center gap-2">
           <ReloadIcon className="h-6 w-6 animate-spin" />
-          <span>{loadingText}</span>
         </div>
       ) : (
         text

@@ -12,6 +12,7 @@ import stretchIcon from "../public/stretch.png";
 import nylonIcon from "../public/nylon.png";
 import separatorIcon from "../public/separator.png";
 import triangularIcon from "../public/triangular.png";
+import { StaticImageData } from "next/image";
 
 export type OrderType = {
   id: string;
@@ -93,6 +94,12 @@ export enum LinesEnum {
   L2 = "L2",
   L1 = "L1",
 }
+
+export type OrderItemType = {
+  PL: string;
+  index: string;
+  icon: string | StaticImageData;
+};
 
 export const orderItems = {
   pallets: {

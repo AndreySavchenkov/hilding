@@ -14,10 +14,10 @@ import {
 } from "@/components/ui/accordion";
 import { orderItems } from "@/types";
 import { useState } from "react";
-import { CheckIcon } from "@radix-ui/react-icons";
 import { L10FormSchema } from "@/types/schemas";
 import { OrderFormField } from "@/components/ui/order-form-field";
 import { CustomButton } from "@/components/ui/custom-button";
+import { SuccessToast } from "@/components/ui/successToast";
 
 export default function L10Form() {
   const [isLoading, setIsLoading] = useState(false);
@@ -112,16 +112,8 @@ export default function L10Form() {
 
       toast({
         duration: 3000,
-        description: (
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-              <CheckIcon className="h-5 w-5 text-white" />
-            </div>
-            <span className="font-medium text-white">Zamówienie wysłane!</span>
-          </div>
-        ),
-        className:
-          "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
+        description: <SuccessToast text="Zamówienie wysłane!" />,
+        className: "bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-white/10 backdrop-blur-sm shadow-xl",
       }),
         router.push(`/`);
     } catch (error) {
