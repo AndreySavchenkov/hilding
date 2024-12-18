@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   InputOTP,
   InputOTPGroup,
@@ -21,7 +20,7 @@ import {
 } from "@/components/ui/form";
 import { areaOptions, lineOptions } from "@/types";
 import { useState } from "react";
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { CustomButton } from "@/components/ui/custom-button";
 
 type FormType = {
   line?: { value: string; label: string } | null;
@@ -217,20 +216,7 @@ export default function Worker() {
               />
             </div>
 
-            <Button
-              disabled={isLoading}
-              className="max-w-md w-full mt-12 py-10 text-3xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide rounded-xl"
-              type="submit"
-            >
-              {isLoading ? (
-                <div className="flex items-center justify-center gap-2">
-                  <ReloadIcon className="h-6 w-6 animate-spin" />
-                  <span>Ładowanie...</span>
-                </div>
-              ) : (
-                "Dalej"
-              )}
-            </Button>
+            <CustomButton isLoading={isLoading} text="Dalej" />
           </form>
         </Form>
       </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,10 +8,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { orderItems } from "@/types";
 import { useState } from "react";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { L1L2FormSchema } from "@/types/schemas";
 import { OrderFormField } from "@/components/ui/order-form-field";
+import { CustomButton } from "@/components/ui/custom-button";
 
 export default function L1L2Form() {
   const [isLoading, setIsLoading] = useState(false);
@@ -145,21 +144,7 @@ export default function L1L2Form() {
             item={orderItems.upPaperCommon}
           />
 
-          {isLoading ? (
-            <Button
-              disabled
-              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gray-700 hover:bg-gray-600 transition-colors rounded-xl shadow-lg"
-            >
-              <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />
-            </Button>
-          ) : (
-            <Button
-              type="submit"
-              className="max-w-md w-full mt-6 mb-6 py-8 text-3xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide rounded-xl"
-            >
-              Wysłać
-            </Button>
-          )}
+          <CustomButton isLoading={isLoading} text="Wysłać" />
         </form>
       </Form>
     </div>

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -6,8 +5,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import { orderItems } from "@/types";
-import { Checkbox } from "@/components/ui/checkbox";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Accordion,
@@ -18,6 +15,7 @@ import {
 import { CheckIcon } from "@radix-ui/react-icons";
 import { L5FormSchema } from "@/types/schemas";
 import { OrderFormField } from "@/components/ui/order-form-field";
+import { CustomButton } from "@/components/ui/custom-button";
 
 export const L5Form = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -270,21 +268,7 @@ export const L5Form = () => {
             </AccordionItem>
           </Accordion>
 
-          {isLoading ? (
-            <Button
-              disabled
-              className="max-w-md mx-auto mt-6 mb-6 py-8 text-lg w-full bg-gray-700 hover:bg-gray-600 transition-colors rounded-xl shadow-lg"
-            >
-              <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />
-            </Button>
-          ) : (
-            <Button
-              type="submit"
-              className="max-w-md w-full mt-6 mb-6 py-8 text-3xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed font-bold tracking-wide rounded-xl"
-            >
-              Wysłać
-            </Button>
-          )}
+          <CustomButton isLoading={isLoading} text="Wysłać" />
         </form>
       </Form>
     </div>
