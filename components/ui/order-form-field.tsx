@@ -50,11 +50,9 @@ export const OrderFormField = ({
               hover:scale-[1.01] active:scale-[0.99]
               ${field.value ? "bg-gray-800/30" : ""}
             `}
+            onClick={() => field.onChange(!field.value)}
           >
-            <FormLabel
-              className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1 cursor-pointer select-none"
-              onClick={() => field.onChange(!field.value)}
-            >
+            <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1 cursor-pointer select-none">
               <div className="relative">
                 <Image
                   src={item.icon}
@@ -87,11 +85,14 @@ export const OrderFormField = ({
               </div>
               {item.PL}
             </FormLabel>
+            <span className="!mt-0 text-gray-400 text-sm font-medium select-none">
+              {item.index}
+            </span>
             <FormControl>
-              <div className="flex items-center gap-4 !m-0">
-                <span className="text-gray-400 text-sm font-medium">
-                  {item.index}
-                </span>
+              <div
+                className="flex items-center gap-4 !m-0"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <Checkbox
                   className="w-7 h-7 md:w-9 md:h-9 
                   border-2 border-blue-400/50 
