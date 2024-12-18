@@ -24,6 +24,8 @@ import { NumbersIKEA } from "@/types";
 import MediumIcon from "../../public/medium.svg";
 import FirmIcon from "../../public/firm.svg";
 import XFirmIcon from "../../public/x-firm.svg";
+import { format } from "date-fns";
+import { pl } from "date-fns/locale";
 
 interface WorkerResult {
   name: string;
@@ -48,6 +50,9 @@ export default function Numbers() {
   const [result, setResult] = useState<WorkerResult | null>(null);
   const [isOpenResult, setIsOpenResult] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const currentDate = format(new Date(), "dd.MM.yyyy", { locale: pl });
+  const currentWeek = format(new Date(), "w", { locale: pl });
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
@@ -80,6 +85,14 @@ export default function Numbers() {
         <div className="w-full max-w-screen-lg px-4 mx-auto h-full flex items-center justify-center">
           {result ? (
             <div className="flex flex-col gap-4 items-center animate-fadeIn">
+              <div className="absolute top-[80px] right-2 md:top-8 md:right-8 text-white/80 text-right self-end mb-4 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
+                <p className="text-lg md:text-xl font-medium tracking-wider">
+                  {currentDate}
+                </p>
+                <p className="text-sm md:text-base font-light">
+                  Tydzień: {currentWeek}
+                </p>
+              </div>
               <div className="relative flex justify-center w-full mb-8">
                 <div className="relative flex items-center justify-center w-32 h-32">
                   <div className="absolute inset-0 m-auto w-32 h-32 rounded-full bg-green-500/50 blur-md animate-pulse -translate-x-1" />
