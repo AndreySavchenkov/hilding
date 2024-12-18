@@ -407,11 +407,11 @@ export const NumbersIKEA = [
   { name: "SNARUM M-FIRM 1400", number: "003.098.91" },
   { name: "SNARUM M-FIRM 1600", number: "803.098.92" },
 
-  { name: "VATNESTRÖM MEDIUM 800", number: "904.764.18" },
-  { name: "VATNESTRÖM MEDIUM 900", number: "104.764.22" },
-  { name: "VATNESTRÖM MEDIUM 1400", number: "504.764.01" },
-  { name: "VATNESTRÖM MEDIUM 1600", number: "204.764.07" },
-  { name: "VATNESTRÖM MEDIUM 1800", number: "804.764.14" },
+  { name: "VATNESTRÖM M-FIRM 800", number: "904.764.18" },
+  { name: "VATNESTRÖM M-FIRM 900", number: "104.764.22" },
+  { name: "VATNESTRÖM M-FIRM 1400", number: "504.764.01" },
+  { name: "VATNESTRÖM M-FIRM 1600", number: "204.764.07" },
+  { name: "VATNESTRÖM M-FIRM 1800", number: "804.764.14" },
 
   { name: "VATNESTRÖM FIRM 800", number: "304.764.16" },
   { name: "VATNESTRÖM FIRM 900", number: "704.764.19" },
@@ -419,14 +419,14 @@ export const NumbersIKEA = [
   { name: "VATNESTRÖM FIRM 1600", number: "904.764.04" },
   { name: "VATNESTRÖM FIRM 1800", number: "604.764.10" },
 
-  { name: "VATNESTRÖM EXTRA 900", number: "204.784.87" },
-  { name: "VATNESTRÖM EXTRA 1400", number: "504.784.76" },
-  { name: "VATNESTRÖM EXTRA 1600", number: "904.784.79" },
-  { name: "VATNESTRÖM EXTRA 1800", number: "304.784.82" },
+  { name: "VATNESTRÖM X-FIRM 900", number: "204.784.87" },
+  { name: "VATNESTRÖM X-FIRM 1400", number: "504.784.76" },
+  { name: "VATNESTRÖM X-FIRM 1600", number: "904.784.79" },
+  { name: "VATNESTRÖM X-FIRM 1800", number: "304.784.82" },
 
   { name: "VATNESTRÖM FIRM EG 1600", number: "" },
   { name: "VATNESTRÖM FIRM EG 1800", number: "" },
 
-  { name: "VATNESTRÖM EXTRA EG 1600", number: "" },
-  { name: "VATNESTRÖM EXTRA EG 1800", number: "" },
+  { name: "VATNESTRÖM X-FIRM EG 1600", number: "" },
+  { name: "VATNESTRÖM X-FIRM EG 1800", number: "" },
 ];

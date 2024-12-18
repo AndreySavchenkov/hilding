@@ -18,10 +18,12 @@ import { z, ZodType } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
-import yesIcon from "../../public/yes.png";
 import noIcon from "../../public/no.png";
 import Image from "next/image";
 import { NumbersIKEA } from "@/types";
+import MediumIcon from "../../public/medium.svg";
+import FirmIcon from "../../public/firm.svg";
+import XFirmIcon from "../../public/x-firm.svg";
 
 interface WorkerResult {
   name: string;
@@ -78,15 +80,17 @@ export default function Numbers() {
         <div className="w-full max-w-screen-lg px-4 mx-auto h-full flex items-center justify-center">
           {result ? (
             <div className="flex flex-col gap-4 items-center animate-fadeIn">
-              <div className="relative">
-                <div className="absolute -inset-1 bg-green-500 rounded-full blur opacity-75 animate-pulse"></div>
-                <Image
-                  className="relative mb-6 transform hover:scale-110 transition-transform duration-300"
-                  src={yesIcon}
-                  width={75}
-                  height={75}
-                  alt="yes icon"
-                />
+              <div className="relative flex justify-center w-full mb-8">
+                <div className="relative flex items-center justify-center w-32 h-32">
+                  <div className="absolute inset-0 m-auto w-32 h-32 rounded-full bg-green-500/50 blur-md animate-pulse -translate-x-1" />
+                  {result.name.includes("M-FIRM") ? (
+                    <MediumIcon className="w-full h-full transform hover:scale-110 transition-transform duration-300 fill-green-400 relative z-10" />
+                  ) : result.name.includes("X-FIRM") ? (
+                    <XFirmIcon className="w-full h-full transform hover:scale-110 transition-transform duration-300 fill-green-400 relative z-10" />
+                  ) : (
+                    <FirmIcon className="w-full h-full transform hover:scale-110 transition-transform duration-300 fill-green-400 relative z-10" />
+                  )}
+                </div>
               </div>
               <span className="text-3xl font-black bg-gradient-to-r from-green-300 to-green-500 bg-clip-text text-transparent animate-slideDown text-center">
                 {result.name}
@@ -103,10 +107,10 @@ export default function Numbers() {
             </div>
           ) : (
             <div className="flex flex-col gap-4 items-center animate-fadeIn">
-              <div className="relative">
-                <div className="absolute -inset-1 bg-red-500 rounded-full blur opacity-75 animate-pulse"></div>
+              <div className="relative flex items-center justify-center w-32 h-32">
+                <div className="absolute inset-0 m-auto w-32 h-32 rounded-full bg-red-500/50 blur-md animate-pulse -translate-x-1" />
                 <Image
-                  className="relative mb-6 transform hover:scale-110 transition-transform duration-300"
+                  className="relative transform hover:scale-110 transition-transform duration-300 z-10"
                   src={noIcon}
                   width={75}
                   height={75}
