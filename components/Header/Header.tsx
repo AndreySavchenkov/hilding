@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 // import adminIcon from "../../public/admin.png";
 import homeIcon from "../../public/home.png";
@@ -18,6 +18,7 @@ import { subscribeUser, unsubscribeUser } from "@/app/actions";
 export const Header = () => {
   const deviceIdContext = useContext(DeviceIdContext);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   if (!deviceIdContext) {
     throw new Error("useContext must be used within DeviceIdProvider");
@@ -25,6 +26,7 @@ export const Header = () => {
   const { deviceId, setDeviceId, clearDeviceId } = deviceIdContext;
 
   const handleStart = async () => {
+    setIsLoading(true);
     registerServiceWorker();
 
     const subscribeToPush = async () => {
@@ -56,22 +58,23 @@ export const Header = () => {
     };
 
     if (typeof window !== "undefined") {
-      subscribeToPush();
+      await subscribeToPush();
+      setIsLoading(false);
     }
   };
 
   const handleLogout = async () => {
     if (typeof window !== "undefined" && deviceId) {
+      setIsLoading(true);
       try {
-        // Удаляем подписку из базы данных
         await unsubscribeUser(deviceId);
-
-        // Очищаем локальное состояние
         localStorage.removeItem("deviceId");
         clearDeviceId();
         router.push("/");
       } catch (error) {
         console.error("Ошибка при удалении подписки:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -102,27 +105,38 @@ export const Header = () => {
           />
         </Link>
         <div className="flex items-center gap-4">
-          {deviceId ? (
-            <Image
-              className="cursor-pointer transform hover:scale-105 transition-all duration-200 
-                hover:brightness-110 active:scale-95"
-              onClick={handleLogout}
-              src={exitIcon}
-              width={45}
-              height={45}
-              alt="Выйти"
-            />
-          ) : (
-            <Image
-              className="cursor-pointer transform hover:scale-105 transition-all duration-200 
-                hover:brightness-110 active:scale-95"
-              onClick={handleStart}
-              src={notificationIcon}
-              width={45}
-              height={45}
-              alt="notification icon"
-            />
-          )}
+          <div className="relative w-[45px] h-[45px]">
+            {deviceId ? (
+              <Image
+                className="cursor-pointer transform hover:scale-105 transition-all duration-200 
+                  hover:brightness-110 active:scale-95 absolute top-0 left-0
+                  transition-opacity duration-300"
+                onClick={handleLogout}
+                src={exitIcon}
+                width={45}
+                height={45}
+                alt="Выйти"
+                style={{ opacity: isLoading ? 0 : 1 }}
+              />
+            ) : (
+              <Image
+                className="cursor-pointer transform hover:scale-105 transition-all duration-200 
+                  hover:brightness-110 active:scale-95 absolute top-0 left-0
+                  transition-opacity duration-300"
+                onClick={handleStart}
+                src={notificationIcon}
+                width={45}
+                height={45}
+                alt="notification icon"
+                style={{ opacity: isLoading ? 0 : 1 }}
+              />
+            )}
+            {isLoading && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+              </div>
+            )}
+          </div>
           {/* <Link href="/admin">
             <Image src={adminIcon} width={50} height={50} alt="admin icon" />
           </Link> */}
