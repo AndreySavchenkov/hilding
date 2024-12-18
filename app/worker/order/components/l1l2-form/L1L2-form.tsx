@@ -1,18 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -20,16 +11,8 @@ import { orderItems } from "@/types";
 import { useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { CheckIcon } from "@radix-ui/react-icons";
-
-const FormSchema = z.object({
-  pallets: z.boolean().default(false).optional(),
-  scotchTape: z.boolean().default(false).optional(),
-  whiteBraid: z.boolean().default(false).optional(),
-  blackBelt: z.boolean().default(false).optional(),
-  whiteBelt: z.boolean().default(false).optional(),
-  paperLining90: z.boolean().default(false).optional(),
-  upPaperCommon: z.boolean().default(false).optional(),
-});
+import { L1L2FormSchema } from "@/types/schemas";
+import { OrderFormField } from "@/components/ui/order-form-field";
 
 export default function L1L2Form() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +27,8 @@ export default function L1L2Form() {
   const area = searchParams?.get("area");
   const workerNumber = searchParams?.get("workerNumber");
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof L1L2FormSchema>>({
+    resolver: zodResolver(L1L2FormSchema),
     defaultValues: {
       pallets: false,
       scotchTape: false,
@@ -57,7 +40,7 @@ export default function L1L2Form() {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (data: z.infer<typeof L1L2FormSchema>) => {
     setIsLoading(true);
 
     const orderOptions = {
@@ -120,251 +103,46 @@ export default function L1L2Form() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="mx-4 my-8 bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-4 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm"
         >
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="pallets"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.pallets.icon}
-                    alt={orderItems.pallets.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.pallets.PL}
-                </FormLabel>
-                <FormControl className="m-0">
-                  <Checkbox
-                    className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.pallets}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="scotchTape"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.scotchTape.icon}
-                    alt={orderItems.scotchTape.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.scotchTape.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.scotchTape.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.scotchTape}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="whiteBraid"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.whiteBraid.icon}
-                    alt={orderItems.whiteBraid.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.whiteBraid.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.whiteBraid.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.whiteBraid}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="blackBelt"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.blackBelt.icon}
-                    alt={orderItems.blackBelt.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.blackBelt.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.blackBelt.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.blackBelt}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="whiteBelt"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.whiteBelt.icon}
-                    alt={orderItems.whiteBelt.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.whiteBelt.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.whiteBelt.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.whiteBelt}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="paperLining90"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.paperLining90.icon}
-                    alt={orderItems.paperLining90.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.paperLining90.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.paperLining90.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.paperLining90}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="upPaperCommon"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.upPaperCommon.icon}
-                    alt={orderItems.upPaperCommon.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.upPaperCommon.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.upPaperCommon.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.upPaperCommon}
           />
 
           {isLoading ? (

@@ -26,31 +26,8 @@ import { orderItems } from "@/types";
 import { useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { CheckIcon } from "@radix-ui/react-icons";
-
-const FormSchema = z.object({
-  pallets: z.boolean().default(false).optional(),
-  scotchTape: z.boolean().default(false).optional(),
-  whiteBraid: z.boolean().default(false).optional(),
-  blackBelt: z.boolean().default(false).optional(),
-  whiteBelt: z.boolean().default(false).optional(),
-  paperLining90: z.boolean().default(false).optional(),
-  paperLining101: z.boolean().default(false).optional(),
-  cartonBox80: z.boolean().default(false).optional(),
-  cartonBox90: z.boolean().default(false).optional(),
-  cartonBox120: z.boolean().default(false).optional(),
-  cartonBox140: z.boolean().default(false).optional(),
-  cartonBox160: z.boolean().default(false).optional(),
-  cartonBox180: z.boolean().default(false).optional(),
-  downPaperXFirm: z.boolean().default(false).optional(),
-  downPaperVagstranda: z.boolean().default(false).optional(),
-  upPaperCommon: z.boolean().default(false).optional(),
-  upPaperVagstranda: z.boolean().default(false).optional(),
-  stretch: z.boolean().default(false).optional(),
-  nylon8090: z.boolean().default(false).optional(),
-  nylon120140: z.boolean().default(false).optional(),
-  nylon160: z.boolean().default(false).optional(),
-  nylon180: z.boolean().default(false).optional(),
-});
+import { L10FormSchema } from "@/types/schemas";
+import { OrderFormField } from "@/components/ui/order-form-field";
 
 export default function L10Form() {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,8 +42,8 @@ export default function L10Form() {
   const area = searchParams?.get("area");
   const workerNumber = searchParams?.get("workerNumber");
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof L10FormSchema>>({
+    resolver: zodResolver(L10FormSchema),
     defaultValues: {
       pallets: false,
       scotchTape: false,
@@ -93,7 +70,7 @@ export default function L10Form() {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (data: z.infer<typeof L10FormSchema>) => {
     setIsLoading(true);
 
     const orderOptions = {
@@ -173,110 +150,25 @@ export default function L10Form() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="mx-4 my-8 bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-4 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm"
         >
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="pallets"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.pallets.icon}
-                    alt={orderItems.pallets.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.pallets.PL}
-                </FormLabel>
-                <FormControl className="m-0">
-                  <Checkbox
-                    className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.pallets}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="scotchTape"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.scotchTape.icon}
-                    alt={orderItems.scotchTape.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.scotchTape.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.scotchTape.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.scotchTape}
           />
 
-          <FormField
-            control={form.control}
+          <OrderFormField
+            form={form}
             name="whiteBraid"
-            render={({ field }) => (
-              <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                  <Image
-                    src={orderItems.whiteBraid.icon}
-                    alt={orderItems.whiteBraid.PL}
-                    width={32}
-                    height={32}
-                    className="rounded-lg shadow-md"
-                  />
-                  {orderItems.whiteBraid.PL}
-                </FormLabel>
-                <FormControl>
-                  <div className="flex items-center gap-4 !m-0">
-                    <span className="text-gray-400 text-sm">
-                      {orderItems.whiteBraid.index}
-                    </span>
-                    <Checkbox
-                      className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            item={orderItems.whiteBraid}
           />
 
-          <Accordion type="single" collapsible className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-2 mt-2">
             <AccordionItem
               value="item-1"
               className="border-0 rounded-lg overflow-hidden"
@@ -285,76 +177,16 @@ export default function L10Form() {
                 Uchwyt
               </AccordionTrigger>
               <AccordionContent className="space-y-2 pt-2">
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="blackBelt"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.blackBelt.icon}
-                          alt={orderItems.blackBelt.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.blackBelt.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.blackBelt.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.blackBelt}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="whiteBelt"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.whiteBelt.icon}
-                          alt={orderItems.whiteBelt.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.whiteBelt.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.whiteBelt.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.whiteBelt}
                 />
               </AccordionContent>
             </AccordionItem>
@@ -367,76 +199,16 @@ export default function L10Form() {
                 Paleta Papierowa
               </AccordionTrigger>
               <AccordionContent className="space-y-2 pt-2">
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="paperLining90"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.paperLining90.icon}
-                          alt={orderItems.paperLining90.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.paperLining90.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.paperLining90.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.paperLining90}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="paperLining101"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.paperLining101.icon}
-                          alt={orderItems.paperLining101.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.paperLining101.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.paperLining101.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.paperLining101}
                 />
               </AccordionContent>
             </AccordionItem>
@@ -449,76 +221,16 @@ export default function L10Form() {
                 Przekładka papierowa (do palety)
               </AccordionTrigger>
               <AccordionContent className="space-y-2 pt-2">
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="downPaperXFirm"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.downPaperXFirm.icon}
-                          alt={orderItems.downPaperXFirm.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.downPaperXFirm.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.downPaperXFirm.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.downPaperXFirm}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="downPaperVagstranda"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.downPaperVagstranda.icon}
-                          alt={orderItems.downPaperVagstranda.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.downPaperVagstranda.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.downPaperVagstranda.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.downPaperVagstranda}
                 />
               </AccordionContent>
             </AccordionItem>
@@ -531,76 +243,16 @@ export default function L10Form() {
                 Pokrywa papierowa (góra){" "}
               </AccordionTrigger>
               <AccordionContent className="space-y-2 pt-2">
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="upPaperCommon"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.upPaperCommon.icon}
-                          alt={orderItems.upPaperCommon.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.upPaperCommon.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.upPaperCommon.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.upPaperCommon}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="upPaperVagstranda"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.upPaperVagstranda.icon}
-                          alt={orderItems.upPaperVagstranda.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.upPaperVagstranda.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.upPaperVagstranda.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.upPaperVagstranda}
                 />
               </AccordionContent>
             </AccordionItem>
@@ -613,220 +265,40 @@ export default function L10Form() {
                 Carton Box (Vagstranda)
               </AccordionTrigger>
               <AccordionContent className="space-y-2 pt-2">
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="cartonBox80"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.cartonBox80.icon}
-                          alt={orderItems.cartonBox80.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.cartonBox80.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.cartonBox80.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.cartonBox80}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="cartonBox90"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.cartonBox90.icon}
-                          alt={orderItems.cartonBox90.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.cartonBox90.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.cartonBox90.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.cartonBox90}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="cartonBox120"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.cartonBox120.icon}
-                          alt={orderItems.cartonBox120.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.cartonBox120.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.cartonBox120.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.cartonBox120}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="cartonBox140"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.cartonBox140.icon}
-                          alt={orderItems.cartonBox140.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.cartonBox140.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.cartonBox140.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.cartonBox140}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="cartonBox160"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.cartonBox160.icon}
-                          alt={orderItems.cartonBox160.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.cartonBox160.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.cartonBox160.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.cartonBox160}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="cartonBox180"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.cartonBox180.icon}
-                          alt={orderItems.cartonBox180.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.cartonBox180.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.cartonBox180.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.cartonBox180}
                 />
               </AccordionContent>
             </AccordionItem>
@@ -839,184 +311,34 @@ export default function L10Form() {
                 Strecz / Nylon do Rolpaka
               </AccordionTrigger>
               <AccordionContent className="space-y-2 pt-2">
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="stretch"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.stretch.icon}
-                          alt={orderItems.stretch.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.stretch.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.stretch.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.stretch}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="nylon8090"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.nylon8090.icon}
-                          alt={orderItems.nylon8090.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.nylon8090.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.nylon8090.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.nylon8090}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="nylon120140"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.nylon120140.icon}
-                          alt={orderItems.nylon120140.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.nylon120140.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.nylon120140.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.nylon120140}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="nylon160"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.nylon160.icon}
-                          alt={orderItems.nylon160.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.nylon160.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.nylon160.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.nylon160}
                 />
 
-                <FormField
-                  control={form.control}
+                <OrderFormField
+                  form={form}
                   name="nylon180"
-                  render={({ field }) => (
-                    <FormItem className="flex gap-4 items-center justify-between border-b border-gray-500/30 py-4 hover:bg-gray-800/20 transition-colors rounded-lg px-2">
-                      <FormLabel className="flex gap-3 items-center text-slate-100 text-sm md:text-md flex-1">
-                        <Image
-                          src={orderItems.nylon180.icon}
-                          alt={orderItems.nylon180.PL}
-                          width={32}
-                          height={32}
-                          className="rounded-lg shadow-md"
-                        />
-                        {orderItems.nylon180.PL}
-                      </FormLabel>
-                      <FormControl>
-                        <div className="flex items-center gap-4 !m-0">
-                          <span className="text-gray-400 text-sm">
-                            {orderItems.nylon180.index}
-                          </span>
-                          <Checkbox
-                            className="w-7 h-7 md:w-9 md:h-9 
-  border-2 border-blue-400/50 
-  data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600
-  transition-all hover:scale-105 hover:border-blue-400
-  focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  item={orderItems.nylon180}
                 />
               </AccordionContent>
             </AccordionItem>
