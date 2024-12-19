@@ -26,7 +26,6 @@ export default function L1L2Form() {
 
   const line = searchParams?.get("line");
   const area = searchParams?.get("area");
-  const workerNumber = searchParams?.get("workerNumber");
 
   const form = useForm<z.infer<typeof L1L2FormSchema>>({
     resolver: zodResolver(L1L2FormSchema),
@@ -48,7 +47,6 @@ export default function L1L2Form() {
       createdById: user?.id,
       areaOptions: area,
       lineOptions: line,
-      workerNumber: workerNumber,
       pallets: data.pallets,
       scotchTape: data.scotchTape,
       whiteBraid: data.whiteBraid,

@@ -1,10 +1,5 @@
 "use client";
 
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Select from "react-select";
@@ -25,17 +20,9 @@ import { CustomButton } from "@/components/ui/custom-button";
 type FormType = {
   line?: { value: string; label: string } | null;
   area?: { value: string; label: string } | null;
-  workerNumber?: string;
 };
 
 const formSchema: ZodType<FormType> = z.object({
-  workerNumber: z
-    .string({
-      required_error: "Worker Number is required.",
-    })
-    .min(4, {
-      message: "Worker Number must be at 4 characters.",
-    }),
   line: z.object(
     {
       value: z.string(),
@@ -128,7 +115,6 @@ export default function Worker() {
     const query = {
       line: data.line?.value || "",
       area: data.area?.value || "",
-      workerNumber: data.workerNumber || "",
     };
 
     const queryString = new URLSearchParams(query).toString();
@@ -182,35 +168,6 @@ export default function Worker() {
                       />
                     </FormControl>
                     <FormMessage className="text-red-400" />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="workerNumber"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-200 to-indigo-300 bg-clip-text text-transparent">
-                      Numer pracownika:
-                    </FormLabel>
-                    <FormControl>
-                      <InputOTP
-                        maxLength={6}
-                        {...field}
-                        className="flex justify-center mt-2"
-                      >
-                        <InputOTPGroup className="gap-2 md:gap-4">
-                          {[0, 1, 2, 3].map((index) => (
-                            <InputOTPSlot
-                              key={index}
-                              index={index}
-                              className="w-14 h-14 md:w-16 md:h-16 text-2xl md:text-4xl text-white bg-white/10 border-white/20 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:bg-white/20 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            />
-                          ))}
-                        </InputOTPGroup>
-                      </InputOTP>
-                    </FormControl>
-                    <FormMessage className="text-red-400 mt-2" />
                   </FormItem>
                 )}
               />

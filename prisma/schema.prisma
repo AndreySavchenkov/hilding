@@ -12,7 +12,7 @@ model User {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   firstName    String
   lastName     String
-  workerNumber String   @unique
+  workerNumber String   
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   orders       Order[]  @relation("CreatedBy")
@@ -30,7 +30,6 @@ model Order {
   deliveredAt                DateTime?
   lineOptions                String
   areaOptions                String
-  workerNumber               String
   pallets                    Boolean?  @default(false)
   scotchTape                 Boolean?  @default(false)
   whiteBraid                 Boolean?  @default(false)

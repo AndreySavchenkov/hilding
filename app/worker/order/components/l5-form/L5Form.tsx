@@ -30,7 +30,6 @@ export const L5Form = () => {
 
   const line = searchParams?.get("line");
   const area = searchParams?.get("area");
-  const workerNumber = searchParams?.get("workerNumber");
 
   const form = useForm<z.infer<typeof L5FormSchema>>({
     resolver: zodResolver(L5FormSchema),
@@ -63,7 +62,6 @@ export const L5Form = () => {
       createdById: user?.id,
       areaOptions: area,
       lineOptions: line,
-      workerNumber: workerNumber,
       pallets: data.pallets,
       scotchTape: data.scotchTape,
       whiteBraid: data.whiteBraid,
