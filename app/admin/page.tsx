@@ -1,20 +1,161 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  format,
+  differenceInMinutes,
+  differenceInHours,
+  formatDistanceToNow,
+} from "date-fns";
+import { pl } from "date-fns/locale";
+import { AreaOptionsEnum, OrderType } from "@/types";
+
+const formatName = (firstName: string, lastName: string) => {
+  const formattedFirstName =
+    firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+  const formattedLastName = lastName.charAt(0).toUpperCase();
+
+  return `${formattedFirstName} ${formattedLastName}.`;
+};
+
+const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
+  const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
+  const hoursDiff = differenceInHours(deliveredAt, createdAt);
+
+  if (hoursDiff > 0) {
+    return `${hoursDiff} godz ${minutesDiff % 60} min`;
+  }
+  return `${minutesDiff} min`;
+};
+
 export default function Admin() {
+  const [orders, setOrders] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch("/api/order/get-admin-orders", {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error("Błąd podczas pobierania zamówień");
+        }
+
+        const data = await response.json();
+        setOrders(data);
+      } catch (error) {
+        console.error("Błąd:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-gray-400 animate-pulse">Ładowanie...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-gray-100">
-        Панель администратора
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-xl md:text-2xl font-bold mb-6 text-gray-100">
+        Panel administratora
       </h1>
-      <div className="bg-gray-800 rounded-lg shadow-md p-8 border border-gray-700">
-        <h2 className="text-xl font-semibold mb-6 text-gray-200 border-b border-gray-700 pb-4">
-          Заказы
+      <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
+        <h2 className="text-lg md:text-xl font-semibold mb-6 text-gray-200 border-b border-gray-700 pb-4">
+          Zamówienia
         </h2>
-        <div className="space-y-6">
-          {/* Здесь будет таблица или список заказов */}
-          <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
-            <p className="text-gray-400 text-center">
-              Данные заказов будут отображаться здесь
-            </p>
-          </div>
+        <div className="space-y-4">
+          {orders.length === 0 ? (
+            <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 md:p-6">
+              <p className="text-gray-400 text-center">Brak zamówień</p>
+            </div>
+          ) : (
+            <div className="grid gap-4">
+              {orders.map((order) => (
+                <div
+                  key={order.id}
+                  className="bg-gray-900/50 border border-gray-700 rounded-lg p-4 md:p-6"
+                >
+                  <div className="flex flex-col gap-3">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                      <div>
+                        <h3 className="text-base md:text-lg font-medium text-gray-200">
+                          Linia: {order.lineOptions} (
+                          {
+                            AreaOptionsEnum[
+                              order.areaOptions as keyof typeof AreaOptionsEnum
+                            ]
+                          }
+                          )
+                        </h3>
+                        <div className="text-xs md:text-sm text-gray-400 mt-1 space-y-0.5">
+                          <p>
+                            Utworzono:{" "}
+                            {format(
+                              new Date(order.createdAt),
+                              "dd.MM.yyyy HH:mm",
+                              {
+                                locale: pl,
+                              }
+                            )}{" "}
+                          </p>
+                          {order.deliveredAt && (
+                            <p>
+                              Dostarczone w:{" "}
+                              <span className="text-gray-500">
+                                {calculateDeliveryTime(
+                                  new Date(order.createdAt),
+                                  new Date(order.deliveredAt)
+                                )}
+                              </span>
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <span
+                        className={`self-start px-3 py-1 rounded-full text-xs md:text-sm ${
+                          order.deliveredAt
+                            ? "bg-green-500/20 text-green-300"
+                            : "bg-yellow-500/20 text-yellow-300"
+                        }`}
+                      >
+                        {order.deliveredAt ? "Dostarczono" : "W trakcie"}
+                      </span>
+                    </div>
+
+                    <div className="text-xs md:text-sm space-y-1">
+                      <p className="text-gray-400">
+                        Utworzył:{" "}
+                        {formatName(
+                          order.createdBy.firstName,
+                          order.createdBy.lastName
+                        )}{" "}
+                        ({order.createdBy.workerNumber})
+                      </p>
+                      {order.deliveredBy && (
+                        <p className="text-gray-400">
+                          Dostarczył:{" "}
+                          {formatName(
+                            order.deliveredBy.firstName,
+                            order.deliveredBy.lastName
+                          )}{" "}
+                          ({order.deliveredBy.workerNumber})
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

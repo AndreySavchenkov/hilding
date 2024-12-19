@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useContext, useState } from "react";
 import Image from "next/image";
-// import adminIcon from "../../public/admin.png";
+import adminIcon from "../../public/admin.png";
 import homeIcon from "../../public/home.png";
 import exitIcon from "../../public/noBell.png";
 import notificationIcon from "../../public/bell.png";
@@ -141,9 +141,9 @@ export const Header = () => {
               </div>
             )}
           </div>
-          {/* <Link href="/admin">
+          <Link href="/admin">
             <Image src={adminIcon} width={50} height={50} alt="admin icon" />
-          </Link> */}
+          </Link>
         </div>
       </div>
     </header>
