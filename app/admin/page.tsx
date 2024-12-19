@@ -11,6 +11,17 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
+interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  workerNumber: string;
+  subscriptions: {
+    id: string;
+    deviceId: string;
+  }[];
+}
+
 const formatName = (firstName: string, lastName: string) => {
   const formattedFirstName =
     firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
@@ -31,29 +42,36 @@ const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
 
 export default function Admin() {
   const [orders, setOrders] = useState<any[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("/api/order/get-admin-orders", {
-          cache: "no-store",
-        });
+        const [ordersResponse, usersResponse] = await Promise.all([
+          fetch("/api/order/get-admin-orders", { cache: "no-store" }),
+          fetch("/api/user/get-all-users", { cache: "no-store" }),
+        ]);
 
-        if (!response.ok) {
-          throw new Error("Błąd podczas pobierania zamówień");
+        if (!ordersResponse.ok || !usersResponse.ok) {
+          throw new Error("Ошибка при загрузке данных");
         }
 
-        const data = await response.json();
-        setOrders(data);
+        const [ordersData, usersData] = await Promise.all([
+          ordersResponse.json(),
+          usersResponse.json(),
+        ]);
+
+        setOrders(ordersData);
+        setUsers(usersData);
       } catch (error) {
-        console.error("Błąd:", error);
+        console.error("Ошибка:", error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchOrders();
+    fetchData();
   }, []);
 
   if (isLoading) {
@@ -69,101 +87,157 @@ export default function Admin() {
       <h1 className="text-xl md:text-2xl font-bold mb-6 text-gray-100">
         Panel administratora
       </h1>
-      <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
-        <Accordion type="single" collapsible>
-          <AccordionItem value="orders" className="border-0">
-            <AccordionTrigger className="text-lg md:text-xl font-semibold text-gray-200 hover:no-underline">
-              Zamówienia
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="space-y-4">
-                {orders.length === 0 ? (
-                  <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 md:p-6">
-                    <p className="text-gray-400 text-center">Brak zamówień</p>
-                  </div>
-                ) : (
-                  <div className="grid gap-4">
-                    {orders.map((order) => (
-                      <div
-                        key={order.id}
-                        className="bg-gray-900/50 border border-gray-700 rounded-lg p-4 md:p-6"
-                      >
-                        <div className="flex flex-col gap-3">
-                          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
-                            <div>
-                              <h3 className="text-base md:text-lg font-medium text-gray-200">
-                                Linia: {order.lineOptions} (
-                                {
-                                  AreaOptionsEnum[
-                                    order.areaOptions as keyof typeof AreaOptionsEnum
-                                  ]
-                                }
-                                )
-                              </h3>
-                              <div className="text-xs md:text-sm text-gray-400 mt-1 space-y-0.5">
-                                <p>
-                                  Utworzono:{" "}
-                                  {format(
-                                    new Date(order.createdAt),
-                                    "dd.MM.yyyy HH:mm",
-                                    {
-                                      locale: pl,
-                                    }
-                                  )}{" "}
-                                </p>
-                                {order.deliveredAt && (
-                                  <p>
-                                    Dostarczone w:{" "}
-                                    <span className="text-gray-500">
-                                      {calculateDeliveryTime(
-                                        new Date(order.createdAt),
-                                        new Date(order.deliveredAt)
-                                      )}
-                                    </span>
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                            <span
-                              className={`self-start px-3 py-1 rounded-full text-xs md:text-sm ${
-                                order.deliveredAt
-                                  ? "bg-green-500/20 text-green-300"
-                                  : "bg-yellow-500/20 text-yellow-300"
-                              }`}
-                            >
-                              {order.deliveredAt ? "Dostarczono" : "W trakcie"}
+      <div className="space-y-6">
+        <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="users" className="border-0">
+              <AccordionTrigger className="text-lg md:text-xl font-semibold text-gray-200 hover:no-underline">
+                Użytkownicy
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-4">
+                  {users.length === 0 ? (
+                    <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 md:p-6">
+                      <p className="text-gray-400 text-center">
+                        Brak użytkowników
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="grid gap-4">
+                      {users.map((user) => (
+                        <div
+                          key={user.id}
+                          className="bg-gray-900/50 border border-gray-700 rounded-lg p-4 flex items-center justify-between"
+                        >
+                          <div className="flex flex-col">
+                            <span className="text-gray-200 font-medium">
+                              {user.firstName} {user.lastName}
+                            </span>
+                            <span className="text-gray-400 text-sm">
+                              Nr: {user.workerNumber}
                             </span>
                           </div>
-
-                          <div className="text-xs md:text-sm space-y-1">
-                            <p className="text-gray-400">
-                              Utworzył:{" "}
-                              {formatName(
-                                order.createdBy.firstName,
-                                order.createdBy.lastName
-                              )}{" "}
-                              ({order.createdBy.workerNumber})
-                            </p>
-                            {order.deliveredBy && (
-                              <p className="text-gray-400">
-                                Dostarczył:{" "}
-                                {formatName(
-                                  order.deliveredBy.firstName,
-                                  order.deliveredBy.lastName
-                                )}{" "}
-                                ({order.deliveredBy.workerNumber})
-                              </p>
-                            )}
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`px-3 py-1 rounded-full text-xs ${
+                                user.subscriptions.length > 0
+                                  ? "bg-green-500/20 text-green-300"
+                                  : "bg-red-500/20 text-red-300"
+                              }`}
+                            >
+                              {user.subscriptions.length > 0
+                                ? "Powiadomienia włączone"
+                                : "Powiadomienia wyłączone"}
+                            </span>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+
+        <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="orders" className="border-0">
+              <AccordionTrigger className="text-lg md:text-xl font-semibold text-gray-200 hover:no-underline">
+                Zamówienia
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-4">
+                  {orders.length === 0 ? (
+                    <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 md:p-6">
+                      <p className="text-gray-400 text-center">Brak zamówień</p>
+                    </div>
+                  ) : (
+                    <div className="grid gap-4">
+                      {orders.map((order) => (
+                        <div
+                          key={order.id}
+                          className="bg-gray-900/50 border border-gray-700 rounded-lg p-4 md:p-6"
+                        >
+                          <div className="flex flex-col gap-3">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                              <div>
+                                <h3 className="text-base md:text-lg font-medium text-gray-200">
+                                  Linia: {order.lineOptions} (
+                                  {
+                                    AreaOptionsEnum[
+                                      order.areaOptions as keyof typeof AreaOptionsEnum
+                                    ]
+                                  }
+                                  )
+                                </h3>
+                                <div className="text-xs md:text-sm text-gray-400 mt-1 space-y-0.5">
+                                  <p>
+                                    Utworzono:{" "}
+                                    {format(
+                                      new Date(order.createdAt),
+                                      "dd.MM.yyyy HH:mm",
+                                      {
+                                        locale: pl,
+                                      }
+                                    )}{" "}
+                                  </p>
+                                  {order.deliveredAt && (
+                                    <p>
+                                      Dostarczone w:{" "}
+                                      <span className="text-gray-500">
+                                        {calculateDeliveryTime(
+                                          new Date(order.createdAt),
+                                          new Date(order.deliveredAt)
+                                        )}
+                                      </span>
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                              <span
+                                className={`self-start px-3 py-1 rounded-full text-xs md:text-sm ${
+                                  order.deliveredAt
+                                    ? "bg-green-500/20 text-green-300"
+                                    : "bg-yellow-500/20 text-yellow-300"
+                                }`}
+                              >
+                                {order.deliveredAt
+                                  ? "Dostarczono"
+                                  : "W trakcie"}
+                              </span>
+                            </div>
+
+                            <div className="text-xs md:text-sm space-y-1">
+                              <p className="text-gray-400">
+                                Utworzył:{" "}
+                                {formatName(
+                                  order.createdBy.firstName,
+                                  order.createdBy.lastName
+                                )}{" "}
+                                ({order.createdBy.workerNumber})
+                              </p>
+                              {order.deliveredBy && (
+                                <p className="text-gray-400">
+                                  Dostarczył:{" "}
+                                  {formatName(
+                                    order.deliveredBy.firstName,
+                                    order.deliveredBy.lastName
+                                  )}{" "}
+                                  ({order.deliveredBy.workerNumber})
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </div>
     </div>
   );
