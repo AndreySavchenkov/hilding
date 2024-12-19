@@ -18,8 +18,10 @@ import { L10FormSchema } from "@/types/schemas";
 import { OrderFormField } from "@/components/ui/order-form-field";
 import { CustomButton } from "@/components/ui/custom-button";
 import { SuccessToast } from "@/components/ui/successToast";
+import { useUser } from "@/hooks/useUser";
 
 export default function L10Form() {
+  const { user } = useUser();
   const [isLoading, setIsLoading] = useState(false);
 
   const searchParams = useSearchParams();
@@ -64,6 +66,7 @@ export default function L10Form() {
     setIsLoading(true);
 
     const orderOptions = {
+      createdById: user?.id,
       areaOptions: area,
       lineOptions: line,
       workerNumber: workerNumber,
@@ -92,7 +95,7 @@ export default function L10Form() {
     };
 
     try {
-      const apiUrl = "/api/order/create-order-options";
+      const apiUrl = "/api/order/create-order";
 
       const requestData = {
         method: "POST",
@@ -113,7 +116,8 @@ export default function L10Form() {
       toast({
         duration: 3000,
         description: <SuccessToast text="Zamówienie wysłane!" />,
-        className: "bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-white/10 backdrop-blur-sm shadow-xl",
+        className:
+          "bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-white/10 backdrop-blur-sm shadow-xl",
       }),
         router.push(`/`);
     } catch (error) {

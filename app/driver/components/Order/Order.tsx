@@ -8,6 +8,7 @@ import { formatDistanceToNow } from "date-fns";
 import { pl } from "date-fns/locale";
 import { CustomButton } from "@/components/ui/custom-button";
 import { OrderItem } from "./components/order-item";
+import { useUser } from "@/hooks/useUser";
 
 type Props = {
   item: OrderType;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 export const Order = ({ item, setOptions }: Props) => {
+  const { user } = useUser();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const { toast } = useToast();
@@ -23,13 +26,17 @@ export const Order = ({ item, setOptions }: Props) => {
     setIsLoading(true);
 
     try {
-      const apiUrl = `/api/order/${orderId}/delete`;
+      const apiUrl = `/api/order/${orderId}/deliver`;
 
       const requestData = {
-        method: "DELETE",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          deliveredById: user?.id,
+          deliveredAt: new Date(),
+        }),
       };
 
       const response = await fetch(apiUrl, requestData);
@@ -38,7 +45,7 @@ export const Order = ({ item, setOptions }: Props) => {
         throw new Error(`Failed to delete`);
       }
 
-      const responseItems = await fetch(`/api/order/get-order-options`, {
+      const responseItems = await fetch(`/api/order/get-orders-for-deliver`, {
         cache: "no-store",
       });
 

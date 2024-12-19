@@ -13,7 +13,7 @@ export default function Driver() {
   useEffect(() => {
     const fetchOrderOptions = async () => {
       try {
-        const response = await fetch(`/api/order/get-order-options`, {
+        const response = await fetch(`/api/order/get-orders-for-deliver`, {
           cache: "no-store",
         });
 
@@ -22,9 +22,10 @@ export default function Driver() {
         }
 
         const data = await response.json();
+
         setOptions(data);
       } catch (error: any) {
-        console.error(`Error fetching items: ${error.message}`);
+        console.error("Error fetching items:", error);
       }
     };
 
@@ -63,10 +64,10 @@ export default function Driver() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid gap-6 md:gap-8">
-      <AnimatePresence>
-        {options?.map((item) => (
-          <Order key={item.id} item={item} setOptions={setOptions} />
-        ))}
+        <AnimatePresence>
+          {options?.map((item) => (
+            <Order key={item.id} item={item} setOptions={setOptions} />
+          ))}
         </AnimatePresence>
       </div>
     </div>

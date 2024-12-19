@@ -1,20 +1,21 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-// Отключение кэширования на уровне Vercel
+// off cache
 export const revalidate = 0;
 
 export async function GET() {
   try {
-    const options = await db.orderOptions.findMany({
+    const undeliveredOrders = await db.order.findMany({
+      where: {
+        deliveredAt: null,
+      },
       orderBy: {
         createdAt: "desc",
       },
     });
 
-    console.log("Options from DB:", options);
-
-    const response = NextResponse.json(options, { status: 200 });
+    const response = NextResponse.json(undeliveredOrders, { status: 200 });
 
     response.headers.set(
       "Cache-Control",
@@ -23,8 +24,7 @@ export async function GET() {
 
     return response;
   } catch (error) {
-    console.log("[GET ORDER_OPTIONS]", error);
-
+    console.error("[GET ORDER_OPTIONS] Error:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }

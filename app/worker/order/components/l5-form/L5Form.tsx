@@ -16,8 +16,10 @@ import { L5FormSchema } from "@/types/schemas";
 import { OrderFormField } from "@/components/ui/order-form-field";
 import { CustomButton } from "@/components/ui/custom-button";
 import { SuccessToast } from "@/components/ui/successToast";
+import { useUser } from "@/hooks/useUser";
 
 export const L5Form = () => {
+  const { user } = useUser();
   const [isLoading, setIsLoading] = useState(false);
 
   const searchParams = useSearchParams();
@@ -58,6 +60,7 @@ export const L5Form = () => {
     setIsLoading(true);
 
     const orderOptions = {
+      createdById: user?.id,
       areaOptions: area,
       lineOptions: line,
       workerNumber: workerNumber,
@@ -82,7 +85,7 @@ export const L5Form = () => {
     };
 
     try {
-      const apiUrl = "/api/order/create-order-options";
+      const apiUrl = "/api/order/create-order";
 
       const requestData = {
         method: "POST",

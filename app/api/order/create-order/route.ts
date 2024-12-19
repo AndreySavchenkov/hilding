@@ -10,11 +10,16 @@ export async function POST(req: NextRequest) {
       return new NextResponse("orderOptions required", { status: 400 });
     }
 
-    const order = await db.orderOptions.create({
-      data: { ...orderOptions },
+    const order = await db.order.create({
+      data: {
+        ...orderOptions,
+        deliveredAt: null,
+      },
     });
 
-    await sendNotification(`Nowe zamówienie surowców dla ${orderOptions.lineOptions}`);
+    await sendNotification(
+      `Nowe zamówienie surowców dla ${orderOptions.lineOptions}`
+    );
 
     return NextResponse.json(order, { status: 200 });
   } catch (error) {

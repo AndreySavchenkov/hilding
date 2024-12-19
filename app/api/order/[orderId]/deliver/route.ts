@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 
 import { NextResponse } from "next/server";
 
-export async function DELETE(
+export async function PATCH(
   req: Request,
   { params }: { params: { orderId: string } }
 ) {
@@ -11,15 +11,21 @@ export async function DELETE(
       return new NextResponse("Not found", { status: 404 });
     }
 
-    const deletedTodo = await db.orderOptions.delete({
+    const body = await req.json();
+
+    const deliveredOrder = await db.order.update({
       where: {
         id: params.orderId,
       },
+      data: {
+        deliveredById: body.deliveredById,
+        deliveredAt: body.deliveredAt,
+      },
     });
 
-    return NextResponse.json(deletedTodo, { status: 200 });
+    return NextResponse.json(deliveredOrder, { status: 200 });
   } catch (error) {
-    console.log("[DELETE ORDER]", error);
+    console.log("[DELIVER ORDER]", error);
 
     return new NextResponse("Internal Server Error", { status: 500 });
   }

@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/Header/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { DeviceIdProvider } from "@/components/DeviceIdProvider/DeviceIdProvider";
+import { UserProvider } from "@/contexts/UserContext";
+import { AuthCheck } from "@/components/AuthCheck";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +24,15 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-gradient-to-br from-blue-900 via-slate-800 to-gray-900`}
       >
-        <DeviceIdProvider>
-          <Header />
-          <div className="w-full h-[calc(100vh-70px)] mt-[70px] overflow-auto">
-            {children}
-          </div>
-          <Toaster />
-        </DeviceIdProvider>
+        <UserProvider>
+          <DeviceIdProvider>
+            <Header />
+            <div className="w-full h-[calc(100vh-70px)] mt-[70px] overflow-auto">
+              <AuthCheck>{children}</AuthCheck>
+            </div>
+            <Toaster />
+          </DeviceIdProvider>
+        </UserProvider>
       </body>
     </html>
   );
