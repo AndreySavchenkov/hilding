@@ -14,8 +14,10 @@ import { registerServiceWorker } from "@/helpers/registerServiceWorker";
 import { v4 as uuidv4 } from "uuid";
 import { urlBase64ToUint8Array } from "@/helpers/urlBase64ToUnit8Array";
 import { subscribeUser, unsubscribeUser } from "@/app/actions";
+import { useUser } from "@/hooks/useUser";
 
 export const Header = () => {
+  const { user } = useUser();
   const deviceIdContext = useContext(DeviceIdContext);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +28,8 @@ export const Header = () => {
   const { deviceId, setDeviceId, clearDeviceId } = deviceIdContext;
 
   const handleStart = async () => {
+    if (!user?.id) return;
+
     setIsLoading(true);
     registerServiceWorker();
 
@@ -49,7 +53,7 @@ export const Header = () => {
 
           console.log("sub", sub);
 
-          const response = await subscribeUser(sub, newDeviceId);
+          const response = await subscribeUser(sub, newDeviceId, user.id);
           console.log("Response from subscribeUser:", response);
         } catch (error) {
           console.error("Ошибка подписки на пуш:", error);

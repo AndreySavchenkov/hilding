@@ -9,8 +9,12 @@ webpush.setVapidDetails(
   process.env.VAPID_PRIVATE_KEY!
 );
 
-export async function subscribeUser(sub: any, deviceId: string) {
-  const { endpoint, keys } = sub; // Извлекаем данные из подписки
+export async function subscribeUser(
+  sub: any,
+  deviceId: string,
+  userId: string
+) {
+  const { endpoint, keys } = sub;
 
   console.log(`deviceId ${deviceId}`);
 
@@ -20,6 +24,7 @@ export async function subscribeUser(sub: any, deviceId: string) {
       p256dh: keys.p256dh,
       auth: keys.auth,
       deviceId,
+      userId,
     },
   });
 
