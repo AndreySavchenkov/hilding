@@ -79,7 +79,7 @@ export default function L1L2Form() {
         duration: 3000,
         description: <SuccessToast text="Zamówienie wysłane!" />,
         className:
-          "bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-green-500 shadow-xl",
+          "bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-white/10 backdrop-blur-sm shadow-xl",
       }),
         router.push(`/`);
     } catch (error) {
