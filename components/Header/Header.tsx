@@ -53,8 +53,9 @@ export const Header = () => {
 
           console.log("sub", sub);
 
-          const response = await subscribeUser(sub, newDeviceId, user.id);
-          console.log("Response from subscribeUser:", response);
+          await subscribeUser(sub, newDeviceId, user.id);
+
+          window.location.reload();
         } catch (error) {
           console.error("Ошибка подписки на пуш:", error);
         }
@@ -74,7 +75,8 @@ export const Header = () => {
         await unsubscribeUser(deviceId);
         localStorage.removeItem("deviceId");
         clearDeviceId();
-        router.push("/");
+
+        window.location.reload();
       } catch (error) {
         console.error("Ошибка при удалении подписки:", error);
       } finally {

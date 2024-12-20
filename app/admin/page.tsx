@@ -40,6 +40,14 @@ const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
   return `${minutesDiff} min`;
 };
 
+const getDeliveryTimeColor = (createdAt: Date, deliveredAt: Date) => {
+  const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
+  
+  if (minutesDiff <= 20) return "text-green-500";
+  if (minutesDiff <= 60) return "text-yellow-500";
+  return "text-red-500";
+};
+
 export default function Admin() {
   const [orders, setOrders] = useState<any[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -72,6 +80,12 @@ export default function Admin() {
     };
 
     fetchData();
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   if (isLoading) {
@@ -185,7 +199,10 @@ export default function Admin() {
                                   {order.deliveredAt && (
                                     <p>
                                       Dostarczone w:{" "}
-                                      <span className="text-gray-500">
+                                      <span className={`${getDeliveryTimeColor(
+                                        new Date(order.createdAt),
+                                        new Date(order.deliveredAt)
+                                      )}`}>
                                         {calculateDeliveryTime(
                                           new Date(order.createdAt),
                                           new Date(order.deliveredAt)
