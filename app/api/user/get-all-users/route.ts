@@ -18,7 +18,16 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json(users);
+    const response = NextResponse.json(users);
+
+    response.headers.set(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, proxy-revalidate"
+    );
+    response.headers.set("Pragma", "no-cache");
+    response.headers.set("Expires", "0");
+
+    return response;
   } catch (error) {
     console.error("Error fetching users:", error);
     return new NextResponse("Internal error", { status: 500 });
