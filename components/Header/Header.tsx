@@ -9,7 +9,6 @@ import exitIcon from "../../public/noBell.png";
 import notificationIcon from "../../public/bell.png";
 import numbersIcon from "../../public/numbers.png";
 import { DeviceIdContext } from "../DeviceIdProvider/DeviceIdProvider";
-import { useRouter } from "next/navigation";
 import { registerServiceWorker } from "@/helpers/registerServiceWorker";
 import { v4 as uuidv4 } from "uuid";
 import { urlBase64ToUint8Array } from "@/helpers/urlBase64ToUnit8Array";
@@ -19,7 +18,6 @@ import { useUser } from "@/hooks/useUser";
 export const Header = () => {
   const { user } = useUser();
   const deviceIdContext = useContext(DeviceIdContext);
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   if (!deviceIdContext) {
