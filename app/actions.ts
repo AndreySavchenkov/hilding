@@ -28,16 +28,28 @@ export async function subscribeUser(
     },
   });
 
+// Обновляем поле isSubscribed у пользователя
+await db.user.update({
+  where: { id: userId },
+  data: { isSubscribed: true },
+});
+
   return { success: true };
 }
 
-export async function unsubscribeUser(deviceId: string) {
+export async function unsubscribeUser(deviceId: string, userId: string) {
   try {
     await db.driverSubscription.deleteMany({
       where: {
         deviceId: deviceId,
       },
     });
+
+    await db.user.update({
+      where: { id: userId },
+      data: { isSubscribed: false },
+    });
+
     return { success: true };
   } catch (error) {
     console.error("Ошибка при удалении подписки:", error);

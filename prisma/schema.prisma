@@ -18,6 +18,7 @@ model User {
   orders        Order[]              @relation("CreatedBy")
   deliveries    Order[]              @relation("DeliveredBy")
   subscriptions DriverSubscription[]
+  isSubscribed  Boolean              @default(false)
 }
 
 model Order {

@@ -67,10 +67,12 @@ export const Header = () => {
   };
 
   const handleLogout = async () => {
+    if (!user?.id) return;
+
     if (typeof window !== "undefined" && deviceId) {
       setIsLoading(true);
       try {
-        await unsubscribeUser(deviceId);
+        await unsubscribeUser(deviceId, user.id);
         localStorage.removeItem("deviceId");
         clearDeviceId();
 

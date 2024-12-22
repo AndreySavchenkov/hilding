@@ -18,6 +18,7 @@ interface User {
   firstName: string;
   lastName: string;
   workerNumber: string;
+  isSubscribed: boolean;
   subscriptions: {
     id: string;
     deviceId: string;
@@ -51,20 +52,24 @@ const getDeliveryTimeColor = (createdAt: Date, deliveredAt: Date) => {
 };
 
 export default function Admin() {
-  // const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      // const ordersResponse = await fetch("/api/order/get-admin-orders", { cache: "no-store" });
-      // if (!ordersResponse.ok) {
-      //   throw new Error("Ошибка при загрузке заказов");
-      // }
-      // const ordersData = await ordersResponse.json();
-      // setOrders(ordersData);
-  
-      const usersResponse = await fetch("/api/user/get-all-users", { cache: "no-store" });
+      const ordersResponse = await fetch("/api/order/get-admin-orders", {
+        cache: "no-store",
+      });
+      if (!ordersResponse.ok) {
+        throw new Error("Ошибка при загрузке заказов");
+      }
+      const ordersData = await ordersResponse.json();
+      setOrders(ordersData);
+
+      const usersResponse = await fetch("/api/user/get-all-users", {
+        cache: "no-store",
+      });
       if (!usersResponse.ok) {
         throw new Error("Ошибка при загрузке пользователей");
       }
@@ -160,12 +165,12 @@ export default function Admin() {
                           <div className="flex items-center gap-2">
                             <span
                               className={`px-3 py-1 rounded-full text-xs ${
-                                user.subscriptions.length > 0
+                                user.isSubscribed
                                   ? "bg-green-500/20 text-green-300"
                                   : "bg-red-500/20 text-red-300"
                               }`}
                             >
-                              {user.subscriptions.length > 0
+                              {user.isSubscribed
                                 ? "Powiadomienia włączone"
                                 : "Powiadomienia wyłączone"}
                             </span>
@@ -180,7 +185,7 @@ export default function Admin() {
           </Accordion>
         </div>
 
-        {/* <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
+        <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
           <Accordion type="single" collapsible>
             <AccordionItem value="orders" className="border-0">
               <AccordionTrigger className="text-lg md:text-xl font-semibold text-gray-200 hover:no-underline">
@@ -282,7 +287,7 @@ export default function Admin() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </div> */}
+        </div>
       </div>
     </div>
   );
