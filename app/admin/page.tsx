@@ -10,6 +10,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import refreshIcon from "@/public/refresh.png";
+import Image from "next/image";
 
 interface User {
   id: string;
@@ -42,7 +44,7 @@ const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
 
 const getDeliveryTimeColor = (createdAt: Date, deliveredAt: Date) => {
   const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
-  
+
   if (minutesDiff <= 20) return "text-green-500";
   if (minutesDiff <= 60) return "text-yellow-500";
   return "text-red-500";
@@ -53,55 +55,80 @@ export default function Admin() {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [ordersResponse, usersResponse] = await Promise.all([
-          fetch("/api/order/get-admin-orders", { cache: "no-store" }),
-          fetch("/api/user/get-all-users", { cache: "no-store" }),
-        ]);
+  const fetchData = async () => {
+    try {
+      const [ordersResponse, usersResponse] = await Promise.all([
+        fetch("/api/order/get-admin-orders", { cache: "no-store" }),
+        fetch("/api/user/get-all-users", { cache: "no-store" }),
+      ]);
 
-        if (!ordersResponse.ok || !usersResponse.ok) {
-          throw new Error("Ошибка при загрузке данных");
-        }
-
-        const [ordersData, usersData] = await Promise.all([
-          ordersResponse.json(),
-          usersResponse.json(),
-        ]);
-
-        setOrders(ordersData);
-        setUsers(usersData);
-      } catch (error) {
-        console.error("Ошибка:", error);
-      } finally {
-        setIsLoading(false);
+      if (!ordersResponse.ok || !usersResponse.ok) {
+        throw new Error("Ошибка при загрузке данных");
       }
-    };
 
+      const [ordersData, usersData] = await Promise.all([
+        ordersResponse.json(),
+        usersResponse.json(),
+      ]);
+
+      setOrders(ordersData);
+      setUsers(usersData);
+    } catch (error) {
+      console.error("Ошибка:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
+  useEffect(() => {
     fetchData();
 
-    const interval = setInterval(() => {
-      fetchData();
-    }, 10000);
+    // const interval = setInterval(() => {
+    //   fetchData();
+    // }, 10000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
+
+  const Header = () => {
+    return (
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-100">
+          Panel administratora
+        </h1>
+        <Image
+          onClick={handleRefresh}
+          src={refreshIcon}
+          width={45}
+          height={45}
+          alt="Refresh data"
+        />
+      </div>
+    );
+  };
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl text-gray-400 animate-pulse">Ładowanie...</div>
+      <div className="container mx-auto px-2 py-6">
+        <Header />
+        <div className="min-h-[calc(100vh-220px)] flex items-center justify-center">
+          <div className="text-xl text-gray-400 animate-pulse">
+            Ładowanie...
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-2 py-6">
-      <h1 className="text-xl md:text-2xl font-bold mb-6 text-gray-100">
-        Panel administratora
-      </h1>
       <div className="space-y-6">
+        <Header />
         <div className="bg-gray-800 rounded-lg shadow-md p-4 md:p-8 border border-gray-700">
           <Accordion type="single" collapsible>
             <AccordionItem value="users" className="border-0">
@@ -199,10 +226,12 @@ export default function Admin() {
                                   {order.deliveredAt && (
                                     <p>
                                       Dostarczone w:{" "}
-                                      <span className={`${getDeliveryTimeColor(
-                                        new Date(order.createdAt),
-                                        new Date(order.deliveredAt)
-                                      )}`}>
+                                      <span
+                                        className={`${getDeliveryTimeColor(
+                                          new Date(order.createdAt),
+                                          new Date(order.deliveredAt)
+                                        )}`}
+                                      >
                                         {calculateDeliveryTime(
                                           new Date(order.createdAt),
                                           new Date(order.deliveredAt)
