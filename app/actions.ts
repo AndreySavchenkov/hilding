@@ -73,7 +73,7 @@ export async function sendNotification(message: string) {
       await webpush.sendNotification(
         pushSubscription,
         JSON.stringify({
-          // title: "Новое уведомление",
+          title: "Notification",
           body: message,
           icon: "/notification.png", 
         })
