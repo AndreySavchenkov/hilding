@@ -25,8 +25,11 @@ export async function GET() {
       "Cache-Control",
       "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
     );
+
+    // Set headers for cache control
     response.headers.set("Pragma", "no-cache");
     response.headers.set("Expires", "0");
+    response.headers.set("X-Request-Timestamp", new Date().toISOString());
 
     return response;
   } catch (error) {
