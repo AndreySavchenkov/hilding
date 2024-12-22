@@ -53,6 +53,9 @@ export default function Admin() {
 
       const usersResponse = await fetch("/api/user/get-all-users", {
         cache: "no-store",
+        next: {
+          revalidate: 10,
+        },
       });
 
       if (!usersResponse.ok) {
