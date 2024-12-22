@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
+export const fetchCache = 'force-no-store';
+
 export async function GET() {
   try {
     const users = await db.user.findMany({
