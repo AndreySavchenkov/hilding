@@ -39,9 +39,6 @@ export default function Admin() {
     try {
       const ordersResponse = await fetch("/api/order/get-admin-orders", {
         cache: "no-store",
-        next: {
-          revalidate: 10,
-        },
       });
 
       if (!ordersResponse.ok) {
@@ -52,15 +49,7 @@ export default function Admin() {
       setOrders(ordersData);
 
       const usersResponse = await fetch("/api/user/get-all-users", {
-        // cache: "no-store",
-        headers: {
-          "Cache-Control": "max-age=1",
-          "CDN-Cache-Control": "max-age=1",
-          "Vercel-CDN-Cache-Control": "max-age=1",
-        },
-        next: {
-          revalidate: 1,
-        },
+        cache: "no-store",
       });
 
       if (!usersResponse.ok) {
