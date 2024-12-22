@@ -27,6 +27,8 @@ export async function GET() {
     response.headers.set("Pragma", "no-cache");
     response.headers.set("Expires", "0");
 
+    response.headers.set("Vary", "Accept-Encoding")
+
     return response;
   } catch (error) {
     console.error("Error fetching users:", error);
