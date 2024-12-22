@@ -52,9 +52,14 @@ export default function Admin() {
       setOrders(ordersData);
 
       const usersResponse = await fetch("/api/user/get-all-users", {
-        cache: "no-store",
+        // cache: "no-store",
+        headers: {
+          "Cache-Control": "max-age=1",
+          "CDN-Cache-Control": "max-age=1",
+          "Vercel-CDN-Cache-Control": "max-age=1",
+        },
         next: {
-          revalidate: 10,
+          revalidate: 1,
         },
       });
 
