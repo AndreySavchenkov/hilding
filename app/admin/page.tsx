@@ -57,21 +57,18 @@ export default function Admin() {
 
   const fetchData = async () => {
     try {
-      const [ordersResponse, usersResponse] = await Promise.all([
-        fetch("/api/order/get-admin-orders", { cache: "no-store" }),
-        fetch("/api/user/get-all-users", { cache: "no-store" }),
-      ]);
-
-      if (!ordersResponse.ok || !usersResponse.ok) {
-        throw new Error("Ошибка при загрузке данных");
+      const ordersResponse = await fetch("/api/order/get-admin-orders", { cache: "no-store" });
+      if (!ordersResponse.ok) {
+        throw new Error("Ошибка при загрузке заказов");
       }
-
-      const [ordersData, usersData] = await Promise.all([
-        ordersResponse.json(),
-        usersResponse.json(),
-      ]);
-
+      const ordersData = await ordersResponse.json();
       setOrders(ordersData);
+  
+      const usersResponse = await fetch("/api/user/get-all-users", { cache: "no-store" });
+      if (!usersResponse.ok) {
+        throw new Error("Ошибка при загрузке пользователей");
+      }
+      const usersData = await usersResponse.json();
       setUsers(usersData);
     } catch (error) {
       console.error("Ошибка:", error);
