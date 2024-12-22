@@ -92,6 +92,8 @@ export default function Admin() {
     // return () => clearInterval(interval);
   }, []);
 
+  console.log(users);
+
   const Header = () => {
     return (
       <div className="flex justify-between items-center mb-6">
