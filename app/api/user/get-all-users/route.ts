@@ -19,17 +19,24 @@ export async function GET() {
       },
     });
 
-    const response = NextResponse.json(users, { status: 200 });
+    const response = NextResponse.json(users, {
+      status: 200,
+      headers: {
+        "Cache-Control": "max-age=1",
+        "CDN-Cache-Control": "max-age=1",
+        "Vercel-CDN-Cache-Control": "max-age=1",
+      },
+    });
 
     // Set headers for cache control
-    response.headers.set(
-      "Cache-Control",
-      "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
-    );
-    response.headers.set("Pragma", "no-cache");
-    response.headers.set("Expires", "0");
-    response.headers.set("Vary", "*");
-    response.headers.set("X-Request-Timestamp", new Date().toISOString());
+    // response.headers.set(
+    //   "Cache-Control",
+    //   "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    // );
+    // response.headers.set("Pragma", "no-cache");
+    // response.headers.set("Expires", "0");
+    // response.headers.set("Vary", "*");
+    // response.headers.set("X-Request-Timestamp", new Date().toISOString());
 
     return response;
   } catch (error) {
