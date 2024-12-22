@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { format, differenceInMinutes, differenceInHours } from "date-fns";
+import { format } from "date-fns";
 import { pl } from "date-fns/locale";
 import { AreaOptionsEnum } from "@/types";
 import {
@@ -12,6 +12,11 @@ import {
 } from "@/components/ui/accordion";
 import refreshIcon from "@/public/refresh.png";
 import Image from "next/image";
+import {
+  calculateDeliveryTime,
+  formatName,
+  getDeliveryTimeColor,
+} from "@/helpers";
 
 interface User {
   id: string;
@@ -25,32 +30,6 @@ interface User {
   }[];
 }
 
-const formatName = (firstName: string, lastName: string) => {
-  const formattedFirstName =
-    firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-  const formattedLastName = lastName.charAt(0).toUpperCase();
-
-  return `${formattedFirstName} ${formattedLastName}.`;
-};
-
-const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
-  const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
-  const hoursDiff = differenceInHours(deliveredAt, createdAt);
-
-  if (hoursDiff > 0) {
-    return `${hoursDiff} godz ${minutesDiff % 60} min`;
-  }
-  return `${minutesDiff} min`;
-};
-
-const getDeliveryTimeColor = (createdAt: Date, deliveredAt: Date) => {
-  const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
-
-  if (minutesDiff <= 20) return "text-green-500";
-  if (minutesDiff <= 60) return "text-yellow-500";
-  return "text-red-500";
-};
-
 export default function Admin() {
   const [orders, setOrders] = useState<any[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -60,19 +39,26 @@ export default function Admin() {
     try {
       const ordersResponse = await fetch("/api/order/get-admin-orders", {
         cache: "no-store",
+        next: {
+          revalidate: 10,
+        },
       });
+
       if (!ordersResponse.ok) {
         throw new Error("Ошибка при загрузке заказов");
       }
+
       const ordersData = await ordersResponse.json();
       setOrders(ordersData);
 
       const usersResponse = await fetch("/api/user/get-all-users", {
         cache: "no-store",
       });
+
       if (!usersResponse.ok) {
         throw new Error("Ошибка при загрузке пользователей");
       }
+
       const usersData = await usersResponse.json();
       setUsers(usersData);
     } catch (error) {
