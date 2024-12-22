@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { format } from "date-fns";
+import { format, differenceInMinutes, differenceInHours } from "date-fns";
 import { pl } from "date-fns/locale";
 import { AreaOptionsEnum } from "@/types";
 import {
@@ -12,9 +12,8 @@ import {
 } from "@/components/ui/accordion";
 import refreshIcon from "@/public/refresh.png";
 import Image from "next/image";
-import { differenceInMinutes, differenceInHours } from "date-fns";
 
-export const formatName = (firstName: string, lastName: string) => {
+const formatName = (firstName: string, lastName: string) => {
   const formattedFirstName =
     firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
   const formattedLastName = lastName.charAt(0).toUpperCase();
@@ -22,7 +21,7 @@ export const formatName = (firstName: string, lastName: string) => {
   return `${formattedFirstName} ${formattedLastName}.`;
 };
 
-export const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
+const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
   const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
   const hoursDiff = differenceInHours(deliveredAt, createdAt);
 
@@ -32,7 +31,7 @@ export const calculateDeliveryTime = (createdAt: Date, deliveredAt: Date) => {
   return `${minutesDiff} min`;
 };
 
-export const getDeliveryTimeColor = (createdAt: Date, deliveredAt: Date) => {
+const getDeliveryTimeColor = (createdAt: Date, deliveredAt: Date) => {
   const minutesDiff = differenceInMinutes(deliveredAt, createdAt);
 
   if (minutesDiff <= 20) return "text-green-500";
