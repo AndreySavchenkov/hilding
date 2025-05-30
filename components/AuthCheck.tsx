@@ -2,6 +2,7 @@
 
 import { useUser } from "@/hooks/useUser";
 import { RegisterForm } from "./RegisterForm";
+import { Spinner } from "./ui/spinner";
 
 interface AuthCheckProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ export function AuthCheck({ children }: AuthCheckProps) {
   if (isLoading) {
     return (
       <div className="h-full w-full flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+        <Spinner />
       </div>
     );
   }
