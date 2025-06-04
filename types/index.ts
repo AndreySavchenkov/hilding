@@ -14,6 +14,11 @@ import separatorIcon from "../public/separator.png";
 import triangularIcon from "../public/triangular.png";
 import { StaticImageData } from "next/image";
 
+export type WorkerPageFormType = {
+  line?: { value: string; label: string } | null;
+  area?: { value: string; label: string } | null;
+};
+
 export type OrderType = {
   id: string;
   lineOptions: string;

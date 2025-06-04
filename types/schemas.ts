@@ -1,4 +1,5 @@
-import { z } from "zod";
+import { z, ZodType } from "zod";
+import { WorkerPageFormType } from ".";
 
 export const CommonFormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
@@ -94,4 +95,25 @@ export const L5FormSchema = z.object({
   triangularCartonSkotterud: z.boolean().default(false).optional(),
   paperLiningSkotterud8090: z.boolean().default(false).optional(),
   paperLiningSkotterud120140: z.boolean().default(false).optional(),
+});
+
+export const workerPageSchema: ZodType<WorkerPageFormType> = z.object({
+  line: z.object(
+    {
+      value: z.string(),
+      label: z.string(),
+    },
+    {
+      required_error: "Line is required.",
+    }
+  ),
+  area: z.object(
+    {
+      value: z.string(),
+      label: z.string(),
+    },
+    {
+      required_error: "Area is required.",
+    }
+  ),
 });
