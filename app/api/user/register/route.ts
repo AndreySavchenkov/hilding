@@ -6,7 +6,15 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { firstName, lastName, workerNumber } = body;
 
-    const user = await db.user.create({
+    let user = await db.user.findFirst({
+      where: { workerNumber },
+    });
+
+    if (user) {
+      return NextResponse.json(user);
+    }
+
+    user = await db.user.create({
       data: {
         firstName,
         lastName,
@@ -17,6 +25,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(user);
   } catch (error) {
     console.error(error);
-    return new NextResponse("Внутренняя ошибка сервера", { status: 500 });
+    return new NextResponse("Error", { status: 500 });
   }
 }
