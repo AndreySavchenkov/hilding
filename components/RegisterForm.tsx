@@ -19,12 +19,20 @@ const registerSchema = z.object({
   firstName: z
     .string()
     .min(2, "Imię musi zawierać co najmniej 2 znaki")
+    .max(20, "Imię nie może przekraczać 20 znaków")
     .regex(/^[a-zA-Z]+$/, "Dozwolone są tylko litery łacińskie"),
   lastName: z
     .string()
     .min(2, "Nazwisko musi zawierać co najmniej 2 znaki")
+    .max(20, "Nazwisko nie może przekraczać 20 znaków")
     .regex(/^[a-zA-Z]+$/, "Dozwolone są tylko litery łacińskie"),
   workerNumber: z.string().length(4, "Numer pracownika musi zawierać 4 cyfry"),
+  securityCode: z
+    .string()
+    .length(4, "Kod bezpieczeństwa musi zawierać 4 cyfry")
+    .refine((code) => code === "1111", {
+      message: "Nieprawidłowy kod bezpieczeństwa",
+    }) as z.ZodType<string>,
 });
 
 export function RegisterForm() {
@@ -36,7 +44,10 @@ export function RegisterForm() {
       firstName: "",
       lastName: "",
       workerNumber: "",
+      securityCode: "",
     },
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
@@ -48,12 +59,19 @@ export function RegisterForm() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error("Błąd rejestracji");
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Błąd rejestracji");
+      }
 
       const user = await response.json();
       setUser(user);
+      form.reset();
     } catch (error) {
       console.error(error);
+      form.setError("root", {
+        message: error instanceof Error ? error.message : "Błąd rejestracji",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -109,6 +127,35 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel className="text-slate-200">
                   Numer pracownika
+                </FormLabel>
+                <FormControl>
+                  <InputOTP
+                    maxLength={6}
+                    {...field}
+                    className="flex justify-center mt-2"
+                  >
+                    <InputOTPGroup className="gap-2 md:gap-4">
+                      {[0, 1, 2, 3].map((index) => (
+                        <InputOTPSlot
+                          key={index}
+                          index={index}
+                          className="w-14 h-14 md:w-16 md:h-16 text-2xl md:text-4xl text-white bg-white/10 border-white/20 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 focus:bg-white/20 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                        />
+                      ))}
+                    </InputOTPGroup>
+                  </InputOTP>
+                </FormControl>
+                <FormMessage className="text-red-400 mt-2" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="securityCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-slate-200">
+                  Kod bezpieczeństwa
                 </FormLabel>
                 <FormControl>
                   <InputOTP

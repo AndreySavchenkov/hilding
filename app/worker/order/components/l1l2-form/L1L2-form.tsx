@@ -29,7 +29,9 @@ export default function L1L2Form() {
             />
           ))}
 
-          <CustomButton isLoading={isLoading} text="Wysłać" />
+          <div className="flex justify-center">
+            <CustomButton isLoading={isLoading} text="Wysłać" />
+          </div>
         </form>
       </Form>
     </div>
