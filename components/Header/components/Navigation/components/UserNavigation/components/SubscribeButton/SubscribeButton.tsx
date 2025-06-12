@@ -1,10 +1,10 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { SubscribeButtonImage } from "@/components/Header/components/SubscribeButton/components/SubscribeButtonImage";
+import { SubscribeButtonImage } from "@/components/Header/components/Navigation/components/UserNavigation/components/SubscribeButton/components/SubscribeButtonImage";
 import { usePushSubscription } from "@/hooks/usePushSubscription";
-import exitIcon from "../../../../public/noBell.png";
-import notificationIcon from "../../../../public/bell.png";
+import exitIcon from "@/public/noBell.png";
+import notificationIcon from "@/public/bell.png";
 import { Spinner } from "@/components/ui/spinner";
 
 export const SubscribeButton = () => {

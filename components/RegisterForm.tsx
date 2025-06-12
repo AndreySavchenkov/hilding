@@ -14,26 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { CustomButton } from "@/components/ui/custom-button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "./ui/input-otp";
-
-const registerSchema = z.object({
-  firstName: z
-    .string()
-    .min(2, "Imię musi zawierać co najmniej 2 znaki")
-    .max(20, "Imię nie może przekraczać 20 znaków")
-    .regex(/^[a-zA-Z]+$/, "Dozwolone są tylko litery łacińskie"),
-  lastName: z
-    .string()
-    .min(2, "Nazwisko musi zawierać co najmniej 2 znaki")
-    .max(20, "Nazwisko nie może przekraczać 20 znaków")
-    .regex(/^[a-zA-Z]+$/, "Dozwolone są tylko litery łacińskie"),
-  workerNumber: z.string().length(4, "Numer pracownika musi zawierać 4 cyfry"),
-  securityCode: z
-    .string()
-    .length(4, "Kod bezpieczeństwa musi zawierać 4 cyfry")
-    .refine((code) => code === "1111", {
-      message: "Nieprawidłowy kod bezpieczeństwa",
-    }) as z.ZodType<string>,
-});
+import { registerSchema } from "@/types/schemas";
 
 export function RegisterForm() {
   const { setUser } = useUser();
