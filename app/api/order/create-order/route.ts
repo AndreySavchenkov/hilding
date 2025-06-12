@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(order, { status: 200 });
   } catch (error) {
-    console.error("Ошибка создания заказа:", error);
+    console.error("Error creating order:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }

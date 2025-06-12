@@ -5,6 +5,7 @@ import { L5Form } from "./components/l5-form/L5Form";
 import { LinesEnum } from "@/types";
 import L1L2Form from "./components/l1l2-form/L1L2-form";
 import L10Form from "./components/l10-form/L10Form";
+import { Spinner } from "@/components/ui/spinner";
 
 function OrderContent() {
   const searchParams = useSearchParams();
@@ -22,7 +23,7 @@ function OrderContent() {
 
 export default function OrderPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner />}>
       <OrderContent />
     </Suspense>
   );

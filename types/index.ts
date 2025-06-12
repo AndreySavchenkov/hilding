@@ -442,3 +442,319 @@ export const NumbersIKEA = [
   { name: "VATNESTRÖM X-FIRM EG 1600", number: "" },
   { name: "VATNESTRÖM X-FIRM EG 1800", number: "" },
 ];
+
+export const defaultValuesL1L2Form = {
+  pallets: false,
+  scotchTape: false,
+  whiteBraid: false,
+  blackBelt: false,
+  whiteBelt: false,
+  paperLining90: false,
+  upPaperCommon: false,
+};
+
+export const defaultValuesL5Form = {
+  pallets: false,
+  scotchTape: false,
+  whiteBraid: false,
+  separateSkarer: false,
+  triangularCartonSkarer: false,
+  paperLiningSkarer8090: false,
+  paperLiningSkarer105: false,
+  paperLiningSkarer120140: false,
+  paperLiningSkarer160: false,
+  separateSnarum: false,
+  triangularCartonSnarum: false,
+  paperLiningSnarum8090: false,
+  paperLiningSnarum120140: false,
+  paperLiningSnarum160: false,
+  separateSkotterud: false,
+  triangularCartonSkotterud: false,
+  paperLiningSkotterud8090: false,
+  paperLiningSkotterud120140: false,
+};
+
+export const defaultValuesL10Form = {
+  pallets: false,
+  scotchTape: false,
+  whiteBraid: false,
+  blackBelt: false,
+  whiteBelt: false,
+  paperLining90: false,
+  paperLining101: false,
+  cartonBox80: false,
+  cartonBox90: false,
+  cartonBox120: false,
+  cartonBox140: false,
+  cartonBox160: false,
+  cartonBox180: false,
+  downPaperXFirm: false,
+  downPaperVagstranda: false,
+  upPaperCommon: false,
+  upPaperVagstranda: false,
+  stretch: false,
+  nylon8090: false,
+  nylon120140: false,
+  nylon160: false,
+  nylon180: false,
+};
+
+export const fieldsL1L2: {
+  name: keyof typeof defaultValuesL1L2Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "pallets",
+    item: orderItems.pallets,
+  },
+  {
+    name: "scotchTape",
+    item: orderItems.scotchTape,
+  },
+  {
+    name: "whiteBraid",
+    item: orderItems.whiteBraid,
+  },
+  {
+    name: "blackBelt",
+    item: orderItems.blackBelt,
+  },
+  {
+    name: "whiteBelt",
+    item: orderItems.whiteBelt,
+  },
+  {
+    name: "paperLining90",
+    item: orderItems.paperLining90,
+  },
+  {
+    name: "upPaperCommon",
+    item: orderItems.upPaperCommon,
+  },
+];
+
+export const commonFieldsL5: {
+  name: keyof typeof defaultValuesL5Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "pallets",
+    item: orderItems.pallets,
+  },
+  {
+    name: "scotchTape",
+    item: orderItems.scotchTape,
+  },
+  {
+    name: "whiteBraid",
+    item: orderItems.whiteBraid,
+  },
+];
+
+export const skarerFieldsL5: {
+  name: keyof typeof defaultValuesL5Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "separateSkarer",
+    item: orderItems.separateSkarer,
+  },
+  {
+    name: "triangularCartonSkarer",
+    item: orderItems.triangularCartonSkarer,
+  },
+  {
+    name: "paperLiningSkarer8090",
+    item: orderItems.paperLiningSkarer8090,
+  },
+  {
+    name: "paperLiningSkarer105",
+    item: orderItems.paperLiningSkarer105,
+  },
+  {
+    name: "paperLiningSkarer120140",
+    item: orderItems.paperLiningSkarer120140,
+  },
+  {
+    name: "paperLiningSkarer160",
+    item: orderItems.paperLiningSkarer160,
+  },
+];
+
+export const snarumFieldsL5: {
+  name: keyof typeof defaultValuesL5Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "separateSnarum",
+    item: orderItems.separateSnarum,
+  },
+  {
+    name: "triangularCartonSnarum",
+    item: orderItems.triangularCartonSnarum,
+  },
+  {
+    name: "paperLiningSnarum8090",
+    item: orderItems.paperLiningSnarum8090,
+  },
+  {
+    name: "paperLiningSnarum120140",
+    item: orderItems.paperLiningSnarum120140,
+  },
+  {
+    name: "paperLiningSnarum160",
+    item: orderItems.paperLiningSnarum160,
+  },
+];
+
+export const skotterudFieldsL5: {
+  name: keyof typeof defaultValuesL5Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "separateSkotterud",
+    item: orderItems.separateSkotterud,
+  },
+  {
+    name: "triangularCartonSkotterud",
+    item: orderItems.triangularCartonSkotterud,
+  },
+  {
+    name: "paperLiningSkotterud8090",
+    item: orderItems.paperLiningSkotterud8090,
+  },
+  {
+    name: "paperLiningSkotterud120140",
+    item: orderItems.paperLiningSkotterud120140,
+  },
+];
+
+export const commonFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "pallets",
+    item: orderItems.pallets,
+  },
+  {
+    name: "scotchTape",
+    item: orderItems.scotchTape,
+  },
+  {
+    name: "whiteBraid",
+    item: orderItems.whiteBraid,
+  },
+];
+
+export const beltsFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "blackBelt",
+    item: orderItems.blackBelt,
+  },
+  {
+    name: "whiteBelt",
+    item: orderItems.whiteBelt,
+  },
+];
+
+export const paperLiningFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "paperLining90",
+    item: orderItems.paperLining90,
+  },
+  {
+    name: "paperLining101",
+    item: orderItems.paperLining101,
+  },
+];
+
+export const downPaperFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "downPaperXFirm",
+    item: orderItems.downPaperXFirm,
+  },
+  {
+    name: "downPaperVagstranda",
+    item: orderItems.downPaperVagstranda,
+  },
+];
+
+export const upPaperFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "upPaperCommon",
+    item: orderItems.upPaperCommon,
+  },
+  {
+    name: "upPaperVagstranda",
+    item: orderItems.upPaperVagstranda,
+  },
+];
+
+export const cartonBoxFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "cartonBox80",
+    item: orderItems.cartonBox80,
+  },
+  {
+    name: "cartonBox90",
+    item: orderItems.cartonBox90,
+  },
+  {
+    name: "cartonBox120",
+    item: orderItems.cartonBox120,
+  },
+  {
+    name: "cartonBox140",
+    item: orderItems.cartonBox140,
+  },
+  {
+    name: "cartonBox160",
+    item: orderItems.cartonBox160,
+  },
+  {
+    name: "cartonBox180",
+    item: orderItems.cartonBox180,
+  },
+];
+
+export const stretchFieldsL10: {
+  name: keyof typeof defaultValuesL10Form;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "stretch",
+    item: orderItems.stretch,
+  },
+  {
+    name: "nylon8090",
+    item: orderItems.nylon8090,
+  },
+  {
+    name: "nylon120140",
+    item: orderItems.nylon120140,
+  },
+  {
+    name: "nylon160",
+    item: orderItems.nylon160,
+  },
+  {
+    name: "nylon180",
+    item: orderItems.nylon180,
+  },
+];
