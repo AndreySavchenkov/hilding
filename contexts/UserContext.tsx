@@ -1,5 +1,6 @@
 "use client";
 
+import { UserRole } from "@prisma/client";
 import { createContext, useState, useEffect, ReactNode } from "react";
 
 interface UserContextType {
@@ -14,6 +15,7 @@ interface UserType {
   firstName: string;
   lastName: string;
   workerNumber: string;
+  role: UserRole;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(

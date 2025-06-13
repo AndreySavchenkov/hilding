@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { RegisterForm } from "./RegisterForm";
+import { RegisterForm } from "./RegisterForm/RegisterForm";
 import { Spinner } from "./ui/spinner";
 
 interface AuthCheckProps {

@@ -18,6 +18,7 @@ export async function GET() {
             deviceId: true,
           },
         },
+        role: true,
       },
     });
 

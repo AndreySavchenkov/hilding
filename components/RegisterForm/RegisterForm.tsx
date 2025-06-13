@@ -1,8 +1,3 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useUser } from "@/hooks/useUser";
 import {
   Form,
   FormControl,
@@ -13,50 +8,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { CustomButton } from "@/components/ui/custom-button";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "./ui/input-otp";
-import { registerSchema } from "@/types/schemas";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import Select from "react-select";
+import { customSelectStyles } from "@/styles";
+import { roleOptions } from "@/types";
+import { useRegister } from "@/hooks/useRegister";
 
 export function RegisterForm() {
-  const { setUser } = useUser();
-  const [isLoading, setIsLoading] = useState(false);
-  const form = useForm({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      workerNumber: "",
-      securityCode: "",
-    },
-    mode: "onChange",
-    reValidateMode: "onChange",
-  });
-
-  const onSubmit = async (data: z.infer<typeof registerSchema>) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/user/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Błąd rejestracji");
-      }
-
-      const user = await response.json();
-      setUser(user);
-      form.reset();
-    } catch (error) {
-      console.error(error);
-      form.setError("root", {
-        message: error instanceof Error ? error.message : "Błąd rejestracji",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { form, onSubmit, isLoading } = useRegister();
 
   return (
     <div className="w-full max-w-md mx-auto p-6">
@@ -127,6 +86,25 @@ export function RegisterForm() {
                   </InputOTP>
                 </FormControl>
                 <FormMessage className="text-red-400 mt-2" />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="role"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-slate-200">Rola</FormLabel>
+                <FormControl>
+                  <Select
+                    {...field}
+                    styles={customSelectStyles}
+                    options={roleOptions}
+                    placeholder="Wybierz rolę"
+                  />
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

@@ -1,3 +1,4 @@
+import { UserRole } from "@prisma/client";
 import { useEffect, useState } from "react";
 
 export type User = {
@@ -10,6 +11,7 @@ export type User = {
     id: string;
     deviceId: string;
   }[];
+  role: UserRole;
 };
 
 export const useAdminData = () => {

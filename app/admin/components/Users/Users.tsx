@@ -38,6 +38,14 @@ export const Users = ({ users }: UsersProps) => {
                         <span className="text-gray-400 text-sm">
                           Nr: {user.workerNumber}
                         </span>
+                        <span className="text-gray-400 text-sm">
+                          Rola:{" "}
+                          {user.role === "ADMIN"
+                            ? "Administrator"
+                            : user.role === "DRIVER"
+                            ? "Wózkowy"
+                            : "Pracownik"}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span

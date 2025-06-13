@@ -13,16 +13,17 @@ export async function GET(
         firstName: true,
         lastName: true,
         workerNumber: true,
+        role: true,
       },
     });
 
     if (!user) {
-      return new NextResponse("Пользователь не найден", { status: 404 });
+      return new NextResponse("User not found", { status: 404 });
     }
 
     return NextResponse.json(user);
   } catch (error) {
     console.error(error);
-    return new NextResponse("Внутренняя ошибка сервера", { status: 500 });
+    return new NextResponse("Error", { status: 500 });
   }
 }

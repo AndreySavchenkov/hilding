@@ -8,6 +8,12 @@ datasource db {
   relationMode = "prisma"
 }
 
+enum UserRole {
+  WORKER
+  DRIVER
+  ADMIN
+}
+
 model User {
   id            String               @id @default(auto()) @map("_id") @db.ObjectId
   firstName     String
@@ -19,6 +25,7 @@ model User {
   deliveries    Order[]              @relation("DeliveredBy")
   subscriptions DriverSubscription[]
   isSubscribed  Boolean              @default(false)
+  role          UserRole             @default(WORKER)
 }
 
 model Order {

@@ -1,5 +1,6 @@
 import { z, ZodType } from "zod";
 import { WorkerPageFormType } from ".";
+import { UserRole } from "@prisma/client";
 
 export const CommonFormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
@@ -136,4 +137,8 @@ export const registerSchema = z.object({
     .refine((code) => code === "1111", {
       message: "Nieprawidłowy kod bezpieczeństwa",
     }) as z.ZodType<string>,
+    role: z.object({
+      value: z.nativeEnum(UserRole),
+      label: z.string(),
+    }),
 });

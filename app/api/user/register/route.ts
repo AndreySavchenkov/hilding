@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { firstName, lastName, workerNumber } = body;
+    const { firstName, lastName, workerNumber, role } = body;
 
     let user = await db.user.findFirst({
       where: { workerNumber },
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
         firstName,
         lastName,
         workerNumber,
+        role,
       },
     });
 

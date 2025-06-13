@@ -13,6 +13,13 @@ import nylonIcon from "../public/nylon.png";
 import separatorIcon from "../public/separator.png";
 import triangularIcon from "../public/triangular.png";
 import { StaticImageData } from "next/image";
+import { UserRole } from "@prisma/client";
+
+export const roleOptions = [
+  { value: UserRole.WORKER, label: "Pracownik produkcji" },
+  { value: UserRole.DRIVER, label: "Wózkowy" },
+  { value: UserRole.ADMIN, label: "Administrator" },
+];
 
 export type WorkerPageFormType = {
   line?: { value: string; label: string } | null;
