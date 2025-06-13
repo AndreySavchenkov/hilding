@@ -3,6 +3,7 @@ import { SubscribeButton } from "./components/SubscribeButton/SubscribeButton";
 import adminIcon from "@/public/admin.png";
 import homeIcon from "@/public/home.png";
 import numbersIcon from "@/public/numbers.png";
+import profileIcon from "@/public/profile.png";
 import { useUserRole } from "@/hooks/useUserRole";
 
 export const UserNavigation = () => {
@@ -27,6 +28,7 @@ export const UserNavigation = () => {
           )}
         </div>
       )}
+      <HeaderLink href="/profile" iconSrc={profileIcon} alt="Profile page" />
     </nav>
   );
 };

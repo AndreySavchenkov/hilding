@@ -8,12 +8,14 @@ interface CustomButtonProps {
   isLoading: boolean;
   text?: string;
   onClick?: () => void;
+  className?: string;
 }
 
 export const CustomButton = ({
   isLoading,
   text = "Dalej",
   onClick,
+  className,
 }: CustomButtonProps) => {
   return (
     <Button
@@ -26,7 +28,8 @@ export const CustomButton = ({
         "hover:shadow-purple-500/20 hover:scale-105",
         "disabled:opacity-80 disabled:cursor-not-allowed disabled:hover:scale-100",
         "font-bold tracking-wide rounded-xl",
-        isLoading && "from-blue-600/60 to-purple-600/60"
+        isLoading && "from-blue-600/60 to-purple-600/60",
+        className
       )}
       type="submit"
       onClick={onClick}
