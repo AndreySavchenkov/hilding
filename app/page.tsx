@@ -24,7 +24,7 @@ export default function Home() {
           )}
           {canShowDriverLink && (
             <div className="w-full">
-              <WorkerLink icon={driverIcon} title="Wózkowy" href="/driver" />
+              <WorkerLink icon={driverIcon} title="Aktualne zamówienia" href="/driver" />
             </div>
           )}
         </div>
