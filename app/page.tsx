@@ -18,13 +18,19 @@ export default function Home() {
         <div className="flex flex-col gap-4 items-center w-full max-w-sm">
           {canShowWorkerLink && (
             <div className="flex flex-col sm:flex-row gap-4 w-full">
-              <WorkerLink icon={workerIcon} title="CPW" href="/worker" />
+              {/* TODO: Add CPW link */}
+              {/* <WorkerLink icon={workerIcon} title="CPW" href="/worker" /> */}
+
               <WorkerLink icon={cpsIcon} title="CPS" href="/cps" />
             </div>
           )}
           {canShowDriverLink && (
             <div className="w-full">
-              <WorkerLink icon={driverIcon} title="Aktualne zamówienia" href="/driver" />
+              <WorkerLink
+                icon={driverIcon}
+                title="Aktualne zamówienia"
+                href="/driver"
+              />
             </div>
           )}
         </div>

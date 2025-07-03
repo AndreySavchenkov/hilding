@@ -15,9 +15,12 @@ export const UserNavigation = () => {
   return (
     <nav className="flex max-w-screen-xl mx-auto items-center justify-between">
       <HeaderLink href="/" iconSrc={homeIcon} alt="Home page" />
-      {canShowNumbersLink && (
+
+      {/* TODO: Add numbers link */}
+      {/* {canShowNumbersLink && (
         <HeaderLink href="/numbers" iconSrc={numbersIcon} alt="Numbers page" />
-      )}
+      )} */}
+
       {canShowAdditionalLinks && (
         <div className="flex items-center gap-4">
           <div className="relative w-[45px] h-[45px]">
