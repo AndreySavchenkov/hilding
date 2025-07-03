@@ -4,16 +4,40 @@ export function getOrderOptions(
   userId?: string,
   area?: string | null,
   line?: string | null,
+  machine?: string | null,
   data?: any
 ) {
   const baseFields = {
     createdById: userId,
     areaOptions: area,
     lineOptions: line,
+    machineOptions: machine,
     pallets: data?.pallets,
     scotchTape: data?.scotchTape,
     whiteBraid: data?.whiteBraid,
   };
+
+  if (machine) {
+    return {
+      ...baseFields,
+      lineOptions: "CPS",
+      pallets8090: data?.pallets8090,
+      pallets120140: data?.pallets120140,
+      pallets160: data?.pallets160,
+      pallets180: data?.pallets180,
+      wire16: data?.wire16,
+      wire17: data?.wire17,
+      wire18: data?.wire18,
+      wire19: data?.wire19,
+      wire20: data?.wire20,
+      wire21: data?.wire21,
+      flizelin450: data?.flizelin450,
+      flizelin500: data?.flizelin500,
+      flizelinTopDown: data?.flizelinTopDown,
+      needReplaceWire: data?.needReplaceWire,
+      needReplaceFlizelin: data?.needReplaceFlizelin,
+    };
+  }
 
   switch (line) {
     case LinesEnum.L1:

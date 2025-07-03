@@ -37,9 +37,14 @@ model Order {
   deliveredById              String?   @db.ObjectId
   deliveredBy                User?     @relation("DeliveredBy", fields: [deliveredById], references: [id])
   deliveredAt                DateTime?
-  lineOptions                String
-  areaOptions                String
+  lineOptions                String?
+  areaOptions                String?
+  machineOptions             String?
   pallets                    Boolean?  @default(false)
+  pallets8090                Boolean?  @default(false)
+  pallets120140              Boolean?  @default(false)
+  pallets160                 Boolean?  @default(false)
+  pallets180                 Boolean?  @default(false)
   scotchTape                 Boolean?  @default(false)
   whiteBraid                 Boolean?  @default(false)
   blackBelt                  Boolean?  @default(false)
@@ -76,6 +81,17 @@ model Order {
   triangularCartonSkotterud  Boolean?  @default(false)
   paperLiningSkotterud8090   Boolean?  @default(false)
   paperLiningSkotterud120140 Boolean?  @default(false)
+  wire16                     Boolean?  @default(false)
+  wire17                     Boolean?  @default(false)
+  wire18                     Boolean?  @default(false)
+  wire19                     Boolean?  @default(false)
+  wire20                     Boolean?  @default(false)
+  wire21                     Boolean?  @default(false)
+  flizelin450                Boolean?  @default(false)
+  flizelin500                Boolean?  @default(false)
+  flizelinTopDown            Boolean?  @default(false)
+  needReplaceWire            Boolean?  @default(false)
+  needReplaceFlizelin        Boolean?  @default(false)
 }
 
 model DriverSubscription {

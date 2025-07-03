@@ -2,6 +2,7 @@
 
 import driverIcon from "../public/driver.png";
 import workerIcon from "../public/worker.png";
+import cpsIcon from "../public/cps.png";
 import { PageWrapper } from "@/components/PageWrapper/PageWrapper";
 import { WorkerLink } from "../components/ui/WorkerLink";
 import { useUserRole } from "@/hooks/useUserRole";
@@ -13,17 +14,18 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <div className="h-full w-full flex items-center justify-center">
-        <div className="flex flex-col gap-12 items-center">
+      <div className="h-full w-full flex items-center justify-center p-4">
+        <div className="flex flex-col gap-4 items-center w-full max-w-sm">
           {canShowWorkerLink && (
-            <WorkerLink
-              icon={workerIcon}
-              title="Pracownik produkcji"
-              href="/worker"
-            />
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
+              <WorkerLink icon={workerIcon} title="CPW" href="/worker" />
+              <WorkerLink icon={cpsIcon} title="CPS" href="/cps" />
+            </div>
           )}
           {canShowDriverLink && (
-            <WorkerLink icon={driverIcon} title="Wózkowy" href="/driver" />
+            <div className="w-full">
+              <WorkerLink icon={driverIcon} title="Wózkowy" href="/driver" />
+            </div>
           )}
         </div>
       </div>

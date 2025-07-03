@@ -23,6 +23,7 @@ export const useLineForm = (schema: z.ZodSchema, defaultValues: {}) => {
 
   const line = searchParams?.get("line");
   const area = searchParams?.get("area");
+  const machine = searchParams?.get("machine");
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -32,9 +33,7 @@ export const useLineForm = (schema: z.ZodSchema, defaultValues: {}) => {
   const onSubmit = async (data: z.infer<typeof schema>) => {
     setIsLoading(true);
 
-    const orderOptions = getOrderOptions(user?.id, area, line, data);
-
-    console.log(`orderOptions: `, orderOptions);
+    const orderOptions = getOrderOptions(user?.id, area, line, machine, data);
 
     try {
       const apiUrl = "/api/order/create-order";

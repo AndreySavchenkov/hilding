@@ -14,6 +14,9 @@ import separatorIcon from "../public/separator.png";
 import triangularIcon from "../public/triangular.png";
 import { StaticImageData } from "next/image";
 import { UserRole } from "@prisma/client";
+import wireIcon from "../public/wire.png";
+import flizelinIcon from "../public/flizelin.png";
+import flizelinTopDownIcon from "../public/flizelinTopDown.png";
 
 export const roleOptions = [
   { value: UserRole.WORKER, label: "Pracownik produkcji" },
@@ -26,12 +29,32 @@ export type WorkerPageFormType = {
   area?: { value: string; label: string } | null;
 };
 
+export type CpsPageFormType = {
+  machine?: { value: string; label: string } | null;
+};
+
 export type OrderType = {
   id: string;
   lineOptions: string;
+  machineOptions?: string | null;
   areaOptions: "Start" | "Middle" | "Finish";
   workerNumber: string;
   pallets: boolean;
+  pallets8090: boolean;
+  pallets120140: boolean;
+  pallets160: boolean;
+  pallets180: boolean;
+  wire16: boolean;
+  wire17: boolean;
+  wire18: boolean;
+  wire19: boolean;
+  wire20: boolean;
+  wire21: boolean;
+  flizelin450: boolean;
+  flizelin500: boolean;
+  flizelinTopDown: boolean;
+  needReplaceWire: boolean;
+  needReplaceFlizelin: boolean;
   scotchTape: boolean;
   whiteBraid: boolean;
   blackBelt: boolean;
@@ -88,6 +111,17 @@ export const lineOptions = [
   { value: "L10", label: "L10" },
 ];
 
+export const machineOptions = [
+  { value: "DW L1", label: "DW L1" },
+  { value: "DW L2", label: "DW L2" },
+  { value: "DW L3", label: "DW L3" },
+  { value: "DW L4", label: "DW L4" },
+  { value: "4WL L1", label: "4WL L1" },
+  { value: "4WL L2", label: "4WL L2" },
+  { value: "4WL L3", label: "4WL L3" },
+  { value: "4WL L4", label: "4WL L4" },
+];
+
 export const areaOptions = [
   { value: "Start", label: "Klejenie" },
   { value: "Middle", label: "Ubieranie" },
@@ -105,6 +139,7 @@ export enum LinesEnum {
   L5 = "L5",
   L2 = "L2",
   L1 = "L1",
+  CPS = "CPS",
 }
 
 export type OrderItemType = {
@@ -118,6 +153,81 @@ export const orderItems = {
     PL: "Palety EURO",
     index: "",
     icon: palletsIcon,
+  },
+  pallets8090: {
+    PL: "Palety 80/90",
+    index: "",
+    icon: palletsIcon,
+  },
+  pallets120140: {
+    PL: "Palety 120/140",
+    index: "",
+    icon: palletsIcon,
+  },
+  pallets160: {
+    PL: "Palety 160",
+    index: "",
+    icon: palletsIcon,
+  },
+  pallets180: {
+    PL: "Palety 180",
+    index: "",
+    icon: palletsIcon,
+  },
+  wire16: {
+    PL: "Drut 1.6",
+    index: "GW01016",
+    icon: wireIcon,
+  },
+  wire17: {
+    PL: "Drut 1.7",
+    index: "GW01017",
+    icon: wireIcon,
+  },
+  wire18: {
+    PL: "Drut 1.8",
+    index: "GW01018",
+    icon: wireIcon,
+  },
+  wire19: {
+    PL: "Drut 1.9",
+    index: "GW01019",
+    icon: wireIcon,
+  },
+  wire20: {
+    PL: "Drut 2.0",
+    index: "GW01020",
+    icon: wireIcon,
+  },
+  wire21: {
+    PL: "Drut 2.1",
+    index: "GW01021",
+    icon: wireIcon,
+  },
+  flizelin450: {
+    PL: "Flizelina 450",
+    index: "GB53036",
+    icon: flizelinIcon,
+  },
+  flizelin500: {
+    PL: "Flizelina 500",
+    index: "GB53039",
+    icon: flizelinIcon,
+  },
+  flizelinTopDown: {
+    PL: "Flizelin góra-dół",
+    index: "GB53135",
+    icon: flizelinTopDownIcon,
+  },
+  needReplaceWire: {
+    PL: "Zamiana drutu",
+    index: "",
+    icon: wireIcon,
+  },
+  needReplaceFlizelin: {
+    PL: "Zamiana flizeliny",
+    index: "",
+    icon: flizelinTopDownIcon,
   },
   scotchTape: {
     PL: "Taśma Klejąca",
@@ -505,6 +615,95 @@ export const defaultValuesL10Form = {
   nylon160: false,
   nylon180: false,
 };
+
+export const defaultValuesCpsForm = {
+  scotchTape: false,
+  pallets8090: false,
+  pallets120140: false,
+  pallets160: false,
+  pallets180: false,
+  wire16: false,
+  wire17: false,
+  wire18: false,
+  wire19: false,
+  wire20: false,
+  wire21: false,
+  flizelin450: false,
+  flizelin500: false,
+  flizelinTopDown: false,
+  needReplaceWire: false,
+  needReplaceFlizelin: false,
+};
+
+export const fieldsCpsForm: {
+  name: keyof typeof defaultValuesCpsForm;
+  item: OrderItemType;
+}[] = [
+  {
+    name: "scotchTape",
+    item: orderItems.scotchTape,
+  },
+  {
+    name: "pallets8090",
+    item: orderItems.pallets8090,
+  },
+  {
+    name: "pallets120140",
+    item: orderItems.pallets120140,
+  },
+  {
+    name: "pallets160",
+    item: orderItems.pallets160,
+  },
+  {
+    name: "pallets180",
+    item: orderItems.pallets180,
+  },
+  {
+    name: "wire16",
+    item: orderItems.wire16,
+  },
+  {
+    name: "wire17",
+    item: orderItems.wire17,
+  },
+  {
+    name: "wire18",
+    item: orderItems.wire18,
+  },
+  {
+    name: "wire19",
+    item: orderItems.wire19,
+  },
+  {
+    name: "wire20",
+    item: orderItems.wire20,
+  },
+  {
+    name: "wire21",
+    item: orderItems.wire21,
+  },
+  {
+    name: "flizelin450",
+    item: orderItems.flizelin450,
+  },
+  {
+    name: "flizelin500",
+    item: orderItems.flizelin500,
+  },
+  {
+    name: "flizelinTopDown",
+    item: orderItems.flizelinTopDown,
+  },
+  {
+    name: "needReplaceWire",
+    item: orderItems.needReplaceWire,
+  },
+  {
+    name: "needReplaceFlizelin",
+    item: orderItems.needReplaceFlizelin,
+  },
+];
 
 export const fieldsL1L2: {
   name: keyof typeof defaultValuesL1L2Form;

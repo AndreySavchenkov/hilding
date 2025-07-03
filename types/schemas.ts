@@ -1,9 +1,24 @@
 import { z, ZodType } from "zod";
-import { WorkerPageFormType } from ".";
+import { CpsPageFormType, WorkerPageFormType } from ".";
 import { UserRole } from "@prisma/client";
 
 export const CommonFormSchema = z.object({
   pallets: z.boolean().default(false).optional(),
+  pallets8090: z.boolean().default(false).optional(),
+  pallets120140: z.boolean().default(false).optional(),
+  pallets160: z.boolean().default(false).optional(),
+  pallets180: z.boolean().default(false).optional(),
+  wire16: z.boolean().default(false).optional(),
+  wire17: z.boolean().default(false).optional(),
+  wire18: z.boolean().default(false).optional(),
+  wire19: z.boolean().default(false).optional(),
+  wire20: z.boolean().default(false).optional(),
+  wire21: z.boolean().default(false).optional(),
+  flizelin450: z.boolean().default(false).optional(),
+  flizelin500: z.boolean().default(false).optional(),
+  flizelinTopDown: z.boolean().default(false).optional(),
+  needReplaceWire: z.boolean().default(false).optional(),
+  needReplaceFlizelin: z.boolean().default(false).optional(),
   scotchTape: z.boolean().default(false).optional(),
   whiteBraid: z.boolean().default(false).optional(),
   blackBelt: z.boolean().default(false).optional(),
@@ -98,6 +113,25 @@ export const L5FormSchema = z.object({
   paperLiningSkotterud120140: z.boolean().default(false).optional(),
 });
 
+export const cpsOrderSchema = z.object({
+  scotchTape: z.boolean().default(false).optional(),
+  pallets8090: z.boolean().default(false).optional(),
+  pallets120140: z.boolean().default(false).optional(),
+  pallets160: z.boolean().default(false).optional(),
+  pallets180: z.boolean().default(false).optional(),
+  wire16: z.boolean().default(false).optional(),
+  wire17: z.boolean().default(false).optional(),
+  wire18: z.boolean().default(false).optional(),
+  wire19: z.boolean().default(false).optional(),
+  wire20: z.boolean().default(false).optional(),
+  wire21: z.boolean().default(false).optional(),
+  flizelin450: z.boolean().default(false).optional(),
+  flizelin500: z.boolean().default(false).optional(),
+  flizelinTopDown: z.boolean().default(false).optional(),
+  needReplaceWire: z.boolean().default(false).optional(),
+  needReplaceFlizelin: z.boolean().default(false).optional(),
+});
+
 export const workerPageSchema: ZodType<WorkerPageFormType> = z.object({
   line: z.object(
     {
@@ -115,6 +149,18 @@ export const workerPageSchema: ZodType<WorkerPageFormType> = z.object({
     },
     {
       required_error: "Area is required.",
+    }
+  ),
+});
+
+export const cpsPageSchema: ZodType<CpsPageFormType> = z.object({
+  machine: z.object(
+    {
+      value: z.string(),
+      label: z.string(),
+    },
+    {
+      required_error: "Machine is required.",
     }
   ),
 });
