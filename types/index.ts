@@ -964,3 +964,674 @@ export const stretchFieldsL10: {
     item: orderItems.nylon180,
   },
 ];
+
+export enum MattressFirmness {
+  Medium = "M",
+  Firm = "F",
+  XFirm = "X",
+}
+
+export type MattressCore = {
+  name: string;
+  index: string;
+  firmness: MattressFirmness;
+  size: {
+    width: number;
+    length: number;
+    height: number;
+  };
+  numberOfPockets: { count: number; size: number }[];
+  springs: { thickness: number }[];
+  lengthOf10Pockets: number;
+};
+
+export const mattressCores: MattressCore[] = [
+  {
+    name: "VESTEROY M 80x200",
+    index: "GM309I1",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 79,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 11, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.7 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY M 90x200",
+    index: "GM309I3",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 89,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 12, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.7 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY M 120x200",
+    index: "GM309I5",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 119,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 17, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.7 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY M 140x200",
+    index: "GM309I6",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 139,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 20, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.7 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY M 160x200",
+    index: "GM309I7",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 159,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 23, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.7 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY M 180x200",
+    index: "GM309I8",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 179,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 26, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.7 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY F 80x200",
+    index: "GM309J1",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 79,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 11, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY F 90x200",
+    index: "GM309J3",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 89,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 12, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY F 120x200",
+    index: "GM309J5",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 119,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 17, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY F 140x200",
+    index: "GM309J6",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 139,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 20, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY F 160x200",
+    index: "GM309J7",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 159,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 23, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY F 180x200",
+    index: "GM309J8",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 179,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 26, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY X 80x200",
+    index: "GM309K1",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 79,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 11, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY X 90x200",
+    index: "GM309K3",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 89,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 12, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY X 120x200",
+    index: "GM309K5",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 119,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 17, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY X 140x200",
+    index: "GM309K6",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 139,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 20, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY X 160x200",
+    index: "GM309K7",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 159,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 23, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VESTEROY X 180x200",
+    index: "GM309K8",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 179,
+      length: 202,
+      height: 15.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 32 },
+      { count: 26, size: 31 },
+      { count: 1, size: 32 },
+    ],
+    springs: [{ thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VALEVAG M 80x200",
+    index: "GM309F1",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 79,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 11, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG M 90x200",
+    index: "GM309F3",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 89,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 12, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG M 120x200",
+    index: "GM309F5",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 119,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 17, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG M 140x200",
+    index: "GM309F6",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 139,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 20, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG M 160x200",
+    index: "GM309F7",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 159,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 23, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG M 180x200",
+    index: "GM309F8",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 179,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 26, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 80x200",
+    index: "GM309G1",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 79,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 11, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 90x200",
+    index: "GM309G3",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 89,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 12, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 120x200",
+    index: "GM309G5",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 119,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 17, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 140x200",
+    index: "GM309G6",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 139,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 20, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 160x200",
+    index: "GM309G7",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 159,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 23, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 180x200",
+    index: "GM309G8",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 179,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 26, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG F 160x190",
+    index: "GM309G9",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 159,
+      length: 196,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 31 },
+      { count: 23, size: 30 },
+      { count: 1, size: 31 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 80x200",
+    index: "GM309H1",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 79,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 11, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 90x200",
+    index: "GM309H3",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 89,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 12, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 120x200",
+    index: "GM309H5",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 119,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 17, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 140x200",
+    index: "GM309H6",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 139,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 20, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 160x200",
+    index: "GM309H7",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 159,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 23, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 180x200",
+    index: "GM309H8",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 179,
+      length: 206,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 33 },
+      { count: 26, size: 32 },
+      { count: 1, size: 33 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+  {
+    name: "VALEVAG X 160x190",
+    index: "GM309H9",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 159,
+      length: 196,
+      height: 17.5,
+    },
+    numberOfPockets: [
+      { count: 1, size: 31 },
+      { count: 23, size: 30 },
+      { count: 1, size: 31 },
+    ],
+    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    lengthOf10Pockets: 75,
+  },
+];
+
+

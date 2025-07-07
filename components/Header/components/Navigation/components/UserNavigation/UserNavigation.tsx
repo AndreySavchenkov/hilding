@@ -4,11 +4,12 @@ import adminIcon from "@/public/admin.png";
 import homeIcon from "@/public/home.png";
 import numbersIcon from "@/public/numbers.png";
 import profileIcon from "@/public/profile.png";
+import documentationIcon from "@/public/documentation.png";
 import { useUserRole } from "@/hooks/useUserRole";
 
 export const UserNavigation = () => {
   const { isAdmin, isDriver, isWorker } = useUserRole();
-  const canShowNumbersLink = !isDriver;
+  const canShowWorkerLinks = !isDriver;
   const canShowAdditionalLinks = !isWorker;
   const canShowAdminLink = isAdmin;
 
@@ -16,10 +17,17 @@ export const UserNavigation = () => {
     <nav className="flex max-w-screen-xl mx-auto items-center justify-between">
       <HeaderLink href="/" iconSrc={homeIcon} alt="Home page" />
 
-      {/* TODO: Add numbers link */}
-      {/* {canShowNumbersLink && (
-        <HeaderLink href="/numbers" iconSrc={numbersIcon} alt="Numbers page" />
-      )} */}
+      {canShowWorkerLinks && (
+        <>
+          {/* TODO: Add numbers link */}
+          {/* <HeaderLink href="/numbers" iconSrc={numbersIcon} alt="Numbers page" /> */}
+          <HeaderLink
+            href="/documentation"
+            iconSrc={documentationIcon}
+            alt="Documentation page"
+          />
+        </>
+      )}
 
       {canShowAdditionalLinks && (
         <div className="flex items-center gap-4">
