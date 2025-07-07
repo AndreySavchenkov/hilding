@@ -77,9 +77,9 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
 
   const renderMattressVisualization = () => {
     return (
-      <div className="bg-white border border-gray-200 rounded-lg p-1 max-w-full overflow-x-auto">
+      <div className="bg-white border border-gray-200 rounded-lg p-[2px] max-w-full overflow-x-auto">
         <div className="mb-2 p-2 bg-gray-50 rounded border-b">
-          <div className="flex flex-wrap gap-4 text-xs text-gray-700">
+          <div className="flex flex-wrap gap-2 text-xs text-gray-700">
             <div className="flex items-center gap-1">
               <span className="font-medium">Długość:</span>
               <span>{mattress.size.length} cm</span>
@@ -176,7 +176,7 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
   };
 
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg p-2 space-y-6 border border-gray-700"> 
+    <div className="bg-gray-800 rounded-lg shadow-lg p-2 space-y-6 border border-gray-700">
       <div className="border-b border-gray-600 pb-4">
         <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-300 to-indigo-400 bg-clip-text text-transparent mb-2">
           {mattress.name}
@@ -259,7 +259,7 @@ export default function Documentation() {
   };
 
   return (
-    <div className="h-[calc(100vh-83px)] max-w-screen-lg mx-auto p-4 overflow-y-auto bg-gray-900 text-white">
+    <div className="h-[calc(100vh-83px)] max-w-screen-lg mx-auto px-1 py-4 overflow-y-auto bg-gray-900 text-white">
       <Form {...form}>
         <div className="flex flex-col space-y-8">
           <FormField
@@ -277,6 +277,9 @@ export default function Documentation() {
                       field.onChange(selectedOption);
                       handleSelectChange(selectedOption);
                     }}
+                    isSearchable={false}
+                    isClearable={false}
+
                   />
                 </FormControl>
                 <FormMessage className="text-red-400" />
