@@ -42,6 +42,8 @@ export const ChooseMachineFormField = ({
               styles={customWorkerPageStyles}
               options={options}
               className="mt-2"
+              isSearchable={false}
+              isClearable={false}
             />
           </FormControl>
           <FormMessage className="text-red-400" />
