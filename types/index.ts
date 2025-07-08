@@ -1632,6 +1632,231 @@ export const mattressCores: MattressCore[] = [
     springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
     lengthOf10Pockets: 75,
   },
+  {
+    name: "VATNESTROM M 80x200",
+    index: "GM30971",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 76,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 12, size: 28 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM M 90x200",
+    index: "GM30972",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 86,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 14, size: 28 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM M 140x200",
+    index: "GM30976",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 136,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 22, size: 28 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM M 160x200",
+    index: "GM30977",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 156,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 25, size: 28 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM M 180x200",
+    index: "GM30978",
+    firmness: MattressFirmness.Medium,
+    size: {
+      width: 176,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 29, size: 28 },
+    ],
+    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM F 80x200",
+    index: "GM30981",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 76,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 12, size: 28 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM F 90x200",
+    index: "GM30982",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 86,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 14, size: 28 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM F 140x200",
+    index: "GM30986",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 136,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 22, size: 28 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM F 160x200",
+    index: "GM30987",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 156,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 25, size: 28 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM F 180x200",
+    index: "GM30988",
+    firmness: MattressFirmness.Firm,
+    size: {
+      width: 176,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 29, size: 28 },
+    ],
+    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM X 80x200",
+    index: "GM30991",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 76,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 12, size: 28 },
+    ],
+    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM X 90x200",
+    index: "GM30992",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 86,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 14, size: 28 },
+    ],
+    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM X 140x200",
+    index: "GM30996",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 136,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 22, size: 28 },
+    ],
+    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM X 160x200",
+    index: "GM30997",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 156,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 25, size: 28 },
+    ],
+    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
+  {
+    name: "VATNESTROM X 180x200",
+    index: "GM30998",
+    firmness: MattressFirmness.XFirm,
+    size: {
+      width: 176,
+      length: 196,
+      height: 17,
+    },
+    numberOfPockets: [
+      { count: 29, size: 28 },
+    ],
+    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    lengthOf10Pockets: 80,
+  },
 ];
 
 

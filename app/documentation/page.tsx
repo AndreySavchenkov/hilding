@@ -24,24 +24,41 @@ type FormData = {
   mattressCore: { value: string; label: string };
 };
 
+// Паттерны для VALEVÅG
 const PATTERN_28 = [2, 7, 4, 6, 4, 7, 2]; // для длины 206
 const PATTERN_26 = [2, 6, 4, 6, 4, 6, 2]; // для длины 196
 const PATTERN_TYPES = [2, 1, 2, 1, 2, 1, 2]; // 2 — синяя, 1 — серая
+
+// Паттерны для VATNESTROM
+const VATNESTROM_PATTERN = [2, 5, 4, 6, 4, 5, 2]; // 2 синие - 5 серых - 4 синих - 6 серых - 4 синих - 5 серых - 2 синих
+const VATNESTROM_PATTERN_TYPES = [2, 1, 2, 1, 2, 1, 2]; // 2 — синяя, 1 — серая
 
 const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
   const isValevag =
     mattress.name.toLowerCase().includes("valevag") ||
     mattress.name.toLowerCase().includes("vale");
 
+  const isVatnestrom =
+    mattress.name.toLowerCase().includes("vatnestrom") ||
+    mattress.name.toLowerCase().includes("vatne");
+
+  // Выбираем паттерн по типу матраса
   let basePattern: number[] = [];
+  let patternTypes: number[] = [];
+
   if (isValevag) {
     if (mattress.size.length === 206) {
       basePattern = PATTERN_28;
     } else if (mattress.size.length === 196) {
       basePattern = PATTERN_26;
     }
+    patternTypes = PATTERN_TYPES;
+  } else if (isVatnestrom) {
+    basePattern = VATNESTROM_PATTERN;
+    patternTypes = VATNESTROM_PATTERN_TYPES;
   }
 
+  // Собираем все ряды по данным из numberOfPockets (сверху вниз)
   const allRows: number[] = [];
   mattress.numberOfPockets.forEach((pocket) => {
     for (let i = 0; i < pocket.count; i++) {
@@ -49,8 +66,8 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
     }
   });
   const totalRows = allRows.length;
-  const maxCols = Math.max(...allRows);
-  const firstRowIdx = allRows[0] === maxCols ? 0 : allRows.length - 1;
+  const maxCols = Math.max(...allRows); // длина самого длинного ряда
+  const firstRowIdx = allRows[0] === maxCols ? 0 : allRows.length - 1; // ищем индекс самого длинного ряда (обычно первый или последний)
   const marginForNumbers =
     allRows[firstRowIdx] < maxCols
       ? {
@@ -59,16 +76,18 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
         }
       : undefined;
 
+  // Функция для получения паттерна нужной длины
   const getPatternArray = (rowSize: number) => {
-    if (!isValevag || basePattern.length === 0) {
-      return Array(rowSize).fill(2);
+    if ((!isValevag && !isVatnestrom) || basePattern.length === 0) {
+      return Array(rowSize).fill(2); // fallback: все синие
     }
     let pattern: number[] = [];
     basePattern.forEach((count, i) => {
       for (let j = 0; j < count; j++) {
-        pattern.push(PATTERN_TYPES[i]);
+        pattern.push(patternTypes[i]);
       }
     });
+    // Если длина не совпала — повторяем или обрезаем
     while (pattern.length < rowSize) {
       pattern = pattern.concat(pattern);
     }
@@ -77,9 +96,10 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
 
   const renderMattressVisualization = () => {
     return (
-      <div className="bg-white border border-gray-200 rounded-lg p-[2px] max-w-full overflow-x-auto">
-        <div className="mb-2 p-2 bg-gray-50 rounded border-b">
-          <div className="flex flex-wrap gap-2 text-xs text-gray-700">
+      <div className="bg-gray-700 border border-gray-600 rounded-lg p-1 max-w-full overflow-x-auto">
+        {/* Информация о размерах на польском */}
+        <div className="mb-2 p-2 bg-gray-600 rounded border-b border-gray-500">
+          <div className="flex flex-wrap gap-4 text-xs text-gray-200">
             <div className="flex items-center gap-1">
               <span className="font-medium">Długość:</span>
               <span>{mattress.size.length} cm</span>
@@ -95,29 +115,33 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
           </div>
         </div>
 
+        {/* Подсказки по типам пружин только если их больше одной */}
         {mattress.springs.length > 1 && (
           <div className="mb-1 flex items-center gap-1">
             <div className="flex items-center gap-0.5">
               <span className="w-2 h-2 rounded-full bg-blue-500 border border-blue-600 inline-block" />
-              <span className="text-[8px] text-gray-700">Sprężyna 2</span>
+              <span className="text-[8px] text-gray-300">Sprężyna 2</span>
             </div>
             <div className="flex items-center gap-0.5">
               <span className="w-2 h-2 rounded-full bg-gray-400 border border-gray-500 inline-block" />
-              <span className="text-[8px] text-gray-700">Sprężyna 1</span>
+              <span className="text-[8px] text-gray-300">Sprężyna 1</span>
             </div>
           </div>
         )}
         <div className="flex">
           <div>
             <div
-              className="flex flex-col gap-0.5"
+              className="flex flex-col"
               style={{ minWidth: "fit-content" }}
             >
               {allRows.map((rowSize, rowIdx) => {
                 const isEdgeRow =
-                  isValevag && (rowIdx < 2 || rowIdx >= totalRows - 2);
+                  (isValevag || isVatnestrom) &&
+                  (rowIdx < 2 || rowIdx >= totalRows - 2);
                 const pattern =
-                  isValevag && !isEdgeRow ? getPatternArray(rowSize) : [];
+                  (isValevag || isVatnestrom) && !isEdgeRow
+                    ? getPatternArray(rowSize)
+                    : [];
                 const diff = maxCols - rowSize;
                 return (
                   <div
@@ -126,18 +150,18 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
                     style={
                       diff > 0
                         ? {
-                            marginLeft: `${(diff * 5) / 2}px`,
+                            marginLeft: `${(diff * 10) / 2}px`,
                             marginRight: `${(diff * 5) / 2}px`,
                           }
                         : undefined
                     }
                   >
-                    <span className="text-[8px] text-gray-500 w-2 text-right mr-0.5 select-none">
+                    <span className="text-[8px] text-gray-400 w-2 text-right mr-0.5 select-none">
                       {rowIdx + 1}
                     </span>
                     {Array.from({ length: rowSize }).map((_, colIdx) => {
                       let colorClass = "bg-blue-500 border-blue-600";
-                      if (isValevag) {
+                      if (isValevag || isVatnestrom) {
                         if (isEdgeRow) {
                           colorClass = "bg-blue-500 border-blue-600";
                         } else {
@@ -157,12 +181,13 @@ const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
                   </div>
                 );
               })}
+              {/* Горизонтальная нумерация снизу, строго под кружками */}
               <div className="flex gap-0.5 items-center mt-1">
                 <span className="w-2" />
                 {Array.from({ length: maxCols }).map((_, colIdx) => (
                   <span
                     key={colIdx}
-                    className="w-2 block text-center text-[8px] text-gray-500 select-none leading-[8px]"
+                    className="w-2 block text-center text-[8px] text-gray-400 select-none leading-[8px]"
                   >
                     {colIdx + 1}
                   </span>
@@ -279,7 +304,6 @@ export default function Documentation() {
                     }}
                     isSearchable={false}
                     isClearable={false}
-
                   />
                 </FormControl>
                 <FormMessage className="text-red-400" />
