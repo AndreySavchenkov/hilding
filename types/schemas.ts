@@ -170,12 +170,18 @@ export const registerSchema = z.object({
     .string()
     .min(2, "Imię musi zawierać co najmniej 2 znaki")
     .max(20, "Imię nie może przekraczać 20 znaków")
-    .regex(/^[a-zA-Z]+$/, "Dozwolone są tylko litery łacińskie"),
+    .regex(
+      /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
+      "Dozwolone są tylko litery polskie i łacińskie"
+    ),
   lastName: z
     .string()
     .min(2, "Nazwisko musi zawierać co najmniej 2 znaki")
     .max(20, "Nazwisko nie może przekraczać 20 znaków")
-    .regex(/^[a-zA-Z]+$/, "Dozwolone są tylko litery łacińskie"),
+    .regex(
+      /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
+      "Dozwolone są tylko litery polskie i łacińskie"
+    ),
   workerNumber: z.string().length(4, "Numer pracownika musi zawierać 4 cyfry"),
   securityCode: z
     .string()
@@ -183,8 +189,8 @@ export const registerSchema = z.object({
     .refine((code) => code === "1111", {
       message: "Nieprawidłowy kod bezpieczeństwa",
     }) as z.ZodType<string>,
-    role: z.object({
-      value: z.nativeEnum(UserRole),
-      label: z.string(),
-    }),
+  role: z.object({
+    value: z.nativeEnum(UserRole),
+    label: z.string(),
+  }),
 });

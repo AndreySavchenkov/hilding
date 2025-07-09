@@ -30,7 +30,7 @@ export const useRegister = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
-          role: data.role.value,
+          // Убираем .value - отправляем весь объект role
         }),
       });
 
@@ -53,4 +53,4 @@ export const useRegister = () => {
   };
 
   return { form, onSubmit, isLoading };
-}
+};
