@@ -980,6 +980,11 @@ export type MattressCore = {
     length: number;
     height: number;
   };
+  springsSize: {
+    height: number;
+    startWidth: number | string;
+    middleWidth: number | string;
+  };
   numberOfPockets: { count: number; size: number }[];
   springs: { thickness: number }[];
   lengthOf10Pockets: number;
@@ -994,6 +999,11 @@ export const mattressCores: MattressCore[] = [
       width: 79,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1012,6 +1022,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 12, size: 31 },
@@ -1028,6 +1043,11 @@ export const mattressCores: MattressCore[] = [
       width: 119,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1046,6 +1066,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 20, size: 31 },
@@ -1062,6 +1087,11 @@ export const mattressCores: MattressCore[] = [
       width: 159,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1080,6 +1110,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 26, size: 31 },
@@ -1096,6 +1131,11 @@ export const mattressCores: MattressCore[] = [
       width: 79,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1114,6 +1154,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 12, size: 31 },
@@ -1130,6 +1175,11 @@ export const mattressCores: MattressCore[] = [
       width: 119,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1148,6 +1198,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 20, size: 31 },
@@ -1164,6 +1219,11 @@ export const mattressCores: MattressCore[] = [
       width: 159,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1182,6 +1242,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 26, size: 31 },
@@ -1198,6 +1263,11 @@ export const mattressCores: MattressCore[] = [
       width: 79,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1216,6 +1286,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 12, size: 31 },
@@ -1232,6 +1307,11 @@ export const mattressCores: MattressCore[] = [
       width: 119,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1250,6 +1330,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 20, size: 31 },
@@ -1266,6 +1351,11 @@ export const mattressCores: MattressCore[] = [
       width: 159,
       length: 202,
       height: 15.5,
+    },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
     },
     numberOfPockets: [
       { count: 1, size: 32 },
@@ -1284,6 +1374,11 @@ export const mattressCores: MattressCore[] = [
       length: 202,
       height: 15.5,
     },
+    springsSize: {
+      height: 21,
+      startWidth: 5.2,
+      middleWidth: 6.9,
+    },
     numberOfPockets: [
       { count: 1, size: 32 },
       { count: 26, size: 31 },
@@ -1300,6 +1395,11 @@ export const mattressCores: MattressCore[] = [
       width: 79,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1318,6 +1418,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 12, size: 32 },
@@ -1334,6 +1439,11 @@ export const mattressCores: MattressCore[] = [
       width: 119,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1352,6 +1462,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 20, size: 32 },
@@ -1368,6 +1483,11 @@ export const mattressCores: MattressCore[] = [
       width: 159,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1386,6 +1506,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 26, size: 32 },
@@ -1402,6 +1527,11 @@ export const mattressCores: MattressCore[] = [
       width: 79,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1420,6 +1550,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 12, size: 32 },
@@ -1436,6 +1571,11 @@ export const mattressCores: MattressCore[] = [
       width: 119,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1454,6 +1594,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 20, size: 32 },
@@ -1470,6 +1615,11 @@ export const mattressCores: MattressCore[] = [
       width: 159,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1488,6 +1638,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 26, size: 32 },
@@ -1504,6 +1659,11 @@ export const mattressCores: MattressCore[] = [
       width: 159,
       length: 196,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 31 },
@@ -1522,6 +1682,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 11, size: 32 },
@@ -1538,6 +1703,11 @@ export const mattressCores: MattressCore[] = [
       width: 89,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1556,6 +1726,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 17, size: 32 },
@@ -1572,6 +1747,11 @@ export const mattressCores: MattressCore[] = [
       width: 139,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1590,6 +1770,11 @@ export const mattressCores: MattressCore[] = [
       length: 206,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 33 },
       { count: 23, size: 32 },
@@ -1606,6 +1791,11 @@ export const mattressCores: MattressCore[] = [
       width: 179,
       length: 206,
       height: 17.5,
+    },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
     },
     numberOfPockets: [
       { count: 1, size: 33 },
@@ -1624,6 +1814,11 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17.5,
     },
+    springsSize: {
+      height: 24,
+      startWidth: 5.2,
+      middleWidth: 6.7,
+    },
     numberOfPockets: [
       { count: 1, size: 31 },
       { count: 23, size: 30 },
@@ -1641,9 +1836,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 12, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 12, size: 28 }],
     springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
     lengthOf10Pockets: 80,
   },
@@ -1656,9 +1854,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 14, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 14, size: 28 }],
     springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
     lengthOf10Pockets: 80,
   },
@@ -1671,9 +1872,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 22, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 22, size: 28 }],
     springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
     lengthOf10Pockets: 80,
   },
@@ -1686,9 +1890,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 25, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 25, size: 28 }],
     springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
     lengthOf10Pockets: 80,
   },
@@ -1701,9 +1908,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 29, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 29, size: 28 }],
     springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
     lengthOf10Pockets: 80,
   },
@@ -1716,9 +1926,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 12, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 12, size: 28 }],
     springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
     lengthOf10Pockets: 80,
   },
@@ -1731,9 +1944,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 14, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 14, size: 28 }],
     springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
     lengthOf10Pockets: 80,
   },
@@ -1746,9 +1962,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 22, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 22, size: 28 }],
     springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
     lengthOf10Pockets: 80,
   },
@@ -1761,9 +1980,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 25, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 25, size: 28 }],
     springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
     lengthOf10Pockets: 80,
   },
@@ -1776,9 +1998,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 29, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 29, size: 28 }],
     springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
     lengthOf10Pockets: 80,
   },
@@ -1791,9 +2016,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 12, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 12, size: 28 }],
     springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
     lengthOf10Pockets: 80,
   },
@@ -1806,9 +2034,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 14, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 14, size: 28 }],
     springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
     lengthOf10Pockets: 80,
   },
@@ -1821,9 +2052,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 22, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 22, size: 28 }],
     springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
     lengthOf10Pockets: 80,
   },
@@ -1836,9 +2070,12 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 25, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 25, size: 28 }],
     springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
     lengthOf10Pockets: 80,
   },
@@ -1851,12 +2088,22 @@ export const mattressCores: MattressCore[] = [
       length: 196,
       height: 17,
     },
-    numberOfPockets: [
-      { count: 29, size: 28 },
-    ],
+    springsSize: {
+      height: 25,
+      startWidth: '5.0 - 5.2',
+      middleWidth: '6.5 - 6.8',
+    },
+    numberOfPockets: [{ count: 29, size: 28 }],
     springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
     lengthOf10Pockets: 80,
   },
 ];
 
+// Паттерны для VALEVÅG
+export const PATTERN_28 = [2, 7, 4, 6, 4, 7, 2]; // для длины 206
+export const PATTERN_26 = [2, 6, 4, 6, 4, 6, 2]; // для длины 196
+export const PATTERN_TYPES = [2, 1, 2, 1, 2, 1, 2]; // 2 — синяя, 1 — серая
 
+// Паттерны для VATNESTROM
+export const VATNESTROM_PATTERN = [2, 5, 4, 6, 4, 5, 2]; // 2 синие - 5 серых - 4 синих - 6 серых - 4 синих - 5 серых - 2 синих
+export const VATNESTROM_PATTERN_TYPES = [2, 1, 2, 1, 2, 1, 2]; // 2 — синяя, 1 — серая
