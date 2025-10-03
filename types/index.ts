@@ -986,7 +986,10 @@ export type MattressCore = {
     middleWidth: number | string;
   };
   numberOfPockets: { count: number; size: number }[];
-  springs: { thickness: number }[];
+  speed: number;
+  maxWidthWire: number;
+  numberWireTurns: number;
+  springs: { thickness: number; temperature: { min: number; max: number } }[];
   lengthOf10Pockets: number;
 };
 
@@ -1010,7 +1013,10 @@ export const mattressCores: MattressCore[] = [
       { count: 11, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.7 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.7, temperature: { min: 4800, max: 5000 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1032,7 +1038,10 @@ export const mattressCores: MattressCore[] = [
       { count: 12, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.7 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.7, temperature: { min: 4800, max: 5000 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1054,7 +1063,10 @@ export const mattressCores: MattressCore[] = [
       { count: 17, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.7 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.7, temperature: { min: 4800, max: 5000 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1076,7 +1088,10 @@ export const mattressCores: MattressCore[] = [
       { count: 20, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.7 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.7, temperature: { min: 4800, max: 5000 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1098,7 +1113,10 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.7 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.7, temperature: { min: 4800, max: 5000 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1120,7 +1138,10 @@ export const mattressCores: MattressCore[] = [
       { count: 26, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.7 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.7, temperature: { min: 4800, max: 5000 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1142,7 +1163,10 @@ export const mattressCores: MattressCore[] = [
       { count: 11, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.9 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.9, temperature: { min: 5200, max: 5400 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1164,7 +1188,10 @@ export const mattressCores: MattressCore[] = [
       { count: 12, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.9 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.9, temperature: { min: 5200, max: 5400 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1186,7 +1213,10 @@ export const mattressCores: MattressCore[] = [
       { count: 17, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.9 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.9, temperature: { min: 5200, max: 5400 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1208,7 +1238,10 @@ export const mattressCores: MattressCore[] = [
       { count: 20, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.9 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.9, temperature: { min: 5200, max: 5400 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1230,7 +1263,10 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.9 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.9, temperature: { min: 5200, max: 5400 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1252,7 +1288,10 @@ export const mattressCores: MattressCore[] = [
       { count: 26, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 1.9 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 1.9, temperature: { min: 5200, max: 5400 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1274,7 +1313,10 @@ export const mattressCores: MattressCore[] = [
       { count: 11, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 2.1 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 2.1, temperature: { min: 5600, max: 5800 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1296,7 +1338,10 @@ export const mattressCores: MattressCore[] = [
       { count: 12, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 2.1 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 2.1, temperature: { min: 5600, max: 5800 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1318,7 +1363,10 @@ export const mattressCores: MattressCore[] = [
       { count: 17, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 2.1 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 2.1, temperature: { min: 5600, max: 5800 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1340,7 +1388,10 @@ export const mattressCores: MattressCore[] = [
       { count: 20, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 2.1 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 2.1, temperature: { min: 5600, max: 5800 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1362,7 +1413,10 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 2.1 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 2.1, temperature: { min: 5600, max: 5800 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1384,7 +1438,10 @@ export const mattressCores: MattressCore[] = [
       { count: 26, size: 31 },
       { count: 1, size: 32 },
     ],
-    springs: [{ thickness: 2.1 }],
+    speed: 620,
+    maxWidthWire: 9700,
+    numberWireTurns: 5,
+    springs: [{ thickness: 2.1, temperature: { min: 5600, max: 5800 } }],
     lengthOf10Pockets: 80,
   },
   {
@@ -1406,7 +1463,13 @@ export const mattressCores: MattressCore[] = [
       { count: 11, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1428,7 +1491,13 @@ export const mattressCores: MattressCore[] = [
       { count: 12, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1450,7 +1519,13 @@ export const mattressCores: MattressCore[] = [
       { count: 17, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1472,7 +1547,13 @@ export const mattressCores: MattressCore[] = [
       { count: 20, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1494,7 +1575,13 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1516,7 +1603,13 @@ export const mattressCores: MattressCore[] = [
       { count: 26, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1538,7 +1631,13 @@ export const mattressCores: MattressCore[] = [
       { count: 11, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1560,7 +1659,13 @@ export const mattressCores: MattressCore[] = [
       { count: 12, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1582,7 +1687,13 @@ export const mattressCores: MattressCore[] = [
       { count: 17, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1604,7 +1715,13 @@ export const mattressCores: MattressCore[] = [
       { count: 20, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1626,7 +1743,13 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1648,7 +1771,13 @@ export const mattressCores: MattressCore[] = [
       { count: 26, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1670,7 +1799,13 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 30 },
       { count: 1, size: 31 },
     ],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1692,7 +1827,13 @@ export const mattressCores: MattressCore[] = [
       { count: 11, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1714,7 +1855,13 @@ export const mattressCores: MattressCore[] = [
       { count: 12, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1736,7 +1883,13 @@ export const mattressCores: MattressCore[] = [
       { count: 17, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1758,7 +1911,13 @@ export const mattressCores: MattressCore[] = [
       { count: 20, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1780,7 +1939,13 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1802,7 +1967,13 @@ export const mattressCores: MattressCore[] = [
       { count: 26, size: 32 },
       { count: 1, size: 33 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1824,7 +1995,13 @@ export const mattressCores: MattressCore[] = [
       { count: 23, size: 30 },
       { count: 1, size: 31 },
     ],
-    springs: [{ thickness: 1.8 }, { thickness: 2.0 }],
+    speed: 600,
+    maxWidthWire: 11300,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+      { thickness: 2.0, temperature: { min: 5400, max: 5600 } },
+    ],
     lengthOf10Pockets: 75,
   },
   {
@@ -1838,11 +2015,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 12, size: 28 }],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1856,11 +2039,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 14, size: 28 }],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1874,11 +2063,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 22, size: 28 }],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1892,11 +2087,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 25, size: 28 }],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1910,11 +2111,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 29, size: 28 }],
-    springs: [{ thickness: 1.6 }, { thickness: 1.8 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.6, temperature: { min: 4600, max: 4800 } },
+      { thickness: 1.8, temperature: { min: 5000, max: 5200 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1928,11 +2135,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 12, size: 28 }],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1946,11 +2159,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 14, size: 28 }],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1964,11 +2183,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 22, size: 28 }],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -1982,11 +2207,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 25, size: 28 }],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -2000,11 +2231,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 29, size: 28 }],
-    springs: [{ thickness: 1.7 }, { thickness: 1.9 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.7, temperature: { min: 4800, max: 5000 } },
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -2018,11 +2255,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 12, size: 28 }],
-    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+      { thickness: 2.1, temperature: { min: 5600, max: 5800 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -2036,11 +2279,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 14, size: 28 }],
-    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+      { thickness: 2.1, temperature: { min: 5600, max: 5800 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -2054,11 +2303,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 22, size: 28 }],
-    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+      { thickness: 2.1, temperature: { min: 5600, max: 5800 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -2072,11 +2327,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 25, size: 28 }],
-    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+      { thickness: 2.1, temperature: { min: 5600, max: 5800 } },
+    ],
     lengthOf10Pockets: 80,
   },
   {
@@ -2090,11 +2351,17 @@ export const mattressCores: MattressCore[] = [
     },
     springsSize: {
       height: 25,
-      startWidth: '5.0 - 5.2',
-      middleWidth: '6.5 - 6.8',
+      startWidth: "5.0 - 5.2",
+      middleWidth: "6.5 - 6.8",
     },
     numberOfPockets: [{ count: 29, size: 28 }],
-    springs: [{ thickness: 1.9 }, { thickness: 2.1 }],
+    speed: 600,
+    maxWidthWire: 11000,
+    numberWireTurns: 6,
+    springs: [
+      { thickness: 1.9, temperature: { min: 5200, max: 5400 } },
+      { thickness: 2.1, temperature: { min: 5600, max: 5800 } },
+    ],
     lengthOf10Pockets: 80,
   },
 ];

@@ -23,7 +23,8 @@ export const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
 
       <div className="border-b border-gray-600 pb-4">
         <h3 className="text-lg font-semibold mb-3 text-gray-200">
-          Rozmiar Sprężyny
+          Rozmiar Sprężyny  
+          ({mattress.numberWireTurns} +- 0.25 zwojów)
         </h3>
         <div
           className="relative flex justify-center items-center"
@@ -72,10 +73,23 @@ export const MattressInfoCard = ({ mattress }: { mattress: MattressCore }) => {
                 :
               </span>
               <span className="font-semibold text-white">
-                {spring.thickness} mm
+                {spring.thickness} mm ({spring.temperature.min}°C -{" "}
+                {spring.temperature.max}°C)
               </span>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="border-b border-gray-600 pb-4">
+        <h3 className="text-lg font-semibold mb-3 text-gray-200">Ustawenia</h3>
+        <div className="space-y-2 space-x-2">
+          <span className="text-gray-300 text-sm">Prędkość:</span>
+          <span className="font-semibold text-white">{mattress.speed}</span>
+        </div>
+        <div className="space-y-2 space-x-2">
+          <span className="text-gray-300 text-sm">Długość drutu:</span>
+          <span className="font-semibold text-white">{mattress.maxWidthWire}</span>
         </div>
       </div>
 
